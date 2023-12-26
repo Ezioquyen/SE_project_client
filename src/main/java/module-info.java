@@ -1,7 +1,7 @@
 module com.example.project_client {
     requires javafx.controls;
     requires javafx.fxml;
-
+    requires fxrouter;
     requires org.controlsfx.controls;
     requires org.kordamp.ikonli.javafx;
 

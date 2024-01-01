@@ -1,4 +1,4 @@
-package com.example.project_client.view.controller;
+package com.example.project_client.view.controller.Quyen;
 
 import com.example.project_client.FXRouter;
 import com.example.project_client.router.Pages;
@@ -10,15 +10,15 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class CreateOrderView {
+public class MainView {
     @FXML
-    VBox root;
+    VBox vBox;
     @FXML
     void initialize(){
-
+        Router.setRoot(vBox);
     }
     @FXML
-    public void switchToConfirmationView(ActionEvent event) throws IOException {
-        FXRouter.goTo(Pages.CONFIRMATION_VIEW.name(), Router.getRoot());
+    public void switchToCreateOrderView(ActionEvent event) throws IOException {
+        FXRouter.goTo(Pages.CREATE_ORDER_VIEW.name(),Router.getRoot());
     }
 }

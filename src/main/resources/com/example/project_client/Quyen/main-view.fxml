@@ -4,11 +4,11 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="vBox" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.MainView">
+<VBox fx:id="vBox" prefHeight="658.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Quyen.MainView">
    <children>
-      <SplitPane dividerPositions="0.829211229946524">
+      <SplitPane dividerPositions="0.829211229946524" prefHeight="659.0" prefWidth="802.0">
          <items>
-            <VBox />
+            <VBox prefWidth="662.0" />
             <VBox>
                <children>
                   <Button mnemonicParsing="false" onAction="#switchToCreateOrderView" text="Create order" />

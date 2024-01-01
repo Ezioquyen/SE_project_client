@@ -1,4 +1,4 @@
-package com.example.project_client.view.controller;
+package com.example.project_client.view.controller.Quyen;
 
 import javafx.fxml.FXML;
 

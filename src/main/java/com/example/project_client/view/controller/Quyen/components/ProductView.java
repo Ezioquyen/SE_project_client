@@ -26,7 +26,7 @@ public class ProductView extends VBox {
 
 
         Label nameLabel = new Label(productName);
-        Label priceLabel = new Label(price);
+        Label priceLabel = new Label(price + " VND");
         Label availabilityLabel = new Label(availability);
         VBox vBox = new VBox(nameLabel, priceLabel, availabilityLabel);
         getChildren().addAll(imageView, vBox);

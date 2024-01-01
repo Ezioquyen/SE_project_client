@@ -3,7 +3,7 @@ package com.example.project_client.viewModel.Quyen;
 import com.example.project_client.model.Product;
 import com.example.project_client.repository.ProductRepository;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
+
 import lombok.Getter;
 
 import java.io.IOException;

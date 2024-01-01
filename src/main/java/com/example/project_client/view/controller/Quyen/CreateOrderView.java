@@ -1,6 +1,5 @@
 package com.example.project_client.view.controller.Quyen;
 
-import com.example.project_client.FXRouter;
 import com.example.project_client.model.Product;
 import com.example.project_client.router.Pages;
 
@@ -10,8 +9,11 @@ import com.example.project_client.view.controller.Quyen.components.ProductView;
 import com.example.project_client.viewModel.Quyen.CreateOrderViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+
 import javafx.scene.control.ListView;
+
 import javafx.scene.layout.FlowPane;
+
 
 import java.io.IOException;
 import java.text.NumberFormat;
@@ -22,6 +24,7 @@ public class CreateOrderView {
     FlowPane productsPane;
     @FXML
     ListView<ProductCount> listView;
+
     @FXML
     CreateOrderViewModel createOrderViewModel = new CreateOrderViewModel();
     @FXML
@@ -55,7 +58,11 @@ public class CreateOrderView {
         }
     }
     @FXML
-    public void switchToConfirmationView(ActionEvent event) throws IOException {
-        FXRouter.goTo(Pages.CONFIRMATION_VIEW.name(), Router.getRoot());
+    public void showConfirmDialogView(ActionEvent event) throws IOException {
+        Router.showDialog(Pages.CONFIRMATION_VIEW);
+    }
+    @FXML
+    public void cancel() throws IOException {
+        Router.switchTo(Pages.MAIN_VIEW);
     }
 }

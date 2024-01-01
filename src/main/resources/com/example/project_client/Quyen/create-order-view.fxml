@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane dividerPositions="0.6955213903743315" prefHeight="766.0" prefWidth="843.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Quyen.CreateOrderView">
+<SplitPane dividerPositions="0.6955213903743315" prefHeight="766.0" prefWidth="843.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="com.example.project_client.view.controller.Quyen.CreateOrderView">
    <items>
       <ScrollPane>
          <content>
@@ -20,8 +20,8 @@
             <ListView fx:id="listView" />
             <HBox>
                <children>
-                  <Button mnemonicParsing="false" onAction="#switchToConfirmationView" text="Create" />
-                  <Button mnemonicParsing="false" text="Cancel" />
+                  <Button mnemonicParsing="false" onAction="#showConfirmDialogView" text="Create" />
+                  <Button mnemonicParsing="false" onAction="#cancel" text="Cancel" />
                </children>
             </HBox>
          </children>

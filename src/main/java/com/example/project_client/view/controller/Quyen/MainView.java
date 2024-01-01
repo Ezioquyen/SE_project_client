@@ -1,6 +1,5 @@
 package com.example.project_client.view.controller.Quyen;
 
-import com.example.project_client.FXRouter;
 import com.example.project_client.router.Pages;
 
 import com.example.project_client.router.Router;
@@ -19,6 +18,6 @@ public class MainView {
     }
     @FXML
     public void switchToCreateOrderView(ActionEvent event) throws IOException {
-        FXRouter.goTo(Pages.CREATE_ORDER_VIEW.name(),Router.getRoot());
+        Router.switchTo(Pages.CREATE_ORDER_VIEW);
     }
 }

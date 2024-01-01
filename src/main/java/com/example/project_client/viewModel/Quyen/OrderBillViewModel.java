@@ -1,7 +1,4 @@
 package com.example.project_client.viewModel.Quyen;
 
-
-
-public class ConfirmationViewModel {
-
+public class OrderBillViewModel {
 }

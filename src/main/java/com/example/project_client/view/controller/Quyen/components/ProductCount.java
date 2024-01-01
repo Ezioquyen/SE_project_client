@@ -40,5 +40,4 @@ public class ProductCount extends VBox {
             vBox.setAlignment(Pos.CENTER);
             getChildren().addAll(hBox, new HBox(sub,vBox ,add,region,label2));
         }
-
 }

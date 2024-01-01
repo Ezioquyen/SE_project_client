@@ -17,7 +17,7 @@
       </ScrollPane>
       <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
-            <ListView />
+            <ListView fx:id="listView" />
             <HBox>
                <children>
                   <Button mnemonicParsing="false" onAction="#switchToConfirmationView" text="Create" />

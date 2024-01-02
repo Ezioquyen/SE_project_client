@@ -26,18 +26,15 @@
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="SDT Khách hàng:" />
             <Label text="Tên khách hàng:" GridPane.rowIndex="1" />
-            <Label text="Ngày sinh:" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="Số tiền:" GridPane.rowIndex="3" />
+            <TextField fx:id="phoneNumber" GridPane.columnIndex="1" />
+            <TextField fx:id="customerName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="money" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Số tiền:" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <HBox spacing="15.0">
@@ -46,7 +43,7 @@
             <RadioButton mnemonicParsing="false" text="Tiền mặt" />
          </children>
       </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox prefHeight="28.0" prefWidth="374.0">
          <children>
             <Button mnemonicParsing="false" text="Xác nhận" />
             <Button mnemonicParsing="false" onAction="#close" text="Quay lại" />

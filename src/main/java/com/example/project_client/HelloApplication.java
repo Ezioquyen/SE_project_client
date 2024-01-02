@@ -12,9 +12,10 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Router.bind(this, stage, "Hello World", 300, 275);
+        Router.bind(this, stage, "Hello World", 1200, 800);
         init();
-        Router.goTo(Pages.MAIN_VIEW);
+        Router.init();
+        Router.switchTo(Pages.MAIN_VIEW);
 
     }
     public void init(){
@@ -22,6 +23,7 @@ public class HelloApplication extends Application {
         Router.setRouter(Pages.CREATE_ORDER_VIEW, "Quyen/create-order-view.fxml");
         Router.setRouter(Pages.ORDER_BILL_VIEW, "Quyen/order-bill-view.fxml");
         Router.setRouter(Pages.CONFIRMATION_VIEW, "Quyen/confirmation-view.fxml");
+
     }
     public static void main(String[] args) {
         launch();

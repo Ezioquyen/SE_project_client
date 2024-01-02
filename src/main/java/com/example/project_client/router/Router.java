@@ -15,7 +15,7 @@ import java.util.Map;
 
 public final class Router {
     @Getter
-    private static VBox root;
+    private static VBox root = new VBox();
     private static final String WINDOW_TITLE = "";
     private static final Double WINDOW_WIDTH = 800.0D;
     private static final Double WINDOW_HEIGHT = 600.0D;
@@ -28,6 +28,11 @@ public final class Router {
     private static Double windowHeight;
     private static final Map<Pages,String> routerLabel = new HashMap<>();
     private static final Map<Pages,Object> dataLabel = new HashMap<>();
+    public static void init(){
+        window.setTitle(windowTitle);
+        window.setScene(new Scene(root));
+        window.show();
+    }
     public static void setRoot(VBox root) {
         Router.root = root;
     }
@@ -38,6 +43,7 @@ public final class Router {
         routerLabel.put(page,path);
         dataLabel.put(page,data);
     }
+
     public static void switchTo(Pages page) throws IOException {
         String scenePath = routerLabel.get(page);
         Parent resource = FXMLLoader.load(HelloApplication.class.getResource(scenePath));
@@ -81,6 +87,7 @@ public final class Router {
 
     public static void bind(Object ref, Stage win, String winTitle, double winWidth, double winHeight) {
         checkInstances(ref, win);
+        root.setPrefSize(winWidth,winHeight);
         windowTitle = winTitle;
         windowWidth = winWidth;
         windowHeight = winHeight;

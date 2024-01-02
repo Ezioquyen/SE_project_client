@@ -10,11 +10,9 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 
 public class MainView {
-    @FXML
-    VBox vBox;
+
     @FXML
     void initialize(){
-        Router.setRoot(vBox);
     }
     @FXML
     public void switchToCreateOrderView(ActionEvent event) throws IOException {

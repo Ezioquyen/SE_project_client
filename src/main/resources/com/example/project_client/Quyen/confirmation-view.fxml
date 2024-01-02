@@ -18,7 +18,7 @@
             <Label prefHeight="22.0" prefWidth="70.0" text="Xác nhận" />
          </children>
       </HBox>
-      <GridPane>
+      <GridPane vgap="10.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -38,6 +38,9 @@
             <Label text="Số tiền:" GridPane.rowIndex="2" />
             <Label fx:id="notification" text="Vui lòng nhập số tiền!" textFill="#ea1a1a" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
+         <padding>
+            <Insets top="15.0" />
+         </padding>
       </GridPane>
       <HBox spacing="15.0">
          <children>

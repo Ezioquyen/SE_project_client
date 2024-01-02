@@ -1,6 +1,7 @@
 package com.example.project_client.view.controller.Quyen.components;
 
     import com.example.project_client.model.Product;
+    import javafx.geometry.Insets;
     import javafx.geometry.Pos;
     import javafx.scene.control.Button;
     import javafx.scene.control.Label;
@@ -35,6 +36,7 @@ public class ProductCount extends VBox {
             VBox vBox = new VBox(textField);
             vBox.setPrefSize(40,25);
             vBox.setAlignment(Pos.CENTER);
+            setPadding(new Insets(15));
             getChildren().addAll(hBox, new HBox(sub,vBox ,add,region,label2));
         }
 }

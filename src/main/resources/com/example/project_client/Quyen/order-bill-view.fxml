@@ -18,7 +18,7 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <VBox alignment="TOP_CENTER" maxWidth="-Infinity" prefHeight="660.0" prefWidth="360.0">
+      <VBox alignment="TOP_CENTER" maxWidth="-Infinity" prefHeight="660.0" prefWidth="422.0">
          <HBox>
             <children>
                <Label text="Buy date:" />
@@ -47,18 +47,18 @@
                <Label fx:id="staffId" layoutX="10.0" layoutY="10.0" text="FXJC019530" />
             </children>
          </HBox>
-         <GridPane fx:id="productContainer" alignment="CENTER_LEFT" vgap="15.0">
+         <GridPane fx:id="productContainer" alignment="CENTER_LEFT" prefHeight="63.0" prefWidth="330.0" vgap="10.0">
            <columnConstraints>
-             <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="138.39996337890625" minWidth="10.0" prefWidth="77.59996337890625" />
-             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="146.399991607666" minWidth="10.0" prefWidth="86.40003662109375" />
+             <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="138.39996337890625" minWidth="10.0" prefWidth="90.20001220703125" />
+             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="146.399991607666" minWidth="10.0" prefWidth="73.39998779296874" />
                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="126.20001220703125" minWidth="10.0" prefWidth="64.60003662109375" />
                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="103.99999999999997" minWidth="10.0" prefWidth="101.60003662109372" />
            </columnConstraints>
            <rowConstraints>
-             <RowConstraints minHeight="30.0" prefHeight="30.0" />
+             <RowConstraints minHeight="30.0" prefHeight="60.0" />
            </rowConstraints>
             <children>
-               <Label text="Tên mặt hàng" wrapText="true" />
+               <Label prefWidth="91.0" text="Tên mặt hàng" wrapText="true" />
                <Label text="SL" GridPane.columnIndex="2" />
                <Label text="Thành tiền" GridPane.columnIndex="3" />
                <Label text="Đơn giá" GridPane.columnIndex="1" />
@@ -86,7 +86,7 @@
             </children>
          </HBox>
          <HBox alignment="CENTER" prefHeight="40.0" prefWidth="380.0">
-            <Button mnemonicParsing="false" text="Done" />
+            <Button mnemonicParsing="false" onAction="#done" text="Done" />
          </HBox>
          <padding>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

@@ -16,7 +16,6 @@ public class Request {
     }
 
     public static void sendPostRequest(String url, String data) throws Exception {
-        System.out.println(data);
         URL obj = new URL(url);
         HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
         connection.setRequestMethod("POST");

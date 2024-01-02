@@ -1,5 +1,6 @@
 package com.example.project_client;
 
+import atlantafx.base.theme.*;
 import com.example.project_client.router.Pages;
 
 import com.example.project_client.router.Router;
@@ -12,6 +13,7 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        Application.setUserAgentStylesheet(new NordLight().getUserAgentStylesheet());
         Router.bind(this, stage, "Hello World", 1200, 800);
         init();
         Router.goTo(Pages.MAIN_VIEW);

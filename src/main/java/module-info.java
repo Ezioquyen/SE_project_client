@@ -4,6 +4,8 @@ module com.example.project_client {
     requires org.controlsfx.controls;
     requires org.kordamp.ikonli.javafx;
     requires lombok;
+
+    requires atlantafx.base;
     requires com.fasterxml.jackson.databind;
 
     opens com.example.project_client to javafx.fxml;

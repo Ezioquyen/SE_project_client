@@ -82,7 +82,7 @@ public class ConfirmationView {
         if(!notification.isVisible()) notification.setVisible(false);
         Router.closeDialog();
         if(!confirmationViewModel.getIsCostumerExist()&&!phoneNumber.getText().isEmpty()) confirmationViewModel.saveCustomer();
-        confirmationViewModel.getData().put("money", money.getText());
+        confirmationViewModel.getData().put("money", money.getText().replace(",",""));
         confirmationViewModel.getData().put("method",confirmationViewModel.getMethod());
         Router.switchTo(Pages.ORDER_BILL_VIEW);
     }

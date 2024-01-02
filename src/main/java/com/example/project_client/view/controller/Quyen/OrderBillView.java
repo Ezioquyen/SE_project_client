@@ -54,8 +54,8 @@ public class OrderBillView {
         staffId.setText(orderBillViewModel.getData().get("userStaffId").toString());
         total.setText(orderBillViewModel.getData().get("total") + " VND");
         method.setText("Khách trả (" + ((Boolean)orderBillViewModel.getData().get("payMethod")?"Quét mã QR":"Tiền mặt") +"):");
-        received.setText(orderBillViewModel.getData().get("received")+ " VND");
-        change.setText(orderBillViewModel.getData().get("changeMoney")+ " VND");
+        received.setText(NumberFormat.getNumberInstance(Locale.US).format(orderBillViewModel.getData().get("received"))+ " VND");
+        change.setText(NumberFormat.getNumberInstance(Locale.US).format(orderBillViewModel.getData().get("changeMoney"))+ " VND");
         int row = 1;
         for(Map.Entry<Product, SimpleIntegerProperty> entry : ((CreateOrderViewModel)Router.getData(Pages.CREATE_ORDER_VIEW)).getCount().entrySet()){
            Label productName = new Label(entry.getKey().getName());

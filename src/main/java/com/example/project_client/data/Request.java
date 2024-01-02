@@ -15,28 +15,63 @@ public class Request {
         return handleResponse(connection);
     }
 
-    public static String sendPostRequest(String apiUrl, String requestBody) throws IOException {
-        URL url = new URL(apiUrl);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    public static void sendPostRequest(String url, String data) throws Exception {
+        System.out.println(data);
+        URL obj = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
         connection.setRequestMethod("POST");
         connection.setDoOutput(true);
+        connection.setRequestProperty("Content-Type", "application/json");
         try (OutputStream os = connection.getOutputStream()) {
-            byte[] input = requestBody.getBytes("utf-8");
+            byte[] input = data.getBytes("utf-8");
             os.write(input, 0, input.length);
         }
-        return handleResponse(connection);
+
+        int responseCode = connection.getResponseCode();
+        System.out.println("\nSending 'POST' request to URL : " + url);
+        System.out.println("Post Data : " + data);
+        System.out.println("Response Code : " + responseCode);
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        String inputLine;
+        StringBuilder response = new StringBuilder();
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+
     }
 
-    public static String sendPutRequest(String apiUrl, String requestBody) throws IOException {
-        URL url = new URL(apiUrl);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    public static String sendPutRequest(String url, String data) throws Exception {
+        URL obj = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
         connection.setRequestMethod("PUT");
         connection.setDoOutput(true);
+
+        connection.setRequestProperty("Content-Type", "application/json");
+
+
         try (OutputStream os = connection.getOutputStream()) {
-            byte[] input = requestBody.getBytes("utf-8");
+            byte[] input = data.getBytes("utf-8");
             os.write(input, 0, input.length);
         }
-        return handleResponse(connection);
+
+        int responseCode = connection.getResponseCode();
+        System.out.println("\nSending 'PUT' request to URL : " + url);
+        System.out.println("Put Data : " + data);
+        System.out.println("Response Code : " + responseCode);
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        String inputLine;
+        StringBuilder response = new StringBuilder();
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+
+        return response.toString();
     }
 
     private static String handleResponse(HttpURLConnection connection) throws IOException {
@@ -57,4 +92,5 @@ public class Request {
             throw new IOException("Failed to retrieve data. Response Code: " + responseCode);
         }
     }
+
 }

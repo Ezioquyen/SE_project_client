@@ -14,8 +14,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         Router.bind(this, stage, "Hello World", 1200, 800);
         init();
-        Router.init();
-        Router.switchTo(Pages.MAIN_VIEW);
+        Router.goTo(Pages.MAIN_VIEW);
 
     }
     public void init(){

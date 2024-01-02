@@ -10,8 +10,11 @@ import com.example.project_client.viewModel.Quyen.CreateOrderViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
+import javafx.scene.control.RadioButton;
 import javafx.scene.layout.FlowPane;
 
 
@@ -24,7 +27,10 @@ public class CreateOrderView {
     FlowPane productsPane;
     @FXML
     ListView<ProductCount> listView;
-
+    @FXML
+    Label total;
+    @FXML
+    Label warning;
     @FXML
     CreateOrderViewModel createOrderViewModel = new CreateOrderViewModel();
     @FXML
@@ -32,12 +38,11 @@ public class CreateOrderView {
         createOrderViewModel.initData();
         for(Product product : createOrderViewModel.getProducts()){
             ProductView productView = new ProductView(product.getName(), NumberFormat.getNumberInstance(Locale.US).format(product.getPrice()),product.getAvailable()?"Còn hàng":"Hết hàng", product.getImage());
-
             productView.setOnMouseClicked((e)->{
-                if(!createOrderViewModel.check(product)){
+                if(createOrderViewModel.check(product)){
                     ProductCount productCount = new ProductCount(product);
                     createOrderViewModel.initCount(product);
-                    createOrderViewModel.getCount().get(product.getId()).addListener(((observableValue, number, t1) -> {
+                    createOrderViewModel.getCount().get(product).addListener(((observableValue, number, t1) -> {
                                 if(t1.intValue()==0) listView.getItems().remove(productCount);
                                 else {
                                     productCount.getTextField().setText(t1.toString());
@@ -56,9 +61,22 @@ public class CreateOrderView {
             });
             productsPane.getChildren().add(productView);
         }
+        createOrderViewModel.getTotal().addListener((obs,oldVal,newVal)->{
+            total.setText(NumberFormat.getNumberInstance(Locale.US).format(newVal.intValue())+" VND");
+        });
+        Router.setData(Pages.CREATE_ORDER_VIEW,createOrderViewModel);
     }
     @FXML
     public void showConfirmDialogView(ActionEvent event) throws IOException {
+        if(listView.getItems().isEmpty()){
+            if(!warning.isVisible()){
+                warning.setVisible(true);
+            }
+            return;
+        }
+        if(warning.isVisible()){
+            warning.setVisible(false);
+        }
         Router.showDialog(Pages.CONFIRMATION_VIEW);
     }
     @FXML

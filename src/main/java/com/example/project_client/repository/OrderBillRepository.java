@@ -10,7 +10,7 @@ import java.util.Objects;
 
 
 public class OrderBillRepository {
-    public void saveOrderBillApi(Object data) throws IOException {
+    public void saveOrderBillApi(Object data) throws Exception {
         Request.sendPostRequest(Api.orderBillApi+"/saveBill", Objects.requireNonNull(JsonUtils.toJson(data))) ;
     }
 }

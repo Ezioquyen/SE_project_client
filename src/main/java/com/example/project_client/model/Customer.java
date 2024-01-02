@@ -9,8 +9,6 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 public class Customer {
-    private String phoneNumber;
-    private String name;
-    private Date dob;
-
+    private String phoneNumber ="";
+    private String name = "";
 }

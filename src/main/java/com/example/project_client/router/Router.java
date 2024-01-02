@@ -26,13 +26,9 @@ public final class Router {
     private static String windowTitle;
     private static Double windowWidth;
     private static Double windowHeight;
+
     private static final Map<Pages,String> routerLabel = new HashMap<>();
     private static final Map<Pages,Object> dataLabel = new HashMap<>();
-    public static void init(){
-        window.setTitle(windowTitle);
-        window.setScene(new Scene(root));
-        window.show();
-    }
     public static void setRoot(VBox root) {
         Router.root = root;
     }
@@ -41,7 +37,16 @@ public final class Router {
     }
     public static void setRouter(Pages page, String path, Object data){
         routerLabel.put(page,path);
+        setData(page,data);
+    }
+    public static void removeData(Pages page){
+        dataLabel.remove(page);
+    }
+    public static void setData(Pages page, Object data){
         dataLabel.put(page,data);
+    }
+    public static Object getData(Pages page){
+       return dataLabel.get(page);
     }
 
     public static void switchTo(Pages page) throws IOException {
@@ -50,10 +55,16 @@ public final class Router {
         root.getChildren().setAll(resource);
     }
     public static void goTo(Pages page) throws IOException {
-        String scenePath = routerLabel.get(page);
-        Parent resource = FXMLLoader.load(HelloApplication.class.getResource(scenePath));
+        root = new VBox();
+        switchTo(page);
         window.setTitle(windowTitle);
-        window.setScene(new Scene(resource));
+        window.setScene(new Scene(root));
+        window.show();
+    }
+    public static void goTo(Pages page,double windowWidth, double windowHeight) throws IOException {
+        switchTo(page);
+        window.setTitle(windowTitle);
+        window.setScene(new Scene(root,windowWidth,windowHeight));
         window.show();
     }
     public  static void showDialog(Pages page) throws IOException {

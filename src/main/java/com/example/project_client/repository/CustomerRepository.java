@@ -13,9 +13,9 @@ public class CustomerRepository {
         return JsonUtils.fromJson(Request.sendGetRequest(Api.customerApi+"/check/"+phone), Boolean.class);
     }
     public Customer getCustomer(String phone) throws IOException {
-        return JsonUtils.fromJson(Request.sendGetRequest(Api.customerApi+"?phoneNumber="+phone), Customer.class);
+        return JsonUtils.fromJson(Request.sendGetRequest(Api.customerApi+"/getByPhone?phoneNumber="+phone), Customer.class);
     }
-    public void saveCustomer(Customer customer) throws IOException {
+    public void saveCustomer(Customer customer) throws Exception {
         Request.sendPostRequest(Api.customerApi+"/save", Objects.requireNonNull(JsonUtils.toJson(customer)));
     }
 }

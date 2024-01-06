@@ -6,7 +6,6 @@ import com.example.project_client.model.TimeRequest;
 import com.example.project_client.repository.BillIngredientCalRepository;
 
 import java.util.List;
-import java.util.jar.Attributes;
 
 public class BillIngredientCalViewModel {
     private final BillIngredientCalRepository billIngredientCalRepo = new BillIngredientCalRepository();
@@ -20,5 +19,4 @@ public class BillIngredientCalViewModel {
     public List<NameAndCount> getPerMonth(TimeRequest timeRequest) throws Exception {
         return billIngredientCalRepo.getPerMonthApi(timeRequest);
     }
-
 }

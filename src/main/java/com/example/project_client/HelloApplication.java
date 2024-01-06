@@ -23,9 +23,12 @@ public class HelloApplication extends Application {
         Router.setRouter(Pages.MAIN_VIEW, "Quyen/main-view.fxml");
         Router.setRouter(Pages.CREATE_ORDER_VIEW, "Quyen/create-order-view.fxml");
         Router.setRouter(Pages.ORDER_BILL_VIEW, "Quyen/order-bill-view.fxml");
-
         Router.setRouter(Pages.CONFIRMATION_VIEW, "Quyen/confirmation-view.fxml");
         Router.setRouter(Pages.MAIN_VIEW_PROFIT, "Khai/main-view.fxml");
+        Router.setRouter(Pages.SALARY_CAL_VIEW, "Khai/SalaryCalView.fxml");
+        Router.setRouter(Pages.BILL_INGREDIENT_CAL_VIEW, "Khai/BillIngredientCalView.fxml");
+        Router.setRouter(Pages.BILL_PRODUCT_CAL_VIEW, "Khai/BillProductCalView.fxml");
+        Router.setRouter(Pages.PROFIT_CAL_VIEW, "Khai/ProfitCalView.fxml");
     }
     public static void main(String[] args) {
         launch();

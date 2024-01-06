@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Customer {
-    private Integer id;
+    private Integer id =0;
     private String phoneNumber = "";
     private String name = "";
     private String dob = "";

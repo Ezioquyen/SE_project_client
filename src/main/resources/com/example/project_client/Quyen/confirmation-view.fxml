@@ -39,7 +39,7 @@
             <Label text="Ngày sinh" GridPane.rowIndex="2" />
             <Label layoutX="10.0" layoutY="112.0" text="Số tiền:" GridPane.rowIndex="3" />
             <TextField fx:id="money" layoutX="197.0" layoutY="104.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <DatePicker fx:id="dob" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label fx:id="notification" text="Vui lòng nhập số tiền!" textFill="#ea1a1a" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
          <padding>

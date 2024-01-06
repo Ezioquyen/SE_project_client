@@ -17,8 +17,8 @@ public final class Router {
     @Getter
     private static VBox root = new VBox();
     private static final String WINDOW_TITLE = "";
-    private static final Double WINDOW_WIDTH = 800.0D;
-    private static final Double WINDOW_HEIGHT = 600.0D;
+    private static final Double WINDOW_WIDTH = 1920.0D;
+    private static final Double WINDOW_HEIGHT = 1080.0D;
     private static Router router;
     private static Object mainRef;
     private static Stage window;
@@ -66,6 +66,13 @@ public final class Router {
         window.setTitle(windowTitle);
         window.setScene(new Scene(root,windowWidth,windowHeight));
         window.show();
+    }
+    public static void goTo(Pages page,boolean setFullScreen) throws IOException {
+        switchTo(page);
+        window.setTitle(windowTitle);
+        window.setScene(new Scene(root));
+        window.show();
+        window.setMaximized(setFullScreen);
     }
     public  static void showDialog(Pages page) throws IOException {
         dialog = new Stage();

@@ -14,4 +14,6 @@ module com.example.project_client {
     exports com.example.project_client.model;
     exports com.example.project_client.view.controller.Quyen;
     opens com.example.project_client.view.controller.Quyen to javafx.fxml;
+    exports com.example.project_client.view.controller.Khai;
+    opens com.example.project_client.view.controller.Khai to javafx.fxml;
 }

@@ -21,7 +21,6 @@ public class CreateOrderViewModel {
     @Getter
     private final SimpleIntegerProperty total = new SimpleIntegerProperty(0);
 
-
     public void initData() throws IOException {
         products = productRepository.getProductsApi();
     }

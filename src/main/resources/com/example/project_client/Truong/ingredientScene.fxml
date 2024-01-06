@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="556.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Truong.ingredientView">
+   <children>
+      <Button layoutX="490.0" layoutY="14.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+      <Button layoutX="60.0" layoutY="45.0" mnemonicParsing="false" onAction="#addIngredient" text="Add Ingredient" />
+      <Button layoutX="195.0" layoutY="45.0" mnemonicParsing="false" onAction="#changeIngredient" text="Change Ingredient" />
+      <Button layoutX="351.0" layoutY="45.0" mnemonicParsing="false" onAction="#deleteIngredient" text="Delete Ingredient" />
+      <VBox fx:id="vBox" layoutX="178.0" layoutY="111.0" prefHeight="321.0" prefWidth="149.0" />
+   </children>
+</AnchorPane>

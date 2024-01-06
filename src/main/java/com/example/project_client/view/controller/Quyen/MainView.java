@@ -18,4 +18,12 @@ public class MainView {
     public void switchToCreateOrderView(ActionEvent event) throws IOException {
         Router.switchTo(Pages.CREATE_ORDER_VIEW);
     }
+    @FXML
+    public void switchToIngredientView(ActionEvent event) throws IOException {
+        Router.switchTo(Pages.INGREDIENT_VIEW);
+    }
+    @FXML
+    public void switchToProductView(ActionEvent event) throws IOException {
+        Router.switchTo(Pages.PRODUCT_VIEW);
+    }
 }

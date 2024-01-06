@@ -6,23 +6,16 @@ import com.example.project_client.data.Request;
 import com.example.project_client.model.Customer;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Objects;
 
 public class CustomerRepository {
     public Boolean checkCustomer(String phone) throws IOException {
-        return JsonUtils.fromJson(Request.sendGetRequest(Api.customerApi + "/check/" + (Objects.equals(phone, "") ? "t" : phone)), Boolean.class);
+        return JsonUtils.fromJson(Request.sendGetRequest(Api.customerApi+"/check/"+phone), Boolean.class);
     }
-
     public Customer getCustomer(String phone) throws IOException {
-        return JsonUtils.fromJson(Request.sendGetRequest(Api.customerApi + "/getByPhone?phoneNumber=" + phone), Customer.class);
+        return JsonUtils.fromJson(Request.sendGetRequest(Api.customerApi+"/getByPhone?phoneNumber="+phone), Customer.class);
     }
-
     public void saveCustomer(Customer customer) throws Exception {
-        Request.sendPostRequest(Api.customerApi + "/save", Objects.requireNonNull(JsonUtils.toJson(customer.getId() == 0 ? new HashMap<String, Object>() {{
-            put("phoneNumber", customer.getPhoneNumber());
-            put("name", customer.getName());
-            put("dob", customer.getDob());
-        }} : customer)));
+        Request.sendPostRequest(Api.customerApi+"/save", Objects.requireNonNull(JsonUtils.toJson(customer)));
     }
 }

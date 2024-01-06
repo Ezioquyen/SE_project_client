@@ -12,46 +12,46 @@
 <?import javafx.scene.layout.VBox?>
 
 <SplitPane dividerPositions="0.6955213903743315" prefHeight="766.0" prefWidth="843.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Quyen.CreateOrderView">
-   <items>
-      <ScrollPane>
-         <content>
-            <FlowPane fx:id="productsPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="930.0" />
-         </content>
-      </ScrollPane>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0">
-         <children>
-            <ListView fx:id="listView" fixedCellSize="60.0">
-               <padding>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-               </padding></ListView>
-            <HBox>
-               <children>
-                  <Label text="Total:" />
-                  <Region HBox.hgrow="ALWAYS" />
-                  <Label fx:id="total" text="0 VND" />
-               </children>
-               <padding>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-               </padding>
-            </HBox>
-            <HBox>
-               <children>
-                  <Button fx:id="create" mnemonicParsing="false" onAction="#showConfirmDialogView" text="Create" />
-                  <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
-               </children>
-               <padding>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER">
-               <children>
-                  <Label fx:id="warning" text="Vui lòng chọn sản phẩm!" textFill="#f70909" visible="false" />
-               </children>
-            </HBox>
-         </children>
-         <padding>
-            <Insets top="15.0" />
-         </padding>
-      </VBox>
-   </items>
+    <items>
+        <ScrollPane>
+            <content>
+                <FlowPane fx:id="productsPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="930.0" />
+            </content>
+        </ScrollPane>
+        <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0">
+            <children>
+                <ListView fx:id="listView" fixedCellSize="80.0">
+                    <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                    </padding></ListView>
+                <HBox>
+                    <children>
+                        <Label text="Total:" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="total" text="0 VND" />
+                    </children>
+                    <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                    </padding>
+                </HBox>
+                <HBox>
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#showConfirmDialogView" text="Create" />
+                        <Button mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+                    </children>
+                    <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <children>
+                        <Label fx:id="warning" text="Vui lòng chọn sản phẩm!" textFill="#f70909" visible="false" />
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets top="15.0" />
+            </padding>
+        </VBox>
+    </items>
 </SplitPane>

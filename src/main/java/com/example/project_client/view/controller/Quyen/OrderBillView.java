@@ -9,14 +9,16 @@ import com.example.project_client.viewModel.Quyen.OrderBillViewModel;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
-
+import org.controlsfx.control.GridCell;
 
 import java.io.IOException;
 import java.text.NumberFormat;
-
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -46,12 +48,11 @@ public class OrderBillView {
     @FXML
     void initialize() throws Exception {
         orderBillViewModel.initData();
-
         buyDate.setText(orderBillViewModel.getData().get("buyDate").toString());
         customerPhone.setText(orderBillViewModel.getData().get("customerPhone").toString());
         billCode.setText(orderBillViewModel.getData().get("id").toString());
         staffId.setText(orderBillViewModel.getData().get("userStaffId").toString());
-        total.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(orderBillViewModel.getData().get("total").toString())) + " VND");
+        total.setText(orderBillViewModel.getData().get("total") + " VND");
         method.setText("Khách trả (" + ((Boolean)orderBillViewModel.getData().get("payMethod")?"Quét mã QR":"Tiền mặt") +"):");
         received.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(orderBillViewModel.getData().get("received").toString()))+ " VND");
         change.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(orderBillViewModel.getData().get("changeMoney").toString()))+ " VND");

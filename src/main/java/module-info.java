@@ -7,6 +7,7 @@ module com.example.project_client {
 
     requires atlantafx.base;
     requires com.fasterxml.jackson.databind;
+    requires com.fasterxml.jackson.datatype.jsr310;
 
     opens com.example.project_client to javafx.fxml;
     exports com.example.project_client;

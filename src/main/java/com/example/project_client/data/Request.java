@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Request {
@@ -39,7 +40,21 @@ public class Request {
             response.append(inputLine);
         }
         in.close();
+    }
 
+    // Khai test
+    public static String sendPostRequestGettingData(String url, String data) throws Exception {
+        URL obj = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setDoOutput(true);
+        connection.setRequestProperty("Content-Type", "application/json");
+        try (OutputStream os = connection.getOutputStream()) {
+            byte[] input = data.getBytes("utf-8");
+            os.write(input, 0, input.length);
+        }
+        System.out.println("Connect success");
+        return handleResponse(connection);
     }
 
     public static String sendPutRequest(String url, String data) throws Exception {
@@ -86,8 +101,10 @@ public class Request {
             }
 
             in.close();
+            System.out.println("Read success");
             return response.toString();
         } else {
+            System.out.println("Read failed");
             throw new IOException("Failed to retrieve data. Response Code: " + responseCode);
         }
     }

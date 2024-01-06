@@ -19,10 +19,6 @@ public class CustomerRepository {
     }
 
     public void saveCustomer(Customer customer) throws Exception {
-        Request.sendPostRequest(Api.customerApi + "/save", Objects.requireNonNull(JsonUtils.toJson(customer.getId() == 0 ? new HashMap<String, Object>() {{
-            put("phoneNumber", customer.getPhoneNumber());
-            put("name", customer.getName());
-            put("dob", customer.getDob());
-        }} : customer)));
+        Request.sendPostRequest(Api.customerApi + "/save", Objects.requireNonNull(JsonUtils.toJson(customer)));
     }
 }

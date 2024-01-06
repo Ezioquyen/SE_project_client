@@ -47,11 +47,11 @@ public class ConfirmationView {
                 throw new RuntimeException(ex);
             }
             if (confirmationViewModel.isExistCustomer()) {
-                if (!Objects.equals(confirmationViewModel.getCustomer().getName(), "")) {
+                if (!Objects.equals(confirmationViewModel.getCustomer().getName(), null)) {
                     customerName.setText(confirmationViewModel.getCustomer().getName());
                     customerName.setDisable(true);
                 }
-                if (!Objects.equals(confirmationViewModel.getCustomer().getDob(), "")) {
+                if (!Objects.equals(confirmationViewModel.getCustomer().getDob(), null)) {
                     dob.setValue(DobFormatter.toDate(confirmationViewModel.getCustomer().getDob()));
                     dob.setDisable(true);
                 }

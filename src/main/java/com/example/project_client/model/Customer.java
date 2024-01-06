@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 public class Customer {
     private Integer id =0;
     private String phoneNumber = "";
-    private String name = "";
-    private String dob = "";
+    private String name = null;
+    private String dob = null;
 
 }

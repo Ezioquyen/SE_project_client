@@ -1,9 +1,6 @@
 package com.example.project_client.view.controller.Khai.Function;
 import javafx.scene.chart.NumberAxis;
-import javafx.scene.control.DateCell;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.*;
 
 import java.text.NumberFormat;
 import java.time.LocalDate;
@@ -52,16 +49,23 @@ public class FunctionKhai {
         return result;
     }
 
+    public static void validCombobox(ComboBox<String> comboBox){
+        comboBox.getItems().addAll("Theo ngày", "Theo tháng");
+        comboBox.setValue("Theo ngày");
+    }
+
     public static String convertDatePerMonth(LocalDate localDate){
         return localDate.format(formatter);
     }
     public static String convertMoney(Integer money){
-        String result = us.format(money);
-        try {
+        if(money > 0){
+            String result = us.format(money);
             return result.substring(1, result.length() - 3) + " đồng";
-        } catch (Exception e) {
-            return "0 đồng";
         }
-
+        if(money < 0){
+            String result = us.format(-money);
+            return "-" + result.substring(1, result.length() - 3) + " đồng";
+        }
+        return "0 đồng";
     }
 }

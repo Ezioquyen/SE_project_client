@@ -32,112 +32,30 @@ public class BillProductCalViewController implements Initializable {
         FunctionKhai.validNumberAxis(yAxistBillProductLine);
         FunctionKhai.validDatePicker(datePickStart);
         FunctionKhai.validDatePicker(datePickEnd);
-        typeCbb.getItems().addAll("Theo ngày", "Theo tháng");
-        typeCbb.setValue("Theo ngày");
+        FunctionKhai.validCombobox(typeCbb);
     }
 
     @SuppressWarnings("unchecked")
     @FXML
     public void billProductCal(ActionEvent event) {
+        if(datePickStart.getValue().isAfter(datePickEnd.getValue())){
+            popAlert(1);
+            return;
+        }
         if(typeCbb.getValue().equals("Theo ngày")) {
             xAxistBillProductLine.setLabel("Ngày");
             try {
-                List<NameAndCount> nameAndCounts = billProductViewModel.getPerDay(new TimeRequest(datePickStart.getValue(), datePickEnd.getValue()));
-                int totalProfit = 0;
-                for(NameAndCount n : nameAndCounts){
-                    totalProfit += n.getCount();
-                }if(datePickStart.getValue().until(datePickEnd.getValue(), ChronoUnit.DAYS) >= 50) {
-                    settingOutTime(totalProfit);
-                }else{
-                    totalProfitLabel.setText("Tổng doanh thu: " + FunctionKhai.convertMoney(totalProfit));
-                    Series<String, Number> series = new Series<>();
-                    billProductLineChart.setData(FXCollections.observableArrayList(series));
-                    LocalDate st = datePickStart.getValue(), en = datePickEnd.getValue();
-                    int max = -1, i = 0, j = 0, sz = (int) st.until(en, ChronoUnit.DAYS);
-                    series.setName("Thống kê doanh thu từ ngày " + FunctionKhai.convertDate(st.toString()) + " tới ngày " + FunctionKhai.convertDate(en.toString()));
-                    for(i = 0; i <= sz; i++) {
-                        int total = 0;
-                        if(j < nameAndCounts.size() && st.plusDays(i).toString().equals(nameAndCounts.get(j).getName())){
-                            total += nameAndCounts.get(j).getCount();
-                            j++;
-                        }
-                        Data<String, Number> data = new Data<>(FunctionKhai.convertDate(st.plusDays(i).toString()), total);
-                        series.getData().add(data);
-                        data.getNode().setOnMouseEntered(e -> {
-                            dateInforLabel.setText("Date: " + data.getXValue());
-                            profitInforLabel.setText("Revenue: " + FunctionKhai.convertMoney((Integer) data.getYValue()));
-                            inforVbox.setVisible(true);
-                            inforVbox.setLayoutX(e.getSceneX() - 240);
-                            inforVbox.setLayoutY(e.getSceneY() - 55);
-                        });
-                        data.getNode().setOnMouseExited(e -> {
-                            inforVbox.setVisible(false);
-                        });
-                        if(max < total) max = total;
-                    }
-                    if(max != -1) {
-                        max = max + max / 10;
-                        yAxistBillProductLine.setUpperBound(max);
-                        max /= 11;
-                        yAxistBillProductLine.setTickUnit(max);
-                    }else {
-                        yAxistBillProductLine.setUpperBound(500000);
-                        yAxistBillProductLine.setTickUnit(50000);
-                    }
-                }
+                handlePerDay();
             } catch (Exception e) {
-                popAlert();
+                popAlert(0);
                 return;
             }
         }else{
             xAxistBillProductLine.setLabel("Tháng");
             try {
-                List<NameAndCount> nameAndCounts = billProductViewModel.getPerMonth(new TimeRequest(datePickStart.getValue(), datePickEnd.getValue()));
-                int totalProfit = 0;
-                for(NameAndCount n : nameAndCounts){
-                    totalProfit += n.getCount();
-                }if(datePickStart.getValue().until(datePickEnd.getValue(), ChronoUnit.MONTHS) >= 50) {
-                    settingOutTime(totalProfit);
-                }else {
-                    totalProfitLabel.setText("Tổng doanh thu: " + FunctionKhai.convertMoney(totalProfit));
-                    Series<String, Number> series = new Series<>();
-                    billProductLineChart.setData(FXCollections.observableArrayList(series));
-
-                    LocalDate st = datePickStart.getValue(), en = datePickEnd.getValue();
-                    int max = -1, j = 0, difMonth = (en.getYear() - st.getYear()) * 12 + en.getMonthValue() - st.getMonthValue();
-                    series.setName("Thống kê doanh thu từ tháng " + FunctionKhai.convertDatePerMonth(st) + " tới tháng " + FunctionKhai.convertDatePerMonth(en));
-                    for(int i = 0; i <= difMonth; i++) {
-                        int total = 0;
-                        if(j < nameAndCounts.size() && FunctionKhai.convertDatePerMonth(st.plusMonths(i)).equals(FunctionKhai.convertDate(nameAndCounts.get(j).getName()))) {
-                            total += nameAndCounts.get(j).getCount();
-                            j++;
-                        }
-                        Data<String, Number> data = new Data<>(FunctionKhai.convertDatePerMonth(st.plusMonths(i)), total);
-                        series.getData().add(data);
-                        data.getNode().setOnMouseEntered(e -> {
-                            dateInforLabel.setText("Date: " + data.getXValue());
-                            profitInforLabel.setText("Profit: " + FunctionKhai.convertMoney((Integer) data.getYValue()));
-                            inforVbox.setVisible(true);
-                            inforVbox.setLayoutX(e.getSceneX() - 240);
-                            inforVbox.setLayoutY(e.getSceneY() - 55);
-                        });
-                        data.getNode().setOnMouseExited(e -> {
-                            inforVbox.setVisible(false);
-                        });
-                        if(max < total) max = total;
-                    }
-                    if(max != -1) {
-                        max = max + max / 10;
-                        yAxistBillProductLine.setUpperBound(max);
-                        max /= 11;
-                        yAxistBillProductLine.setTickUnit(max);
-                    }else {
-                        yAxistBillProductLine.setUpperBound(500000);
-                        yAxistBillProductLine.setTickUnit(50000);
-                    }
-                }
+                handlePerMonth();
             } catch (Exception e) {
-                popAlert();
+                popAlert(0);
                 return;
             }
         }
@@ -164,7 +82,7 @@ public class BillProductCalViewController implements Initializable {
             }
             billProductBarChart.setData(FXCollections.observableArrayList(series));
         } catch (Exception e) {
-            popAlert();
+            popAlert(0);
             return;
         }
         totalProfitLabel.setVisible(true);
@@ -232,13 +150,110 @@ public class BillProductCalViewController implements Initializable {
         yAxistBillProductLine.setTickUnit(50000);
         billProductLineChart.getData().clear();
     }
-    private void popAlert(){
+    private void popAlert(int type){
         totalProfitLabel.setVisible(false);
         swapChartBtn.setVisible(false);
         billProductBarChart.setVisible(false);
         billProductLineChart.setVisible(false);
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setContentText("Đã có lỗi xảy ra với máy chủ, vui lòng thử lại sau!");
+        if(type == 1){
+            alert.setContentText("Ngày bắt đầu không được lớn hơn ngày kết thúc!");
+        }else{
+            alert.setContentText("Đã có lỗi xảy ra với máy chủ, vui lòng thử lại sau!");
+        }
         alert.showAndWait();
+    }
+    @SuppressWarnings("unchecked")
+    private void handlePerDay() throws Exception {
+        List<NameAndCount> nameAndCounts = billProductViewModel.getPerDay(new TimeRequest(datePickStart.getValue(), datePickEnd.getValue()));
+        int totalProfit = 0;
+        for(NameAndCount n : nameAndCounts){
+            totalProfit += n.getCount();
+        }if(datePickStart.getValue().until(datePickEnd.getValue(), ChronoUnit.DAYS) >= 50) {
+            settingOutTime(totalProfit);
+        }else{
+            totalProfitLabel.setText("Tổng doanh thu: " + FunctionKhai.convertMoney(totalProfit));
+            Series<String, Number> series = new Series<>();
+            billProductLineChart.setData(FXCollections.observableArrayList(series));
+            LocalDate st = datePickStart.getValue(), en = datePickEnd.getValue();
+            int max = -1, i = 0, j = 0, sz = (int) st.until(en, ChronoUnit.DAYS);
+            series.setName("Thống kê doanh thu từ ngày " + FunctionKhai.convertDate(st.toString()) + " tới ngày " + FunctionKhai.convertDate(en.toString()));
+            for(i = 0; i <= sz; i++) {
+                int total = 0;
+                if(j < nameAndCounts.size() && st.plusDays(i).toString().equals(nameAndCounts.get(j).getName())){
+                    total += nameAndCounts.get(j).getCount();
+                    j++;
+                }
+                Data<String, Number> data = new Data<>(FunctionKhai.convertDate(st.plusDays(i).toString()), total);
+                series.getData().add(data);
+                data.getNode().setOnMouseEntered(e -> {
+                    dateInforLabel.setText("Date: " + data.getXValue());
+                    profitInforLabel.setText("Revenue: " + FunctionKhai.convertMoney((Integer) data.getYValue()));
+                    inforVbox.setVisible(true);
+                    inforVbox.setLayoutX(e.getSceneX() - 240);
+                    inforVbox.setLayoutY(e.getSceneY() - 55);
+                });
+                data.getNode().setOnMouseExited(e -> {
+                    inforVbox.setVisible(false);
+                });
+                if(max < total) max = total;
+            }
+            if(max != -1) {
+                max = max + max / 10;
+                yAxistBillProductLine.setUpperBound(max);
+                max /= 11;
+                yAxistBillProductLine.setTickUnit(max);
+            }else {
+                yAxistBillProductLine.setUpperBound(500000);
+                yAxistBillProductLine.setTickUnit(50000);
+            }
+        }
+    }
+    @SuppressWarnings("unchecked")
+    private void handlePerMonth() throws Exception {
+        List<NameAndCount> nameAndCounts = billProductViewModel.getPerMonth(new TimeRequest(datePickStart.getValue(), datePickEnd.getValue()));
+        int totalProfit = 0;
+        for(NameAndCount n : nameAndCounts){
+            totalProfit += n.getCount();
+        }if(datePickStart.getValue().until(datePickEnd.getValue(), ChronoUnit.MONTHS) >= 50) {
+            settingOutTime(totalProfit);
+        }else {
+            totalProfitLabel.setText("Tổng doanh thu: " + FunctionKhai.convertMoney(totalProfit));
+            Series<String, Number> series = new Series<>();
+            billProductLineChart.setData(FXCollections.observableArrayList(series));
+
+            LocalDate st = datePickStart.getValue(), en = datePickEnd.getValue();
+            int max = -1, j = 0, difMonth = (en.getYear() - st.getYear()) * 12 + en.getMonthValue() - st.getMonthValue();
+            series.setName("Thống kê doanh thu từ tháng " + FunctionKhai.convertDatePerMonth(st) + " tới tháng " + FunctionKhai.convertDatePerMonth(en));
+            for(int i = 0; i <= difMonth; i++) {
+                int total = 0;
+                if(j < nameAndCounts.size() && FunctionKhai.convertDatePerMonth(st.plusMonths(i)).equals(FunctionKhai.convertDate(nameAndCounts.get(j).getName()))) {
+                    total += nameAndCounts.get(j).getCount();
+                    j++;
+                }
+                Data<String, Number> data = new Data<>(FunctionKhai.convertDatePerMonth(st.plusMonths(i)), total);
+                series.getData().add(data);
+                data.getNode().setOnMouseEntered(e -> {
+                    dateInforLabel.setText("Date: " + data.getXValue());
+                    profitInforLabel.setText("Revenue: " + FunctionKhai.convertMoney((Integer) data.getYValue()));
+                    inforVbox.setVisible(true);
+                    inforVbox.setLayoutX(e.getSceneX() - 240);
+                    inforVbox.setLayoutY(e.getSceneY() - 55);
+                });
+                data.getNode().setOnMouseExited(e -> {
+                    inforVbox.setVisible(false);
+                });
+                if(max < total) max = total;
+            }
+            if(max != -1) {
+                max = max + max / 10;
+                yAxistBillProductLine.setUpperBound(max);
+                max /= 11;
+                yAxistBillProductLine.setTickUnit(max);
+            }else {
+                yAxistBillProductLine.setUpperBound(500000);
+                yAxistBillProductLine.setTickUnit(50000);
+            }
+        }
     }
 }

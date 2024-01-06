@@ -32,11 +32,8 @@ public class BillIngredientCalViewController implements Initializable {
     @FXML
     public void billIngredientCal(ActionEvent event) throws Exception {
         if(datePickStart.getValue().isAfter(datePickEnd.getValue())){
-            tableIngredient.setVisible(false);
-            totalBillIngredientLabel.setVisible(false);
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Ngày bắt đầu không được phép lớn hơn ngày kết thúc!");
-            alert.showAndWait();
+           popAlert(1);
+           return;
         }
         try {
             ScrollBar vScrollBar = (ScrollBar) tableIngredient.lookup(".scroll-bar:vertical");
@@ -50,14 +47,9 @@ public class BillIngredientCalViewController implements Initializable {
             totalBillIngredientLabel.setText("Tổng tiền mua nguyên liệu: " + FunctionKhai.convertMoney(totalBillIngredient));
             totalBillIngredientLabel.setVisible(true);
         } catch (Exception e) {
-            tableIngredient.setVisible(false);
-            totalBillIngredientLabel.setVisible(false);
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Đã có lỗi xảy ra, vui lòng thử lại sau!");
-            alert.showAndWait();
+            popAlert(0);
             throw new RuntimeException(e);
         }
-
     }
     @FXML
     public void returnMainView(ActionEvent event) throws IOException {
@@ -85,4 +77,15 @@ public class BillIngredientCalViewController implements Initializable {
     private TableColumn<BillIngredientCal, Integer> totalIngeredientColumn;
     @FXML
     private BillIngredientCalViewModel billIngredientCalViewModel = new BillIngredientCalViewModel();
+    private void popAlert(int type){
+        tableIngredient.setVisible(false);
+        totalBillIngredientLabel.setVisible(false);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        if(type == 1){
+            alert.setContentText("Ngày bắt đầu không được phép lớn hơn ngày kết thúc!");
+        }else{
+            alert.setContentText("Đã có lỗi xảy ra, vui lòng thử lại sau!");
+        }
+        alert.showAndWait();
+    }
 }

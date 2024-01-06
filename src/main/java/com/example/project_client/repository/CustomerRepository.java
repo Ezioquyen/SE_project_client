@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class CustomerRepository {
     public Boolean checkCustomer(String phone) throws IOException {
-        return JsonUtils.fromJson(Request.sendGetRequest(Api.customerApi+"/check/"+phone), Boolean.class);
+        return JsonUtils.fromJson(Request.sendGetRequest(Api.customerApi+"/check/"+(Objects.equals(phone, "") ?"t":phone)), Boolean.class);
     }
     public Customer getCustomer(String phone) throws IOException {
         return JsonUtils.fromJson(Request.sendGetRequest(Api.customerApi+"/getByPhone?phoneNumber="+phone), Customer.class);

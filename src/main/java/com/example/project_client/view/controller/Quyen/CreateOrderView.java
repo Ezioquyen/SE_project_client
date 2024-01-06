@@ -1,20 +1,19 @@
 package com.example.project_client.view.controller.Quyen;
 
+import atlantafx.base.theme.Styles;
 import com.example.project_client.model.Product;
 import com.example.project_client.router.Pages;
 
 import com.example.project_client.router.Router;
 import com.example.project_client.view.controller.Quyen.components.ProductCount;
 import com.example.project_client.view.controller.Quyen.components.ProductView;
+import com.example.project_client.view.controller.Quyen.interfaces.InitStyles;
 import com.example.project_client.viewModel.Quyen.CreateOrderViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 
-import javafx.scene.control.RadioButton;
 import javafx.scene.layout.FlowPane;
 
 
@@ -22,7 +21,7 @@ import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class CreateOrderView {
+public class CreateOrderView implements InitStyles {
     @FXML
     FlowPane productsPane;
     @FXML
@@ -32,9 +31,14 @@ public class CreateOrderView {
     @FXML
     Label warning;
     @FXML
+    Button create;
+    @FXML
+    Button cancel;
+    @FXML
     CreateOrderViewModel createOrderViewModel = new CreateOrderViewModel();
     @FXML
     void initialize() throws IOException {
+        initStyle();
         createOrderViewModel.initData();
         for(Product product : createOrderViewModel.getProducts()){
             ProductView productView = new ProductView(product.getName(), NumberFormat.getNumberInstance(Locale.US).format(product.getPrice()),product.getAvailable()?"Còn hàng":"Hết hàng", product.getImage());
@@ -82,5 +86,11 @@ public class CreateOrderView {
     @FXML
     public void cancel() throws IOException {
         Router.switchTo(Pages.MAIN_VIEW);
+    }
+    @Override
+   public void initStyle(){
+        create.getStyleClass().add(Styles.SUCCESS);
+        cancel.getStyleClass().add(Styles.DANGER);
+        Styles.toggleStyleClass(listView,Styles.BORDERED);
     }
 }

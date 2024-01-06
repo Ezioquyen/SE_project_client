@@ -20,7 +20,7 @@
       </ScrollPane>
       <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0">
          <children>
-            <ListView fx:id="listView" fixedCellSize="80.0">
+            <ListView fx:id="listView" fixedCellSize="60.0">
                <padding>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding></ListView>
@@ -36,8 +36,8 @@
             </HBox>
             <HBox>
                <children>
-                  <Button mnemonicParsing="false" onAction="#showConfirmDialogView" text="Create" />
-                  <Button mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+                  <Button fx:id="create" mnemonicParsing="false" onAction="#showConfirmDialogView" text="Create" />
+                  <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
                </children>
                <padding>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

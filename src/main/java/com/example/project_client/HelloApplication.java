@@ -14,7 +14,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Application.setUserAgentStylesheet(new NordLight().getUserAgentStylesheet());
-        Router.bind(this, stage, "Hello World", 1200, 800);
+        Router.bind(this, stage, "Hello World", 1680, 800);
         init();
         Router.goTo(Pages.MAIN_VIEW);
 

@@ -4,6 +4,8 @@ module com.example.project_client {
     requires org.controlsfx.controls;
     requires org.kordamp.ikonli.javafx;
     requires lombok;
+    requires atlantafx.styles;
+    requires org.kordamp.ikonli.material2;
 
     requires atlantafx.base;
     requires com.fasterxml.jackson.databind;

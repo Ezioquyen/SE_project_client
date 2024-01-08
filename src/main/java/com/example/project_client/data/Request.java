@@ -14,6 +14,20 @@ public class Request {
         connection.setRequestMethod("GET");
         return handleResponse(connection);
     }
+    public static void sendDeleteRequest(String apiUrl) throws IOException {
+        URL url = new URL(apiUrl);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+        // Set the request method to DELETE
+        connection.setRequestMethod("DELETE");
+        connection.setInstanceFollowRedirects(true);
+
+
+        // Handle the response
+        handleResponse(connection);
+    }
+
+
 
     public static void sendPostRequest(String url, String data) throws Exception {
         URL obj = new URL(url);

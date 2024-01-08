@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="SceneBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="1350.0" stylesheets="@Stylesheet/Button.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.yin.AdminView">
+    <left>
+        <VBox prefHeight="690.0" prefWidth="248.0" style="-fx-background-color: #e6e6e6;" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="BOTTOM_CENTER" prefHeight="118.0" prefWidth="248.0">
+                    <children>
+                        <ImageView fitHeight="110.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@img/icon.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </HBox>
+                <HBox alignment="TOP_CENTER" prefHeight="30.0" prefWidth="248.0" />
+                <HBox alignment="TOP_CENTER" prefHeight="16.0" prefWidth="248.0" />
+                <HBox fx:id="revenue" alignment="CENTER_LEFT" fillHeight="false" prefHeight="60.0" prefWidth="198.0">
+                    <children>
+                        <Button fx:id="revenueBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#HandleRevenueClicked" prefHeight="46.0" prefWidth="192.0" style="-fx-background-color: transparent;" styleClass="Transpaent_button" text="Doanh Thu" HBox.hgrow="ALWAYS">
+                            <graphic>
+                                <ImageView fitHeight="39.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@img/overview.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <HBox.margin>
+                                <Insets left="30.0" />
+                            </HBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                        </Button>
+                    </children>
+                </HBox>
+                <HBox fx:id="acceptOrderBox" alignment="CENTER_LEFT" fillHeight="false" prefHeight="60.0" prefWidth="198.0">
+                    <children>
+                        <Button fx:id="userBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#HandleStaffClicked" prefHeight="46.0" prefWidth="192.0" style="-fx-background-color: transparent;" styleClass="Transpaent_button" text=" Nhân Viên">
+                            <graphic>
+                                <ImageView fitHeight="35.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@img/history.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <HBox.margin>
+                                <Insets left="30.0" />
+                            </HBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                        </Button>
+                    </children>
+                </HBox>
+                <HBox fx:id="pendingOrderBox" alignment="CENTER_LEFT" fillHeight="false" prefHeight="60.0" prefWidth="198.0">
+                    <children>
+                        <Button fx:id="productBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#HandleProductClicked" prefHeight="46.0" prefWidth="192.0" style="-fx-background-color: transparent;" styleClass="Transpaent_button" text=" Sản Phẩm">
+                            <graphic>
+                                <ImageView fitHeight="38.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@img/update.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="30.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                </HBox>
+                <HBox fx:id="ProductBox" prefHeight="60.0" prefWidth="198.0">
+                    <children>
+                        <Button fx:id="addUserBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#HandleAddUserClicked" prefHeight="48.0" prefWidth="220.0" style="-fx-background-color: transparent;" styleClass="Transpaent_button" text="Thêm Tài Khoản">
+                            <graphic>
+                                <ImageView fitHeight="36.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@img/User.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <HBox.margin>
+                                <Insets left="30.0" />
+                            </HBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                        </Button>
+                    </children>
+                </HBox>
+                <HBox fx:id="checkHistoryBox" alignment="CENTER" prefHeight="60.0" prefWidth="198.0">
+               <children>
+                  <Button fx:id="customerBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#HandleCustomerClicked" prefHeight="48.0" prefWidth="186.0" style="-fx-background-color: transparent;" styleClass="Transpaent_button" text="Khách Hàng">
+                     <graphic>
+                        <ImageView fitHeight="36.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/User.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children></HBox>
+                <HBox fx:id="addUserBox" alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="198.0" />
+                <HBox fx:id="changePasswordBox" alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="198.0" />
+                <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="198.0">
+                    <children>
+                        <Button fx:id="logoutBtn" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="46.0" prefWidth="192.0" style="-fx-background-color: transparent;" styleClass="Transpaent_button" text=" Sign Out">
+                            <graphic>
+                                <ImageView fitHeight="36.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@img/signout.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <HBox.margin>
+                                <Insets left="30.0" />
+                            </HBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f2f2f2;" BorderPane.alignment="CENTER" />
+    </center>
+</BorderPane>

@@ -68,6 +68,7 @@ public final class Router {
         window.show();
     }
     public static void goTo(Pages page,boolean setFullScreen) throws IOException {
+        root = new VBox();
         switchTo(page);
         window.setTitle(windowTitle);
         window.setScene(new Scene(root));

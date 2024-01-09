@@ -86,7 +86,6 @@ public class Request {
             }
 
             in.close();
-            System.out.println(response);
             return response.toString();
         } else {
             throw new IOException("Failed to retrieve data. Response Code: " + responseCode);

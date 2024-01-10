@@ -7,14 +7,12 @@ import com.example.project_client.router.Router;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
 import lombok.Getter;
 
 import java.io.IOException;
@@ -24,9 +22,6 @@ import java.util.ResourceBundle;
 
 public final class productView implements Initializable {
     private static Product product;
-    public static Product getProduct() {
-        return product;
-    }
     @FXML
     private TableColumn<Product, Integer> id;
     @FXML
@@ -39,17 +34,12 @@ public final class productView implements Initializable {
     private TableColumn<Product, Double> discount;
     @FXML
     private TableColumn<Product, String> image;
-
-    public static void setProduct(Product product) {
-        productView.product = product;
-    }
-
-    @FXML
-    TableView<Product> tableView;
     @Getter
     private List<Product> products;
     @FXML
     private ObservableList<Product> tableList;
+    @FXML
+    TableView<Product> tableView;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
@@ -61,15 +51,15 @@ public final class productView implements Initializable {
         }
     }
     @FXML
-    public void cancel() throws IOException {
+    private void cancel() throws IOException {
         Router.switchTo(Pages.MAIN_VIEW);
     }
     @FXML
-    public void addProduct(ActionEvent event) throws IOException {
+    private void addProduct(ActionEvent event) throws IOException {
         Router.switchTo(Pages.ADD_PRODUCT);
     }
     @FXML
-    public void changeProduct(ActionEvent event) throws IOException {
+    private void changeProduct(ActionEvent event) {
         try {
             product = tableView.getSelectionModel().getSelectedItem();
             Router.switchTo(Pages.CHANGE_PRODUCT);
@@ -79,27 +69,30 @@ public final class productView implements Initializable {
         }
     }
     @FXML
-    public void deleteProduct(ActionEvent event) throws Exception {
+    private void deleteProduct(ActionEvent event) {
         try {
             product = tableView.getSelectionModel().getSelectedItem();
             ProductRepository.deleteProduct(product.getId().toString());
             tableList.remove(product);
         }
         catch (Exception e){
-            System.out.println("ERROR");
+            System.out.println("Please choose Product to delete");
         }
     }
-    public void setTableView() throws IOException{
+    private void setTableView() throws IOException {
         products = ProductRepository.getProductsApi();
         tableList = FXCollections.observableArrayList(products);
         tableView.setItems(tableList);
     }
-    public void setColumn() throws IOException{
+    private void setColumn() throws IOException {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
         available.setCellValueFactory(new PropertyValueFactory<>("available"));
         discount.setCellValueFactory(new PropertyValueFactory<>("discount"));
         image.setCellValueFactory(new PropertyValueFactory<>("image"));
+    }
+    public static Product getProduct() {
+        return product;
     }
 }

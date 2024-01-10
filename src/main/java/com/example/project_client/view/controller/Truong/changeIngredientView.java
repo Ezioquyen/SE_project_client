@@ -13,33 +13,35 @@ public class changeIngredientView {
     private TextField id, name, unit_Price, unit;
     private Ingredient ingredient;
     @FXML
-    public void initialize() throws Exception {
+    private void initialize() throws Exception {
         ingredient = ingredientView.getIngredient();
         System.out.println(ingredient.getName());
+        setField();
+    }
+    @FXML
+    private void cancel() throws IOException {
+        Router.switchTo(Pages.INGREDIENT_VIEW);
+    }
+    @FXML
+    private void confirm() throws IOException {
+        Router.switchTo(Pages.INGREDIENT_VIEW);
+    }
+    private void setField() throws Exception {
         id.setPromptText(ingredient.getId().toString());
+        id.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            ingredient.setId(Integer.parseInt(newValue));
+        });
         name.setPromptText(ingredient.getName());
-        unit_Price.setPromptText(ingredient.getUnit_Price().toString());
+        name.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            ingredient.setName(newValue);
+        });
         unit.setPromptText(ingredient.getUnit());
-    }
-    @FXML
-    public void cancel() throws IOException {
-        Router.switchTo(Pages.INGREDIENT_VIEW);
-    }
-    @FXML
-    public void confirm() throws IOException {
-        Router.switchTo(Pages.INGREDIENT_VIEW);
-    }
-    private Boolean setIngredient(){
-        try{
-            ingredient.setId(Integer.parseInt(id.getText()));
-            ingredient.setName(name.getText());
-            ingredient.setUnit_Price(Integer.parseInt(unit_Price.getText()));
-            ingredient.setUnit(unit.getText());
-            return Boolean.TRUE;
-        }
-        catch (Exception e){
-            System.out.println("ERROR");
-            return Boolean.FALSE;
-        }
+        unit.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            ingredient.setUnit(newValue);
+        });
+        unit_Price.setPromptText(ingredient.getUnit_Price().toString());
+        unit_Price.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            ingredient.setUnit_Price(Integer.parseInt(newValue));
+        });
     }
 }

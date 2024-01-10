@@ -18,7 +18,7 @@
                   <Button layoutX="550.0" layoutY="38.0" mnemonicParsing="false" onAction="#deleteProduct" text="Delete Product" />
                </children>
             </Pane>
-            <ScrollPane layoutX="169.0" layoutY="164.0" prefHeight="276.0" prefWidth="456.0">
+            <ScrollPane layoutX="169.0" layoutY="164.0" prefHeight="280.0" prefWidth="465.0">
                <content>
                   <TableView fx:id="tableView" prefHeight="270.0" prefWidth="452.0">
                     <columns>

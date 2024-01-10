@@ -18,38 +18,18 @@ public class changeProductView {
     private TextField id, name, price, discount, image;
     private Product product;
     @FXML
-    public void initialize() throws Exception {
+    private void initialize() throws Exception {
         choiceBox.getItems().addAll(available);
         product = productView.getProduct();
-        System.out.println(product.getName());
-        id.setPromptText(product.getId().toString());
-        id.textProperty().addListener(((observableValue, oldValue, newValue) -> {
-            product.setId(Integer.valueOf(newValue));
-        }));
-        name.setPromptText(product.getName());
-        name.textProperty().addListener(((observableValue, oldValue, newValue) -> {
-            product.setName(newValue);
-        }));
-        price.setPromptText(product.getPrice().toString());
-        price.textProperty().addListener(((observableValue, oldValue, newValue) -> {
-            product.setPrice(Integer.valueOf(newValue));
-        }));
-        discount.setPromptText(product.getDiscount().toString());
-        discount.textProperty().addListener(((observableValue, oldValue, newValue) -> {
-            product.setDiscount(Double.valueOf(newValue));
-        }));
-        image.setPromptText(product.getImage());
-        image.textProperty().addListener(((observableValue, oldValue, newValue) -> {
-            product.setImage(newValue);
-        }));
-        choiceBox.setValue(product.getAvailable());
+        System.out.println("Change product:"+product.getName());
+        setField();
     }
     @FXML
-    public void cancel() throws IOException {
+    private void cancel() throws IOException {
         Router.switchTo(Pages.PRODUCT_VIEW);
     }
     @FXML
-    public void confirm() throws IOException {
+    private void confirm() throws IOException {
         try {
                 ProductRepository.updateProduct(product);
                 Router.switchTo(Pages.PRODUCT_VIEW);
@@ -58,5 +38,27 @@ public class changeProductView {
             System.out.println("ERROR");
         }
     }
-
+    private void setField() throws Exception {
+        id.setPromptText(product.getId().toString());
+        id.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            product.setId(Integer.valueOf(newValue));
+        });
+        name.setPromptText(product.getName());
+        name.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            product.setName(newValue);
+        });
+        price.setPromptText(product.getPrice().toString());
+        price.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            product.setPrice(Integer.valueOf(newValue));
+        });
+        discount.setPromptText(product.getDiscount().toString());
+        discount.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            product.setDiscount(Double.valueOf(newValue));
+        });
+        image.setPromptText(product.getImage());
+        image.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            product.setImage(newValue);
+        });
+        choiceBox.setValue(product.getAvailable());
+    }
 }

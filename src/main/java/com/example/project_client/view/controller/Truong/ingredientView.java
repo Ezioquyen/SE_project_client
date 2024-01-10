@@ -1,15 +1,16 @@
 package com.example.project_client.view.controller.Truong;
 
-
 import com.example.project_client.model.Ingredient;
 import com.example.project_client.repository.IngredientRepository;
-import com.example.project_client.repository.ProductRepository;
 import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.Getter;
 
 import java.io.IOException;
@@ -18,28 +19,29 @@ import java.util.List;
 
 public final class ingredientView {
     private static Ingredient ingredient;
-    public static Ingredient getIngredient() {
-        return ingredient;
-    }
-
-    Button button;
     @FXML
-    VBox vBox = new VBox();
+    TableColumn<Ingredient, Integer> id;
+    @FXML
+    TableColumn<Ingredient, String> name;
+    @FXML
+    TableColumn<Ingredient, String> unit;
+    @FXML
+    TableColumn<Ingredient, Integer> unit_Price;
     @Getter
     private List<Ingredient> ingredients;
     @FXML
-    public void initialize() throws IOException{
-        ingredients = IngredientRepository.getIngredientsApi();
-        System.out.println(ingredients);
-        for(Ingredient ingredient1 : ingredients){
-            Button button1 = new Button(ingredient1.getName());
-            button1.setId(String.valueOf(ingredient1.getId()));
-            button1.setPrefWidth(100.0);
-            button1.setOnAction(actionEvent ->{
-                ingredient = ingredient1;
-                button = button1;
-            });
-            vBox.getChildren().add(button1);
+    ObservableList<Ingredient> tableList;
+    @FXML
+    TableView<Ingredient> tableView;
+
+    @FXML
+    public void initialize() throws IOException {
+        try {
+            setTableView();
+            setColumn();
+        }
+        catch (Exception e) {
+            System.out.println("ERROR");
         }
     }
     @FXML
@@ -51,17 +53,39 @@ public final class ingredientView {
         Router.switchTo(Pages.ADD_INGREDIENT);
     }
     @FXML
-    public void changeIngredient(ActionEvent event) throws IOException {
-        Router.switchTo(Pages.CHANGE_INGREDIENT);
+    public void changeIngredient(ActionEvent event) {
+        try {
+            ingredient = tableView.getSelectionModel().getSelectedItem();
+            Router.switchTo(Pages.CHANGE_INGREDIENT);
+        }
+        catch (Exception e) {
+            System.out.println("ERROR");
+        }
     }
     @FXML
     public void deleteIngredient(ActionEvent event) throws Exception {
         try {
-            IngredientRepository.deleteIngredient(button.getId());
-            vBox.getChildren().remove(button);
+            ingredient = tableView.getSelectionModel().getSelectedItem();
+            IngredientRepository.deleteIngredient(ingredient.getId().toString());
+            tableList.remove(ingredient);
         }
         catch (Exception e){
             System.out.println("Please choose Ingredient to delete");
         }
     }
+    private void setTableView() throws IOException {
+        ingredients = IngredientRepository.getIngredientsApi();
+        tableList = FXCollections.observableArrayList(ingredients);
+        tableView.setItems(tableList);
+    }
+    private void setColumn() throws IOException {
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        unit.setCellValueFactory(new PropertyValueFactory<>("unit"));
+        unit_Price.setCellValueFactory(new PropertyValueFactory<>("unit_Price"));
+    }
+    public static Ingredient getIngredient() {
+        return ingredient;
+    }
+
 }

@@ -16,29 +16,24 @@ public class addIngredientView {
     @FXML
     private TextField id, name, unit_Price, unit;
     @FXML
-    public void initialize(){;}
-    @FXML
     public void cancel() throws IOException {
         Router.switchTo(Pages.INGREDIENT_VIEW);
     }
     @FXML
     public void confirm() throws Exception {
-        if(setIngredient()) {
+        try {
+            setIngredient();
             IngredientRepository.saveIngredient(ingredient);
             Router.switchTo(Pages.INGREDIENT_VIEW);
         }
-    }
-    private Boolean setIngredient(){
-        try{
-            ingredient.setId(Integer.parseInt(id.getText()));
-            ingredient.setName(name.getText());
-            ingredient.setUnit_Price(Integer.parseInt(unit_Price.getText()));
-            ingredient.setUnit(unit.getText());
-            return Boolean.TRUE;
-        }
-        catch (Exception e){
+        catch (Exception e) {
             System.out.println("ERROR");
-            return Boolean.FALSE;
         }
+    }
+    private void setIngredient() throws Exception{
+        ingredient.setId(Integer.parseInt(id.getText()));
+        ingredient.setName(name.getText());
+        ingredient.setUnit_Price(Integer.parseInt(unit_Price.getText()));
+        ingredient.setUnit(unit.getText());
     }
 }

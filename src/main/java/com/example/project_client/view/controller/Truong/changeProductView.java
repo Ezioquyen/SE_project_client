@@ -13,9 +13,9 @@ import java.io.IOException;
 public class changeProductView {
     @FXML
     private ChoiceBox<Boolean> choiceBox;
+    private Boolean[] available = {Boolean.FALSE, Boolean.TRUE};
     @FXML
     private TextField id, name, price, discount, image;
-    private Boolean[] available = {Boolean.FALSE, Boolean.TRUE};
     private Product product;
     @FXML
     public void initialize() throws Exception {
@@ -51,32 +51,12 @@ public class changeProductView {
     @FXML
     public void confirm() throws IOException {
         try {
-//            if(setProduct()){
-//                ProductRepository.deleteProduct(product.getId().toString());
                 ProductRepository.updateProduct(product);
-//                productView.
                 Router.switchTo(Pages.PRODUCT_VIEW);
-//            }
-//            else throw new Exception();
         }
         catch (Exception e){
             System.out.println("ERROR");
         }
     }
 
-//    private Boolean setProduct(){
-//        try{
-//            product.setId(Integer.parseInt(id.getText()));
-//            product.setName(name.getText());
-//            product.setPrice(Integer.parseInt(price.getText()));
-//            product.setDiscount(Double.parseDouble(discount.getText()));
-//            product.setImage(image.getText());
-//            product.setAvailable(choiceBox.getValue());
-//            return Boolean.TRUE;
-//        }
-//        catch (Exception ex){
-//            System.out.println("ERROR");
-//            return Boolean.FALSE;
-//        }
-//    }
 }

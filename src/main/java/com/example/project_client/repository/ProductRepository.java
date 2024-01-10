@@ -20,10 +20,10 @@ public final class ProductRepository {
         });
     }
     public static void saveProduct(Product product) throws Exception {
-        Request.sendPostRequest(Api.productApi+"/save", Objects.requireNonNull(JsonUtils.toJson(product).replace("false", "FALSE").replace("true", "TRUE")));
+        Request.sendPostRequest(Api.productApi+"/save", Objects.requireNonNull(JsonUtils.toJson(product)));
     }
     public static void updateProduct(Product product) throws Exception {
-        Request.sendPutRequest(Api.productApi+"/update", Objects.requireNonNull(JsonUtils.toJson(product).replace("false", "FALSE").replace("true", "TRUE")));
+        Request.sendPutRequest(Api.productApi+"/update", Objects.requireNonNull(JsonUtils.toJson(product)));
     }
     public static void deleteProduct(String id) throws Exception {
         Request.sendDeleteRequest(Api.productApi+"/delete", id);

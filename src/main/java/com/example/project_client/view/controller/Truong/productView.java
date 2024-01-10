@@ -53,15 +53,8 @@ public final class productView implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            products = ProductRepository.getProductsApi();
-            tableList = FXCollections.observableArrayList(products);
-            tableView.setItems(tableList);
-            id.setCellValueFactory(new PropertyValueFactory<>("id"));
-            name.setCellValueFactory(new PropertyValueFactory<>("name"));
-            price.setCellValueFactory(new PropertyValueFactory<>("price"));
-            available.setCellValueFactory(new PropertyValueFactory<>("available"));
-            discount.setCellValueFactory(new PropertyValueFactory<>("discount"));
-            image.setCellValueFactory(new PropertyValueFactory<>("image"));
+            setTableView();
+            setColumn();
         }
         catch (Exception e){
             System.out.println("ERROR");
@@ -95,5 +88,18 @@ public final class productView implements Initializable {
         catch (Exception e){
             System.out.println("ERROR");
         }
+    }
+    public void setTableView() throws IOException{
+        products = ProductRepository.getProductsApi();
+        tableList = FXCollections.observableArrayList(products);
+        tableView.setItems(tableList);
+    }
+    public void setColumn() throws IOException{
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        price.setCellValueFactory(new PropertyValueFactory<>("price"));
+        available.setCellValueFactory(new PropertyValueFactory<>("available"));
+        discount.setCellValueFactory(new PropertyValueFactory<>("discount"));
+        image.setCellValueFactory(new PropertyValueFactory<>("image"));
     }
 }

@@ -61,7 +61,7 @@ public class AdminView {
 
     @FXML
     void HandleCustomerClicked(ActionEvent event) throws IOException {
-        Router.switchTo(Pages.CUSTOMER_VIEW);
+        Router.goTo(Pages.CUSTOMER_VIEW);
 
     }
 
@@ -78,6 +78,10 @@ public class AdminView {
     @FXML
     void HandleStaffClicked(ActionEvent event) {
 
+    }
+    @FXML
+    void HandleSignOut(ActionEvent event) throws IOException {
+    Router.goTo(Pages.LOGIN_VIEW);
     }
 
 }

@@ -15,6 +15,11 @@ public class MainView {
     void initialize(){
     }
     @FXML
+    public void HandleCustomer(ActionEvent event) throws IOException {
+    Router.goTo(Pages.CUSTOMER_VIEW);
+    }
+
+    @FXML
     public void switchToCreateOrderView(ActionEvent event) throws IOException {
         Router.switchTo(Pages.CREATE_ORDER_VIEW);
     }

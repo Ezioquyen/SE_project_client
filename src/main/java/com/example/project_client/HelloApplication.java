@@ -3,10 +3,8 @@ package com.example.project_client;
 import atlantafx.base.theme.NordLight;
 import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
-import com.example.project_client.view.controller.yin.AddCustomerView;
 import javafx.application.Application;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 
@@ -16,7 +14,7 @@ public class HelloApplication extends Application {
         Application.setUserAgentStylesheet(new NordLight().getUserAgentStylesheet());
         Router.bind(this, stage, "CoffeeShop", 1680, 800);
         init();
-        Router.goTo(Pages.CUSTOMER_VIEW);
+        Router.goTo(Pages.LOGIN_VIEW);
 
     }
     public void init(){
@@ -28,8 +26,9 @@ public class HelloApplication extends Application {
         Router.setRouter(Pages.CONFIRMATION_VIEW, "Quyen/confirmation-view.fxml");
         Router.setRouter(Pages.CUSTOMER_VIEW, "yin/customer-view.fxml");
         Router.setRouter(Pages.ADD_CUSTOMER_VIEW, "yin/add-customer-view.fxml");
-        AddCustomerView addCustomerView = new AddCustomerView();
-        Router.setData(Pages.ADD_CUSTOMER_VIEW, addCustomerView);
+        Router.setRouter(Pages.UPDATE_CUSTOMER_VIEW, "yin/update-customer-view.fxml");
+        Router.setRouter(Pages.READ_CUSTOMER_VIEW, "yin/read-customer-view.fxml");
+
 
     }
     public static void main(String[] args) {

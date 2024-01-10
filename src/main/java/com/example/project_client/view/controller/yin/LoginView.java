@@ -24,25 +24,39 @@ public class LoginView {
     private void handleLoginButton(ActionEvent event) throws IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        System.out.println("abc+"+username+password);
 
-        if ("000".equals(username) && "000".equals(password)) {
-            Router.switchTo(Pages.ADMIN_VIEW);
-        } else if (usernameField.getText().trim().isEmpty() || passwordField.getText().trim().isEmpty()) {
+        // Validate empty fields
+        if (username.trim().isEmpty() || password.trim().isEmpty()) {
             invalidLoginLabel.setText("Please enter username/password.");
-        } else {
-//        } else if (loginViewModel.loginUser(username)) {
-            List<User> listUser = new UserRepository().getAllUsers();
-            for (User user: listUser) {
-                if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
-                    Router.switchTo(Pages.MAIN_VIEW);
+            return;
+        }
+
+        List<User> listUser = new UserRepository().getAllUsers();
+
+        boolean foundUser = false;
+        boolean isAdmin = false;
+
+        for (User user : listUser) {
+            if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
+                foundUser = true;
+
+                if (user.getStaffId() == null) {
+                    isAdmin = true;
                     break;
                 }
-                    }
-                }
             }
+        }
 
-
+        if (foundUser) {
+            if (isAdmin) {
+                Router.goTo(Pages.ADMIN_VIEW);
+            } else {
+                Router.goTo(Pages.MAIN_VIEW);
+            }
+        } else {
+            showErrorAlert("Đăng nhập thất bại", "Vui lòng thử lại!");
+        }
+    }
 
 
     @FXML

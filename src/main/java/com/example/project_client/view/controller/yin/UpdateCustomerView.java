@@ -7,16 +7,27 @@ import com.example.project_client.router.Router;
 import com.example.project_client.view.controller.Quyen.components.DobFormatter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
-public class AddCustomerView {
+public class UpdateCustomerView implements Initializable {
+    public static Customer selectCustomer;
 
+    public static Customer getSelectCustomer() {
+        return selectCustomer;
+    }
+
+    public static void setSelectCustomer(Customer selectCustomer) {
+        UpdateCustomerView.selectCustomer = selectCustomer;
+    }
 
     @FXML
     private DatePicker dob;
@@ -37,6 +48,7 @@ public class AddCustomerView {
     void reset(ActionEvent event) {
         clearFields();
     }
+
     @FXML
     void cancel(ActionEvent event) throws IOException {
         Router.goTo(Pages.CUSTOMER_VIEW);
@@ -81,12 +93,7 @@ public class AddCustomerView {
                 Customer customer = customerRepository.getCustomer(phoneNumField.getText());
                 customer.setPhoneNumber(getPhoneNumber());
                 customer.setName(getName());
-                // Assuming you have a method to get the selected date from the DatePicker
-                LocalDate selectedDate = dob.getValue();
-
-// Using DobFormatter to convert LocalDate to String
-                String formattedDob = DobFormatter.toString(selectedDate);
-                customer.setDob(formattedDob);
+                customer.setDob(null);
                 customerRepository.saveCustomer(customer);
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -126,25 +133,24 @@ public class AddCustomerView {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Validation Error");
         alert.setHeaderText(null);
-            if (empty) {
-                alert.setContentText("Please Enter " + field);
-            }
-            else {
-                alert.setContentText("Please Enter Valid " + field);
-            }
-
+        if (field.equals("Role")) alert.setContentText("Please Select " + field);
+        else {
+            if (empty) alert.setContentText("Please Enter " + field);
+            else alert.setContentText("Please Enter Valid " + field);
+        }
         alert.showAndWait();
 
     }
 
     public boolean validateName(String name) {
-        if (name == null || name.trim().length() == 0 || name.equals("null") || !name.matches("^[a-zA-Z]+[\\-'\\s]?[a-zA-Z ]+$")) {
+        if (name == null || name.trim().length() == 0 || name.equals("null")) {
             validationAlert("Name", false);
             return false;
 
         }
-        return true;
+        return name.matches("^[a-zA-Z]+[\\-'\\s]?[a-zA-Z ]+$");
     }
+
     boolean validatePhoneNumber(String phoneNumber) {
         // verify if phone has 10 digits and start with 0
         if (phoneNumber.length() != 10 || phoneNumber.charAt(0) != '0') {
@@ -161,11 +167,15 @@ public class AddCustomerView {
         return true;
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        phoneNumField.setPromptText(selectCustomer.getPhoneNumber());
+        nameField.setText(selectCustomer.getName());
+        System.out.println(selectCustomer.getDob());
+        LocalDate localDate = DobFormatter.toDate(selectCustomer.getDob());
+        dob.setValue(localDate);
 
 
+    }
 }
-
-
-
-
 

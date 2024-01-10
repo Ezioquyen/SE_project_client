@@ -10,7 +10,12 @@ public class DobFormatter {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return dob.format(formatter);
     }
-    public static LocalDate toDate(String dob){
-        return LocalDate.parse(dob);
+    //public static LocalDate toDate(String dob){
+     //   return LocalDate.parse(dob);
+    //}
+    public static LocalDate toDate(String dob) {
+        // Adjust the pattern to include time information
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+        return LocalDate.parse(dob, formatter);
     }
 }

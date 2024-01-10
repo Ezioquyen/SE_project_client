@@ -12,20 +12,15 @@
 
 <AnchorPane fx:id="ap1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="571.0" prefWidth="803.0" stylesheets="@Stylesheet/DefaultStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.yin.LoginView">
     <children>
-        <ImageView fitHeight="571.0" fitWidth="803.0" layoutX="4.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+        <ImageView fitHeight="372.0" fitWidth="378.0" layoutX="402.0" layoutY="96.0" opacity="0.86" pickOnBounds="true" preserveRatio="true" smooth="false" AnchorPane.bottomAnchor="103.0" AnchorPane.leftAnchor="402.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="96.0">
             <image>
-                <Image url="@Background/Background.jpg" />
+                <Image url="@Background/background.png" />
             </image>
         </ImageView>
-        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <left>
-                <AnchorPane prefHeight="571.0" prefWidth="534.0" BorderPane.alignment="CENTER">
+        <BorderPane layoutX="39.0" layoutY="-3.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="-39.0" AnchorPane.topAnchor="-3.0">
+         <left>
+                <AnchorPane prefHeight="571.0" prefWidth="552.0" BorderPane.alignment="CENTER">
                     <children>
-                        <ImageView fitHeight="198.0" fitWidth="265.0" layoutX="137.0" layoutY="301.0" pickOnBounds="true" preserveRatio="true" styleClass="img">
-                            <image>
-                                <Image url="@Background/3cupsBG.jpg" />
-                            </image>
-                        </ImageView>
                         <ImageView fitHeight="114.0" fitWidth="157.0" layoutX="181.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@Background/donuts.jpg" />
@@ -39,11 +34,11 @@
                             <font>
                                 <Font size="18.0" />
                             </font></PasswordField>
-                        <Label fx:id="invalidLoginLabel" alignment="CENTER" layoutX="110.0" layoutY="209.0" styleClass="invalidlabel" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="110.0">
+                        <Label fx:id="invalidLoginLabel" alignment="CENTER" layoutX="197.0" layoutY="202.0" styleClass="invalidlabel" AnchorPane.leftAnchor="197.0" AnchorPane.rightAnchor="23.0">
                             <font>
                                 <Font size="19.0" />
                             </font></Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="117.0" styleClass="adminLoginLabel" text="Đăng nhập" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="110.0">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="117.0" styleClass="usernameTextfield" text="Đăng nhập" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="110.0">
                             <font>
                                 <Font name="" size="45.0" />
                             </font>
@@ -55,7 +50,7 @@
                         </Button>
                     </children>
                 </AnchorPane>
-            </left>
+         </left>
         </BorderPane>
     </children>
 </AnchorPane>

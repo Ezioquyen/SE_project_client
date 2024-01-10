@@ -1,10 +1,4 @@
 
-@font-face {
-    -fx-font-family: 'Brush Script MT'; src: url('Font/BRUSHSCI.TTF');
-}
-@font-face {
-    -fx-font-family: 'georgia'; src: url('Font/georgia.ttf');
-}
 
 .spectrecafe{
     -fx-font-family: 'georgia';
@@ -71,4 +65,15 @@
     -fx-cursor: hand;
     -fx-background-color: linear-gradient(to top left, #654335, #8f7d6c);
     -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
+}
+.button{
+  padding: 12.5px 30px;
+  border: 0;
+  border-radius: 100px;
+  background-color: #2ba8fb;
+  color: #ffffff;
+
+  font-weight: Bold;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
 }

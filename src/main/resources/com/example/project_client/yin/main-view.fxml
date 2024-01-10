@@ -4,14 +4,16 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <SplitPane dividerPositions="0.829211229946524" prefHeight="659.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.yin.MainView">
    <items>
       <VBox prefWidth="662.0" />
       <VBox>
          <children>
             <Button mnemonicParsing="false" onAction="#switchToCreateOrderView" text="Create order" />
-            <VBox prefHeight="319.0" prefWidth="98.0" />
+            <VBox prefHeight="98.0" prefWidth="133.0">
+               <children>
+                  <Button fx:id="customerBtn" mnemonicParsing="false" onAction="#HandleCustomer" prefHeight="26.0" prefWidth="87.0" text="Khách Hàng" />
+               </children></VBox>
          </children>
       </VBox>
    </items>

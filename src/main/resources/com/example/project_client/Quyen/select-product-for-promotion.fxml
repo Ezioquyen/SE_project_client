@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="786.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Quyen.SelectProductForPromotionView">
+    <VBox>
+        <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+        </padding>
+        <HBox alignment="CENTER" spacing="10.0">
+            <Label text="Products:" />
+            <Region HBox.hgrow="ALWAYS" />
+         <Button fx:id="addAll" mnemonicParsing="false" onAction="#addAll" text="Add all" />
+            <TextField fx:id="percent" prefHeight="36.0" prefWidth="46.0" promptText="0" text="10" />
+            <Label text="\%" />
+        </HBox>
+        <FlowPane fx:id="productsPane" />
+    </VBox>
+    <VBox>
+        <ListView fx:id="listView" prefHeight="460.0" prefWidth="391.0" />
+        <HBox spacing="10.0">
+            <Button mnemonicParsing="false" onAction="#confirmation" text="Điền thông tin khuyến mãi" />
+            <Button mnemonicParsing="false" onAction="#cancel" text="Hủy" />
+        </HBox>
+      <VBox alignment="TOP_CENTER">
+         <children>
+            <Label fx:id="warning" text="Thông tin không hợp lệ vui lòng kiểm tra lại" textFill="#ff0b0b" visible="false" />
+         </children>
+      </VBox>
+    </VBox>
+</SplitPane>

@@ -11,6 +11,7 @@ import lombok.Getter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 
 public final class Router {
@@ -51,7 +52,7 @@ public final class Router {
 
     public static void switchTo(Pages page) throws IOException {
         String scenePath = routerLabel.get(page);
-        Parent resource = FXMLLoader.load(HelloApplication.class.getResource(scenePath));
+        Parent resource = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource(scenePath)));
         root.getChildren().setAll(resource);
     }
     public static void goTo(Pages page) throws IOException {

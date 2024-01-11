@@ -5,6 +5,7 @@ import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
 import com.example.project_client.view.controller.Quyen.components.DobFormatter;
 import com.example.project_client.viewModel.Quyen.ConfirmationViewModel;
+import com.example.project_client.viewModel.Quyen.CreateOrderViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -32,9 +33,11 @@ public class ConfirmationView {
 
     @FXML
     public void initialize() {
+        CreateOrderViewModel createOrderViewModel = (CreateOrderViewModel) Router.getData(Pages.CREATE_ORDER_VIEW);
         ToggleGroup toggleGroup = new ToggleGroup();
         toggleGroup.getToggles().addAll(qr, cash);
         qr.setSelected(true);
+
         cash.selectedProperty().addListener(((observableValue, aBoolean, t1) -> confirmationViewModel.setMethod(!t1)));
         phoneNumber.textProperty().addListener((e, oldVal, newVal) -> {
             if (!newVal.matches("\\d*")) {
@@ -67,15 +70,20 @@ public class ConfirmationView {
 
         });
         customerName.textProperty().addListener((obs, oldVal, newVal) -> confirmationViewModel.getCustomer().setName(newVal));
+        money.setPromptText(NumberFormat.getNumberInstance(Locale.US).format(createOrderViewModel.getTotal().intValue()));
+        money.setText(NumberFormat.getNumberInstance(Locale.US).format(createOrderViewModel.getTotal().intValue()));
         money.textProperty().addListener(((observableValue, oldVal, newVal) -> {
             String val = newVal;
             if (!newVal.matches("\\d*")) {
                 val = newVal.replaceAll("\\D", "");
             }
-            money.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(val)));
-
+            if (!val.isEmpty()) money.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(val)));
+            else money.setText(val);
         }));
-        dob.valueProperty().addListener(((observableValue, localDate, t1) -> confirmationViewModel.getCustomer().setDob(DobFormatter.toString(t1))));
+        dob.valueProperty().addListener(((observableValue, localDate, t1) -> {
+            System.out.println("changed: " + t1);
+            confirmationViewModel.getCustomer().setDob(DobFormatter.toString(t1));
+        }));
         Router.setData(Pages.CONFIRMATION_VIEW, confirmationViewModel);
     }
 
@@ -92,8 +100,7 @@ public class ConfirmationView {
         }
         if (!notification.isVisible()) notification.setVisible(false);
         Router.closeDialog();
-        if (!phoneNumber.getText().isEmpty())
-            confirmationViewModel.saveCustomer();
+        confirmationViewModel.saveCustomer();
         confirmationViewModel.getData().put("money", money.getText().replace(",", ""));
         confirmationViewModel.getData().put("method", confirmationViewModel.getMethod());
         Router.switchTo(Pages.ORDER_BILL_VIEW);

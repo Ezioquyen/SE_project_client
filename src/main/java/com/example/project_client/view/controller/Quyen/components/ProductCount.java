@@ -7,6 +7,7 @@ package com.example.project_client.view.controller.Quyen.components;
     import javafx.geometry.Pos;
     import javafx.scene.control.Button;
     import javafx.scene.control.Label;
+    import javafx.scene.control.TextField;
     import javafx.scene.layout.HBox;
     import javafx.scene.layout.Priority;
     import javafx.scene.layout.Region;
@@ -22,7 +23,7 @@ package com.example.project_client.view.controller.Quyen.components;
 @Getter
 public class ProductCount extends VBox implements InitStyles {
     private final Product product;
-    private final Label textField = new Label("1");
+    private final TextField textField = new TextField("1");
     private final Button sub = new Button(null,new FontIcon(Material2MZ.REMOVE));
     private final Button add = new Button(null,new FontIcon(Material2AL.ADD));
     private  Label label2;
@@ -33,6 +34,7 @@ public class ProductCount extends VBox implements InitStyles {
         }
         private void initializeUI() {
             initStyle();
+            textField.setAlignment(Pos.CENTER);
             HBox hBox = new HBox();
             Label label1 = new Label(product.getName());
             Region region = new Region();

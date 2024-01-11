@@ -6,7 +6,6 @@ import com.example.project_client.data.Request;
 import com.example.project_client.model.Customer;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Objects;
 
 public class CustomerRepository {
@@ -19,6 +18,6 @@ public class CustomerRepository {
     }
 
     public void saveCustomer(Customer customer) throws Exception {
-        Request.sendPostRequest(Api.customerApi + "/save", Objects.requireNonNull(JsonUtils.toJson(customer)));
+        Request.sendPutRequest(Api.customerApi + "/save", Objects.requireNonNull(JsonUtils.toJson(customer)));
     }
 }

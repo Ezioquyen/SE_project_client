@@ -11,76 +11,62 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane dividerPositions="0.6955" prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Quyen.CreateOrderView">
-   <items>
-      <ScrollPane>
-         <content>
-            <FlowPane fx:id="productsPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="930.0" />
-         </content>
-      </ScrollPane>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0">
-         <children>
-            <ListView fx:id="listView" fixedCellSize="60.0">
-               <padding>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-               </padding></ListView>
-            <VBox fx:id="promotionContainer">
-               <padding>
-                  <Insets left="15.0" right="15.0" />
-               </padding>
-            </VBox>
-            <VBox>
-               <children>
-                  <HBox>
-                     <children>
-                        <Label text="Tổng giá trị:" />
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Label fx:id="original" text="0 VND" />
-                     </children>
-                     <padding>
-                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                     </padding>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Label text="Khấu  trừ" />
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Label fx:id="deduction" text="0 VND" />
-                     </children>
-                     <padding>
-                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                     </padding>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Label text="Tổng cộng:" />
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Label fx:id="total" text="0 VND" />
-                     </children>
-                     <padding>
-                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                     </padding>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Button fx:id="create" mnemonicParsing="false" onAction="#showConfirmDialogView" text="Create" />
-                        <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
-                     </children>
-                     <padding>
-                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                     </padding>
-                  </HBox>
-                  <HBox alignment="CENTER">
-                     <children>
-                        <Label fx:id="warning" text="Vui lòng chọn sản phẩm!" textFill="#f70909" visible="false" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-         </children>
+<SplitPane dividerPositions="0.6955" prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.example.project_client.view.controller.Quyen.CreateOrderView">
+   <ScrollPane>
+      <FlowPane fx:id="productsPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                prefHeight="400.0" prefWidth="930.0"/>
+   </ScrollPane>
+   <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0">
+      <padding>
+         <Insets top="15.0"/>
+      </padding>
+      <ListView fx:id="listView" fixedCellSize="60.0">
          <padding>
-            <Insets top="15.0" />
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+         </padding>
+      </ListView>
+      <VBox fx:id="promotionContainer">
+         <padding>
+            <Insets left="15.0" right="15.0"/>
          </padding>
       </VBox>
-   </items>
+      <VBox>
+         <HBox>
+            <padding>
+               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </padding>
+            <Label text="Tổng giá trị:"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="original" text="0 VND"/>
+         </HBox>
+         <HBox>
+            <padding>
+               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </padding>
+            <Label text="Khấu  trừ"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="deduction" text="0 VND"/>
+         </HBox>
+         <HBox>
+            <padding>
+               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </padding>
+            <Label text="Tổng cộng:"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="total" text="0 VND"/>
+         </HBox>
+         <HBox>
+            <padding>
+               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </padding>
+            <Button fx:id="create" mnemonicParsing="false" onAction="#showConfirmDialogView" text="Create"/>
+            <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancel" text="Cancel"/>
+         </HBox>
+         <HBox alignment="CENTER">
+            <Label fx:id="warning" text="Vui lòng chọn sản phẩm!" textFill="#f70909" visible="false"/>
+         </HBox>
+      </VBox>
+   </VBox>
 </SplitPane>

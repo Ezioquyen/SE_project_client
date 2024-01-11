@@ -5,16 +5,11 @@
 <?import javafx.scene.layout.VBox?>
 
 <SplitPane dividerPositions="0.829211229946524" prefHeight="659.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Quyen.MainView">
-   <items>
-      <VBox prefWidth="662.0" />
-      <VBox>
-         <children>
-            <Button mnemonicParsing="false" onAction="#switchToCreateOrderView" text="Create order" />
-            <VBox prefHeight="319.0" prefWidth="98.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#switchToManagePromotionView" text="Mangage Promotion" />
-               </children></VBox>
-         </children>
+   <VBox prefWidth="662.0" />
+   <VBox>
+      <Button mnemonicParsing="false" onAction="#switchToCreateOrderView" text="Create order" />
+      <VBox prefHeight="319.0" prefWidth="98.0">
+         <Button mnemonicParsing="false" onAction="#switchToManagePromotionView" text="Manage Promotion" />
       </VBox>
-   </items>
+   </VBox>
 </SplitPane>

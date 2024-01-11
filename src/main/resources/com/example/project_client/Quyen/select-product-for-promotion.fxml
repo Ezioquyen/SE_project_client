@@ -32,10 +32,9 @@
             <Button mnemonicParsing="false" onAction="#cancel" text="Hủy" />
          <Button fx:id="remove" mnemonicParsing="false" onAction="#remove" text="Remove" />
         </HBox>
-      <VBox alignment="TOP_CENTER">
-         <children>
-            <Label fx:id="warning" text="Thông tin không hợp lệ vui lòng kiểm tra lại" textFill="#ff0b0b" visible="false" />
-         </children>
-      </VBox>
+        <VBox alignment="TOP_CENTER">
+            <Label fx:id="warning" text="Thông tin không hợp lệ vui lòng kiểm tra lại" textFill="#ff0b0b"
+                   visible="false"/>
+        </VBox>
     </VBox>
 </SplitPane>

@@ -63,12 +63,13 @@
             </HBox.margin>
         </Button>
     </HBox>
-   <VBox fx:id="warning">
-      <children>
-         <Label text="Vui lòng kiểm tra lại thông tin:" textFill="RED" />
-         <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Các thông tin không được để trống" wrappingWidth="334.0137939453125" />
-         <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Trong cùng một thời điểm không được diễn ra hai CTKM" wrappingWidth="334.0137939453125" />
-         <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Thời gian kết thúc phải lớn hơn hoặc bằng thời gian bắt đầu" wrappingWidth="334.0137939453125" />
-      </children>
-   </VBox>
+    <VBox fx:id="warning">
+        <Label text="Vui lòng kiểm tra lại thông tin:" textFill="RED"/>
+        <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Các thông tin không được để trống"
+              wrappingWidth="334.0137939453125"/>
+        <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Trong cùng một thời điểm không được diễn ra hai CTKM" wrappingWidth="334.0137939453125"/>
+        <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Thời gian kết thúc phải lớn hơn hoặc bằng thời gian bắt đầu" wrappingWidth="334.0137939453125"/>
+    </VBox>
 </VBox>

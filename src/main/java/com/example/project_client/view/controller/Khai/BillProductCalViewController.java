@@ -1,28 +1,23 @@
 package com.example.project_client.view.controller.Khai;
 
+import atlantafx.base.theme.Styles;
 import com.example.project_client.model.NameAndCount;
 import com.example.project_client.model.TimeRequest;
-import com.example.project_client.router.Pages;
-import com.example.project_client.router.Router;
 import com.example.project_client.view.controller.Khai.Function.FunctionKhai;
 import com.example.project_client.viewModel.Khai.BillProductViewModel;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import java.io.IOException;
+import javafx.scene.layout.*;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.chart.XYChart;
-import javafx.scene.chart.XYChart.Data;
-import javafx.scene.chart.XYChart.Series;
+
 public class BillProductCalViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -33,125 +28,71 @@ public class BillProductCalViewController implements Initializable {
         FunctionKhai.validDatePicker(datePickStart);
         FunctionKhai.validDatePicker(datePickEnd);
         FunctionKhai.validCombobox(typeCbb);
-    }
-
-    @SuppressWarnings("unchecked")
-    @FXML
-    public void billProductCal(ActionEvent event) {
-        if(datePickStart.getValue().isAfter(datePickEnd.getValue())){
-            popAlert(1);
-            return;
-        }
-        if(typeCbb.getValue().equals("Theo ngày")) {
-            xAxistBillProductLine.setLabel("Ngày");
+        FunctionKhai.addBtnReturn(returnHbox);
+        Button salaryCalBtn = new Button("Tính");
+        salaryCalBtn.getStyleClass().addAll(Styles.BUTTON_OUTLINED, Styles.SUCCESS, Styles.LARGE);
+        salaryCalBtn.setPrefWidth(100);
+        salaryCalBtn.setOnAction(e -> {
             try {
-                handlePerDay();
-            } catch (Exception e) {
-                popAlert(0);
-                return;
+                billProductCal();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
             }
-        }else{
-            xAxistBillProductLine.setLabel("Tháng");
-            try {
-                handlePerMonth();
-            } catch (Exception e) {
-                popAlert(0);
-                return;
-            }
-        }
-        try {
-            int max = -1;
-            XYChart.Series<String, Number> series= new  XYChart.Series<String, Number>();
-            series.setName("Biểu đồ số lượng sản phẩm bán được kể từ: " + FunctionKhai.convertDate(datePickStart.getValue().toString()) + " tới ngày " + FunctionKhai.convertDate(datePickStart.getValue().toString()));
-            List<NameAndCount> nameAndCounts = billProductViewModel.getCount(new TimeRequest(datePickStart.getValue(), datePickEnd.getValue()));
-            for(NameAndCount n : nameAndCounts) {
-                series.getData().add(new  XYChart.Data<String, Number>(FunctionKhai.convertDate(n.getName()), n.getCount()));
-                if(max < n.getCount()) max = n.getCount();
-            }
-            if(max != -1) {
-                yAxistBillProduct.setUpperBound(max + 1);
-                if(max + 1 < 10) {
-                    yAxistBillProduct.setTickUnit(1);
-                }else {
-                    max = (max + 1) / 10;
-                    yAxistBillProduct.setTickUnit(max);
-                }
-            }else {
-                yAxistBillProduct.setUpperBound(50);
-                yAxistBillProduct.setTickUnit(5);
-            }
-            billProductBarChart.setData(FXCollections.observableArrayList(series));
-        } catch (Exception e) {
-            popAlert(0);
-            return;
-        }
-        totalProfitLabel.setVisible(true);
-        swapChartBtn.setVisible(true);
-        billProductBarChart.setVisible(false);
-        billProductLineChart.setVisible(true);
-        swapChartBtn.setText("Xem thống kê");
+        });
+        inputHbox.getChildren().add(salaryCalBtn);
+        initStyles();
     }
     @FXML
-    public void returnMainWd(ActionEvent event) throws IOException {
-        Router.switchTo(Pages.MAIN_VIEW_PROFIT);
-    }
+    private HBox returnHbox;
     @FXML
-    public void swapChart(ActionEvent event){
-        if(swapChartBtn.getText().equals("Xem thống kê")) {
-            billProductLineChart.setVisible(false);
-            billProductBarChart.setVisible(true);
-            swapChartBtn.setText("Xem doanh thu");
-        }else {
-            billProductBarChart.setVisible(false);
-            billProductLineChart.setVisible(true);
-            swapChartBtn.setText("Xem thống kê");
-        }
-    }
+    private HBox inputHbox;
     @FXML
-    private AnchorPane parentRoot;
+    private Label dateStartLabel;
     @FXML
     private DatePicker datePickStart;
     @FXML
+    private Label dateEndLabel;
+    @FXML
     private DatePicker datePickEnd;
     @FXML
-    private Button billProductCalBtn;
+    private Label typeCbbLabel;
     @FXML
-    private BarChart<String, Number> billProductBarChart;
+    private ComboBox<String> typeCbb;
     @FXML
-    private CategoryAxis xAxistBillProduct;
+    private VBox parentTotalVbox;
     @FXML
-    private NumberAxis yAxistBillProduct;
+    private Label sumBillProLabel;
+    @FXML
+    private Label totalBillProLabel;
     @FXML
     private LineChart<String, Number> billProductLineChart;
-    @FXML
-    private Label totalProfitLabel;
     @FXML
     private CategoryAxis xAxistBillProductLine;
     @FXML
     private NumberAxis yAxistBillProductLine;
     @FXML
-    private Button returnMainWdBtn;
+    private BarChart<String, Number> billProductBarChart;
     @FXML
-    private Button swapChartBtn;
+    private NumberAxis yAxistBillProduct;
     @FXML
     private VBox inforVbox;
     @FXML
     private Label dateInforLabel;
     @FXML
-    private Label profitInforLabel;
+    private Label revenueInforLabel;
     @FXML
-    private ComboBox<String> typeCbb;
-    @FXML
-    private BillProductViewModel billProductViewModel = new BillProductViewModel();
+    private Button swapChartBtn;
 
+    private final BillProductViewModel billProductViewModel = new BillProductViewModel();
     private void settingOutTime(int totalProfit){
-        totalProfitLabel.setText("Do số lượng thống kê quá nhiều nên hệ thống sẽ không hiển thị trên biểu đồ. Tổng doanh thu: " + FunctionKhai.convertMoney(totalProfit));
+        sumBillProLabel.setText("Không thể thống kê!");
+        totalBillProLabel.setText("Tổng: " + FunctionKhai.convertMoney(totalProfit));
         yAxistBillProductLine.setUpperBound(500000);
         yAxistBillProductLine.setTickUnit(50000);
         billProductLineChart.getData().clear();
     }
     private void popAlert(int type){
-        totalProfitLabel.setVisible(false);
+        parentTotalVbox.setVisible(false);
         swapChartBtn.setVisible(false);
         billProductBarChart.setVisible(false);
         billProductLineChart.setVisible(false);
@@ -163,20 +104,103 @@ public class BillProductCalViewController implements Initializable {
         }
         alert.showAndWait();
     }
+    @FXML
+    public void swapChart(){
+        if(swapChartBtn.getText().equals("Xem thống kê")) {
+            billProductLineChart.setVisible(false);
+            billProductBarChart.setVisible(true);
+            swapChartBtn.setText("Xem doanh thu");
+        }else {
+            billProductBarChart.setVisible(false);
+            billProductLineChart.setVisible(true);
+            swapChartBtn.setText("Xem thống kê");
+        }
+    }
+    private void initStyles(){
+        FunctionKhai.validLabel(dateStartLabel);
+        FunctionKhai.validLabel(dateEndLabel);
+        FunctionKhai.validLabel(sumBillProLabel);
+        FunctionKhai.validLabel(totalBillProLabel);
+        FunctionKhai.validLabel(typeCbbLabel);
+        FunctionKhai.validLabel(dateInforLabel);
+        FunctionKhai.validLabel(revenueInforLabel);
+        typeCbb.getStyleClass().add(Styles.TITLE_4);
+        datePickStart.getStyleClass().add(Styles.TITLE_4);
+        datePickEnd.getStyleClass().add(Styles.TITLE_4);
+        swapChartBtn.getStyleClass().addAll(Styles.BUTTON_OUTLINED, Styles.SUCCESS);
+    }
     @SuppressWarnings("unchecked")
-    private void handlePerDay() throws Exception {
-        List<NameAndCount> nameAndCounts = billProductViewModel.getPerDay(new TimeRequest(datePickStart.getValue(), datePickEnd.getValue()));
+    public void billProductCal() {
+        if(datePickStart.getValue().isAfter(datePickEnd.getValue())){
+            popAlert(1);
+            return;
+        }
+        TimeRequest timeRequest = new TimeRequest(datePickStart.getValue(), datePickEnd.getValue());
+        if(typeCbb.getValue().equals("Theo ngày")) {
+            xAxistBillProductLine.setLabel("Ngày");
+            try {
+                handlePerDay(timeRequest);
+            } catch (Exception e) {
+                popAlert(0);
+                return;
+            }
+        }else{
+            xAxistBillProductLine.setLabel("Tháng");
+            try {
+                handlePerMonth(timeRequest);
+            } catch (Exception e) {
+                popAlert(0);
+                return;
+            }
+        }
+        try {
+            int max = -1;
+            XYChart.Series<String, Number> series= new  XYChart.Series<>();
+            series.setName("Biểu đồ số lượng sản phẩm bán được kể từ: " + FunctionKhai.convertDate(datePickStart.getValue().toString()) + " tới ngày " + FunctionKhai.convertDate(datePickStart.getValue().toString()));
+            List<NameAndCount> nameAndCounts = billProductViewModel.getCount(new TimeRequest(datePickStart.getValue(), datePickEnd.getValue()));
+            for(NameAndCount n : nameAndCounts) {
+                series.getData().add(new  XYChart.Data<>(FunctionKhai.convertDate(n.getName()), n.getCount()));
+                if(max < n.getCount()) max = n.getCount();
+            }
+            if(max > 0) {
+                yAxistBillProduct.setUpperBound(max);
+                if(max + 1 < 10) {
+                    yAxistBillProduct.setTickUnit(1);
+                }else {
+                    max /= 10;
+                    yAxistBillProduct.setTickUnit(max);
+                }
+            }else {
+                yAxistBillProduct.setUpperBound(50);
+                yAxistBillProduct.setTickUnit(5);
+            }
+            billProductBarChart.setData(FXCollections.observableArrayList(series));
+        } catch (Exception e) {
+            popAlert(0);
+            return;
+        }
+        parentTotalVbox.setVisible(true);
+        swapChartBtn.setVisible(true);
+        billProductBarChart.setVisible(false);
+        billProductLineChart.setVisible(true);
+        swapChartBtn.setText("Xem thống kê");
+    }
+
+    @SuppressWarnings("unchecked")
+    private void handlePerDay(TimeRequest timeRequest) throws Exception{
+        List<NameAndCount> nameAndCounts = billProductViewModel.getPerDay(timeRequest);
         int totalProfit = 0;
         for(NameAndCount n : nameAndCounts){
             totalProfit += n.getCount();
-        }if(datePickStart.getValue().until(datePickEnd.getValue(), ChronoUnit.DAYS) >= 50) {
+        }if(datePickStart.getValue().until(datePickEnd.getValue(), ChronoUnit.DAYS) >= 40) {
             settingOutTime(totalProfit);
         }else{
-            totalProfitLabel.setText("Tổng doanh thu: " + FunctionKhai.convertMoney(totalProfit));
-            Series<String, Number> series = new Series<>();
+            sumBillProLabel.setText("Tổng doanh thu:");
+            totalBillProLabel.setText(FunctionKhai.convertMoney(totalProfit));
+            XYChart.Series<String, Number> series = new XYChart.Series<>();
             billProductLineChart.setData(FXCollections.observableArrayList(series));
             LocalDate st = datePickStart.getValue(), en = datePickEnd.getValue();
-            int max = -1, i = 0, j = 0, sz = (int) st.until(en, ChronoUnit.DAYS);
+            int max = -1, i, j = 0, sz = (int) st.until(en, ChronoUnit.DAYS);
             series.setName("Thống kê doanh thu từ ngày " + FunctionKhai.convertDate(st.toString()) + " tới ngày " + FunctionKhai.convertDate(en.toString()));
             for(i = 0; i <= sz; i++) {
                 int total = 0;
@@ -184,21 +208,19 @@ public class BillProductCalViewController implements Initializable {
                     total += nameAndCounts.get(j).getCount();
                     j++;
                 }
-                Data<String, Number> data = new Data<>(FunctionKhai.convertDate(st.plusDays(i).toString()), total);
+                XYChart.Data<String, Number> data = new XYChart.Data<>(FunctionKhai.convertDate(st.plusDays(i).toString()), total);
                 series.getData().add(data);
                 data.getNode().setOnMouseEntered(e -> {
                     dateInforLabel.setText("Date: " + data.getXValue());
-                    profitInforLabel.setText("Revenue: " + FunctionKhai.convertMoney((Integer) data.getYValue()));
+                    revenueInforLabel.setText("Revenue: " + FunctionKhai.convertMoney((Integer) data.getYValue()));
                     inforVbox.setVisible(true);
-                    inforVbox.setLayoutX(e.getSceneX() - 240);
-                    inforVbox.setLayoutY(e.getSceneY() - 55);
+                    inforVbox.setLayoutX(e.getSceneX() - 100);
+                    inforVbox.setLayoutY(e.getSceneY() - 230);
                 });
-                data.getNode().setOnMouseExited(e -> {
-                    inforVbox.setVisible(false);
-                });
+                data.getNode().setOnMouseExited(e -> inforVbox.setVisible(false));
                 if(max < total) max = total;
             }
-            if(max != -1) {
+            if(max > 0) {
                 max = max + max / 10;
                 yAxistBillProductLine.setUpperBound(max);
                 max /= 11;
@@ -207,19 +229,30 @@ public class BillProductCalViewController implements Initializable {
                 yAxistBillProductLine.setUpperBound(500000);
                 yAxistBillProductLine.setTickUnit(50000);
             }
+
+            // Success
+//            // Test
+//            try {
+//                series.getNode().setStyle("-fx-stroke: black");
+//            } catch (Exception e) {
+//                System.out.println("TEST FALL");
+//                throw new RuntimeException(e);
+//            }
+//            // Out Test
         }
     }
     @SuppressWarnings("unchecked")
-    private void handlePerMonth() throws Exception {
-        List<NameAndCount> nameAndCounts = billProductViewModel.getPerMonth(new TimeRequest(datePickStart.getValue(), datePickEnd.getValue()));
+    private void handlePerMonth(TimeRequest timeRequest) throws Exception{
+        List<NameAndCount> nameAndCounts = billProductViewModel.getPerMonth(timeRequest);
         int totalProfit = 0;
         for(NameAndCount n : nameAndCounts){
             totalProfit += n.getCount();
-        }if(datePickStart.getValue().until(datePickEnd.getValue(), ChronoUnit.MONTHS) >= 50) {
+        }if(datePickStart.getValue().until(datePickEnd.getValue(), ChronoUnit.MONTHS) >= 40) {
             settingOutTime(totalProfit);
         }else {
-            totalProfitLabel.setText("Tổng doanh thu: " + FunctionKhai.convertMoney(totalProfit));
-            Series<String, Number> series = new Series<>();
+            sumBillProLabel.setText("Tổng doanh thu:");
+            totalBillProLabel.setText(FunctionKhai.convertMoney(totalProfit));
+            XYChart.Series<String, Number> series = new XYChart.Series<>();
             billProductLineChart.setData(FXCollections.observableArrayList(series));
 
             LocalDate st = datePickStart.getValue(), en = datePickEnd.getValue();
@@ -231,21 +264,19 @@ public class BillProductCalViewController implements Initializable {
                     total += nameAndCounts.get(j).getCount();
                     j++;
                 }
-                Data<String, Number> data = new Data<>(FunctionKhai.convertDatePerMonth(st.plusMonths(i)), total);
+                XYChart.Data<String, Number> data = new XYChart.Data<>(FunctionKhai.convertDatePerMonth(st.plusMonths(i)), total);
                 series.getData().add(data);
                 data.getNode().setOnMouseEntered(e -> {
                     dateInforLabel.setText("Date: " + data.getXValue());
-                    profitInforLabel.setText("Revenue: " + FunctionKhai.convertMoney((Integer) data.getYValue()));
+                    revenueInforLabel.setText("Revenue: " + FunctionKhai.convertMoney((Integer) data.getYValue()));
                     inforVbox.setVisible(true);
-                    inforVbox.setLayoutX(e.getSceneX() - 240);
-                    inforVbox.setLayoutY(e.getSceneY() - 55);
+                    inforVbox.setLayoutX(e.getSceneX());
+                    inforVbox.setLayoutY(e.getSceneY());
                 });
-                data.getNode().setOnMouseExited(e -> {
-                    inforVbox.setVisible(false);
-                });
+                data.getNode().setOnMouseExited(e -> inforVbox.setVisible(false));
                 if(max < total) max = total;
             }
-            if(max != -1) {
+            if(max > 0) {
                 max = max + max / 10;
                 yAxistBillProductLine.setUpperBound(max);
                 max /= 11;

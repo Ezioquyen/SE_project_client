@@ -33,6 +33,10 @@ public class OrderBillView {
     @FXML
     Label staffId;
     @FXML
+    Label deduction;
+    @FXML
+    Label original;
+    @FXML
     Label total;
     @FXML
     Label received;
@@ -45,16 +49,17 @@ public class OrderBillView {
     private final OrderBillViewModel orderBillViewModel = new OrderBillViewModel();
     @FXML
     void initialize() throws Exception {
-        orderBillViewModel.initData();
-
-        buyDate.setText(orderBillViewModel.getData().get("buyDate").toString());
-        customerPhone.setText(orderBillViewModel.getData().get("customerPhone").toString());
-        billCode.setText(orderBillViewModel.getData().get("id").toString());
-        staffId.setText(orderBillViewModel.getData().get("userStaffId").toString());
-        total.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(orderBillViewModel.getData().get("total").toString())) + " VND");
-        method.setText("Khách trả (" + ((Boolean)orderBillViewModel.getData().get("payMethod")?"Quét mã QR":"Tiền mặt") +"):");
-        received.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(orderBillViewModel.getData().get("received").toString()))+ " VND");
-        change.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(orderBillViewModel.getData().get("changeMoney").toString()))+ " VND");
+        orderBillViewModel.initData(((CreateOrderViewModel)Router.getData(Pages.CREATE_ORDER_VIEW)).getOrderBill());
+        buyDate.setText(orderBillViewModel.getData().getBuyDate().toString());
+        customerPhone.setText(orderBillViewModel.getData().getCustomerPhoneNumber());
+        billCode.setText(orderBillViewModel.getData().getId());
+        staffId.setText(orderBillViewModel.getData().getUserStaffId());
+        total.setText(NumberFormat.getNumberInstance(Locale.US).format(orderBillViewModel.getData().getTotal()) + " VND");
+        method.setText("Khách trả (" + (orderBillViewModel.getData().getPayMethod()?"Quét mã QR":"Tiền mặt") +"):");
+        received.setText(NumberFormat.getNumberInstance(Locale.US).format(orderBillViewModel.getData().getReceived())+ " VND");
+        change.setText(NumberFormat.getNumberInstance(Locale.US).format(orderBillViewModel.getData().getChangeMoney())+ " VND");
+        deduction.setText("- " + NumberFormat.getNumberInstance(Locale.US).format(orderBillViewModel.getData().getDeduction())+ " VND");
+        original.setText(NumberFormat.getNumberInstance(Locale.US).format(orderBillViewModel.getData().getOriginal())+ " VND");
         int row = 1;
         for(Map.Entry<Product, SimpleIntegerProperty> entry : ((CreateOrderViewModel)Router.getData(Pages.CREATE_ORDER_VIEW)).getCount().entrySet()){
            Label productName = new Label(entry.getKey().getName());

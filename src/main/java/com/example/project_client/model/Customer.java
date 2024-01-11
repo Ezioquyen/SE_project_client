@@ -11,5 +11,6 @@ public class Customer {
     private String phoneNumber = "";
     private String name = null;
     private String dob = null;
+    private Integer total = 0;
 
 }

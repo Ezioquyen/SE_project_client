@@ -16,7 +16,7 @@ public class HelloApplication extends Application {
         Application.setUserAgentStylesheet(new NordLight().getUserAgentStylesheet());
         Router.bind(this, stage, "Hello World", 1920, 1080);
         init();
-        Router.goTo(Pages.SELECT_PRODUCT_FOR_PROMOTION_VIEW);
+        Router.goTo(Pages.MAIN_VIEW);
 
     }
     public void init(){
@@ -31,6 +31,7 @@ public class HelloApplication extends Application {
         Router.setRouter(Pages.PROFIT_CAL_VIEW, "Khai/ProfitCalView.fxml");
         Router.setRouter(Pages.PROMOTION_VIEW,"Quyen/promotion-view.fxml");
         Router.setRouter(Pages.SELECT_PRODUCT_FOR_PROMOTION_VIEW,"Quyen/select-product-for-promotion.fxml");
+        Router.setRouter(Pages.PROMOTIONS_MANAGEMENT,"Quyen/promotions-management.fxml");
     }
     public static void main(String[] args) {
         launch();

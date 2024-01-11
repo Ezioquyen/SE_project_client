@@ -28,17 +28,33 @@ public class ConfirmationView {
     @FXML
     RadioButton cash;
     @FXML
+    Label dobSale;
+    @FXML
+    Label totalSale;
+    @FXML
     Label notification;
     private final ConfirmationViewModel confirmationViewModel = new ConfirmationViewModel();
+    private final CreateOrderViewModel createOrderViewModel = (CreateOrderViewModel) Router.getData(Pages.CREATE_ORDER_VIEW);
 
     @FXML
     public void initialize() {
-        CreateOrderViewModel createOrderViewModel = (CreateOrderViewModel) Router.getData(Pages.CREATE_ORDER_VIEW);
+
         ToggleGroup toggleGroup = new ToggleGroup();
         toggleGroup.getToggles().addAll(qr, cash);
         qr.setSelected(true);
+        dob.valueProperty().addListener(((observableValue, localDate, t1) -> {
 
-        cash.selectedProperty().addListener(((observableValue, aBoolean, t1) -> confirmationViewModel.setMethod(!t1)));
+            confirmationViewModel.getCustomer().setDob(DobFormatter.toString(t1));
+            if (confirmationViewModel.checkDob(createOrderViewModel.getOrderBill(), t1)) {
+                money.setText("");
+                if (!dobSale.isVisible()) totalSale.setVisible(true);
+                money.setPromptText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(createOrderViewModel.getOrderBill().getTotal().toString())));
+            }else {
+                if (dobSale.isVisible()) totalSale.setVisible(false);
+            }
+            money.setPromptText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(createOrderViewModel.getOrderBill().getTotal().toString())));
+        }));
+        cash.selectedProperty().addListener(((observableValue, aBoolean, t1) -> createOrderViewModel.getOrderBill().setPayMethod(!t1)));
         phoneNumber.textProperty().addListener((e, oldVal, newVal) -> {
             if (!newVal.matches("\\d*")) {
                 phoneNumber.setText(newVal.replaceAll("\\D", ""));
@@ -46,6 +62,12 @@ public class ConfirmationView {
             confirmationViewModel.getCustomer().setPhoneNumber(phoneNumber.getText());
             try {
                 confirmationViewModel.findCustomer();
+                if (confirmationViewModel.checkTotal(createOrderViewModel.getOrderBill(), confirmationViewModel.getCustomer().getTotal())) {
+                    money.setText("");
+                    if (!totalSale.isVisible()) totalSale.setVisible(true);
+                    money.setPromptText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(createOrderViewModel.getOrderBill().getTotal().toString())));
+                } else if (totalSale.isVisible()) totalSale.setVisible(false);
+
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -71,38 +93,46 @@ public class ConfirmationView {
         });
         customerName.textProperty().addListener((obs, oldVal, newVal) -> confirmationViewModel.getCustomer().setName(newVal));
         money.setPromptText(NumberFormat.getNumberInstance(Locale.US).format(createOrderViewModel.getTotal().intValue()));
-        money.setText(NumberFormat.getNumberInstance(Locale.US).format(createOrderViewModel.getTotal().intValue()));
         money.textProperty().addListener(((observableValue, oldVal, newVal) -> {
             String val = newVal;
             if (!newVal.matches("\\d*")) {
                 val = newVal.replaceAll("\\D", "");
             }
-            if (!val.isEmpty()) money.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(val)));
-            else money.setText(val);
+            if (!val.isEmpty()) {
+                money.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(val)));
+                createOrderViewModel.getOrderBill().setReceived(Integer.parseInt(val));
+                createOrderViewModel.getOrderBill().setChangeMoney(Integer.parseInt(val) - createOrderViewModel.getOrderBill().getTotal());
+            } else {
+                money.setText(val);
+            }
         }));
-        dob.valueProperty().addListener(((observableValue, localDate, t1) -> {
-            System.out.println("changed: " + t1);
-            confirmationViewModel.getCustomer().setDob(DobFormatter.toString(t1));
-        }));
+        money.setText(NumberFormat.getNumberInstance(Locale.US).format(createOrderViewModel.getOrderBill().getTotal()));
+
+
         Router.setData(Pages.CONFIRMATION_VIEW, confirmationViewModel);
     }
 
     @FXML
     public void close() {
+        confirmationViewModel.subDobDeduction(createOrderViewModel.getOrderBill());
+        confirmationViewModel.subTotalDeduction(createOrderViewModel.getOrderBill());
         Router.closeDialog();
     }
 
     @FXML
     public void confirm() throws Exception {
+
         if (money.getText().isEmpty()) {
             if (!notification.isVisible()) notification.setVisible(true);
             return;
         }
         if (!notification.isVisible()) notification.setVisible(false);
         Router.closeDialog();
-        confirmationViewModel.saveCustomer();
-        confirmationViewModel.getData().put("money", money.getText().replace(",", ""));
-        confirmationViewModel.getData().put("method", confirmationViewModel.getMethod());
+
+        if (!phoneNumber.getText().isEmpty()) {
+            confirmationViewModel.getCustomer().setTotal(confirmationViewModel.getCustomer().getTotal() + createOrderViewModel.getOrderBill().getTotal());
+            confirmationViewModel.saveCustomer();
+        }
         Router.switchTo(Pages.ORDER_BILL_VIEW);
     }
 

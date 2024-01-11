@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="786.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Quyen.SelectProductForPromotionView">
+<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Quyen.SelectProductForPromotionView">
     <VBox>
         <padding>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
@@ -30,6 +30,7 @@
         <HBox spacing="10.0">
             <Button mnemonicParsing="false" onAction="#confirmation" text="Điền thông tin khuyến mãi" />
             <Button mnemonicParsing="false" onAction="#cancel" text="Hủy" />
+         <Button fx:id="remove" mnemonicParsing="false" onAction="#remove" text="Remove" />
         </HBox>
       <VBox alignment="TOP_CENTER">
          <children>

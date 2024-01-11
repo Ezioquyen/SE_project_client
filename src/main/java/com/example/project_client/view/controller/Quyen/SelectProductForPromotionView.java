@@ -1,5 +1,6 @@
 package com.example.project_client.view.controller.Quyen;
 
+import com.example.project_client.model.Promotion;
 import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
 import com.example.project_client.view.controller.Quyen.components.ProductInPromotion;
@@ -27,14 +28,20 @@ public class SelectProductForPromotionView {
     Button addAll;
     @FXML
     Label warning;
+    @FXML
+    Button remove;
     private final SelectProductForPromotionViewModel selectProductForPromotionViewModel = new SelectProductForPromotionViewModel();
 
     @FXML
     void initialize() throws IOException {
-        selectProductForPromotionViewModel.initData();
+        selectProductForPromotionViewModel.initData((Promotion) Router.getData(Pages.PROMOTIONS_MANAGEMENT));
+        remove.setVisible(!selectProductForPromotionViewModel.getIsCreate());
         productsPane.getChildren().addAll(selectProductForPromotionViewModel.getProducts().stream().map(e -> {
             ProductView productView = new ProductView(e);
-            productView.setOnMouseClicked(mouseEvent -> insertProduct(productView));
+            productView.setOnMouseClicked(mouseEvent -> insertProduct(productView, Double.parseDouble(percent.getText())));
+            if (selectProductForPromotionViewModel.getPromotion().getProducts().get(e.getId()) != null) {
+                insertProduct(productView, selectProductForPromotionViewModel.getPromotion().getProducts().get(e.getId()));
+            }
             return productView;
         }).collect(Collectors.toList()));
         percent.textProperty().addListener(((observableValue, s, t1) -> {
@@ -56,7 +63,8 @@ public class SelectProductForPromotionView {
 
     @FXML
     void cancel() throws IOException {
-        Router.switchTo(Pages.MAIN_VIEW);
+        Router.removeData(Pages.PROMOTIONS_MANAGEMENT);
+        Router.switchTo(Pages.PROMOTIONS_MANAGEMENT);
     }
 
     @FXML
@@ -65,16 +73,16 @@ public class SelectProductForPromotionView {
             if (warning.isVisible()) warning.setVisible(false);
             productsPane.getChildren().forEach(e -> {
                 ProductView productView = (ProductView) e;
-                insertProduct(productView);
+                insertProduct(productView, Double.parseDouble(percent.getText()));
             });
         } else if (!warning.isVisible()) warning.setVisible(true);
     }
 
-    private void insertProduct(ProductView product) {
+    private void insertProduct(ProductView product, Double percent) {
         selectProductForPromotionViewModel.setEmptyText(selectProductForPromotionViewModel.getEmptyText() + 1);
         if (!product.isDisable()) {
-            selectProductForPromotionViewModel.getPromotion().getProducts().put(product.getProduct().getId(), Double.parseDouble(percent.getText()));
-            ProductInPromotion productInPromotion = new ProductInPromotion(product.getProduct(), Double.parseDouble(percent.getText()));
+            selectProductForPromotionViewModel.getPromotion().getProducts().put(product.getProduct().getId(), percent);
+            ProductInPromotion productInPromotion = new ProductInPromotion(product.getProduct(), percent);
             listView.getItems().add(productInPromotion);
             productInPromotion.getButton().setOnAction(event -> removeFromListView(product, productInPromotion));
             productInPromotion.getTextField().textProperty().addListener(((observableValue, s, t1) -> {
@@ -83,6 +91,7 @@ public class SelectProductForPromotionView {
                 }
                 if (!productInPromotion.getTextField().getText().isEmpty())
                     selectProductForPromotionViewModel.getPromotion().getProducts().put(product.getProduct().getId(), Double.parseDouble(productInPromotion.getTextField().getText()));
+                else  selectProductForPromotionViewModel.getPromotion().getProducts().put(product.getProduct().getId(),percent);
             }));
 
             product.setDisable(true);
@@ -92,5 +101,10 @@ public class SelectProductForPromotionView {
     private void removeFromListView(ProductView productView, ProductInPromotion productInPromotion) {
         productView.setDisable(false);
         listView.getItems().remove(productInPromotion);
+    }
+    @FXML
+    public void remove() throws IOException {
+        selectProductForPromotionViewModel.removePromo();
+        Router.switchTo(Pages.PROMOTIONS_MANAGEMENT);
     }
 }

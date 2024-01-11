@@ -10,9 +10,10 @@ import com.example.project_client.view.controller.Quyen.interfaces.InitStyles;
 import com.example.project_client.viewModel.Quyen.CreateOrderViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.text.NumberFormat;
@@ -26,6 +27,12 @@ public class CreateOrderView implements InitStyles {
     @FXML
     Label total;
     @FXML
+    Label deduction;
+    @FXML
+    Label original;
+    @FXML
+    VBox promotionContainer;
+    @FXML
     Label warning;
     @FXML
     Button create;
@@ -38,6 +45,28 @@ public class CreateOrderView implements InitStyles {
     void initialize() throws IOException {
         initStyle();
         createOrderViewModel.initData();
+        if (createOrderViewModel.getPromotion() != null) {
+            HBox hBox = new HBox();
+            Label label = new Label(createOrderViewModel.getPromotion().getName());
+            Region region = new Region();
+            CheckBox checkBox = new CheckBox("Áp dụng");
+            checkBox.selectedProperty().addListener((observable -> {
+                if (checkBox.isSelected()) {
+                    createOrderViewModel.setApplyPromotion(true);
+                    createOrderViewModel.updatePromotion();
+                } else {
+                    createOrderViewModel.setApplyPromotion(false);
+                    createOrderViewModel.resetPromotion();
+                }
+            }));
+            if (!createOrderViewModel.getPromotion().getNeedCondition()) {
+                checkBox.setSelected(true);
+                checkBox.setDisable(true);
+            }
+            hBox.getChildren().addAll(label, region, checkBox);
+            HBox.setHgrow(region, Priority.ALWAYS);
+            promotionContainer.getChildren().add(hBox);
+        }
         for (Product product : createOrderViewModel.getProducts()) {
             ProductView productView = new ProductView(product);
             productView.setOnMouseClicked((e) -> {
@@ -69,6 +98,8 @@ public class CreateOrderView implements InitStyles {
             productsPane.getChildren().add(productView);
         }
         createOrderViewModel.getTotal().addListener((obs, oldVal, newVal) -> total.setText(NumberFormat.getNumberInstance(Locale.US).format(newVal.intValue()) + " VND"));
+        createOrderViewModel.getDeduction().addListener((obs, oldVal, newVal) -> deduction.setText("- " + NumberFormat.getNumberInstance(Locale.US).format(newVal.intValue()) + " VND"));
+        createOrderViewModel.getOriginal().addListener((obs, oldVal, newVal) -> original.setText(NumberFormat.getNumberInstance(Locale.US).format(newVal.intValue()) + " VND"));
         Router.setData(Pages.CREATE_ORDER_VIEW, createOrderViewModel);
     }
 
@@ -83,6 +114,7 @@ public class CreateOrderView implements InitStyles {
         if (warning.isVisible()) {
             warning.setVisible(false);
         }
+        createOrderViewModel.setProductOfOrderBill();
         Router.showDialog(Pages.CONFIRMATION_VIEW);
     }
 

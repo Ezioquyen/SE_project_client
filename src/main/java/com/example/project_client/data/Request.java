@@ -108,5 +108,11 @@ public class Request {
             throw new IOException("Failed to retrieve data. Response Code: " + responseCode);
         }
     }
+    public static void sendDeleteRequest(String apiUrl) throws IOException {
+        URL url = new URL(apiUrl);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("DELETE");
+        handleResponse(connection);
+    }
 
 }

@@ -1,4 +1,5 @@
 package com.example.project_client.router;
+
 import com.example.project_client.HelloApplication;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,26 +29,33 @@ public final class Router {
     private static Double windowWidth;
     private static Double windowHeight;
 
-    private static final Map<Pages,String> routerLabel = new HashMap<>();
-    private static final Map<Pages,Object> dataLabel = new HashMap<>();
+    private static final Map<Pages, String> routerLabel = new HashMap<>();
+    private static final Map<Pages, Object> dataLabel = new HashMap<>();
+
     public static void setRoot(VBox root) {
         Router.root = root;
     }
-    public static void setRouter(Pages page, String path){
-        routerLabel.put(page,path);
+
+    public static void setRouter(Pages page, String path) {
+        routerLabel.put(page, path);
     }
-    public static void setRouter(Pages page, String path, Object data){
-        routerLabel.put(page,path);
-        setData(page,data);
+
+    public static void setRouter(Pages page, String path, Object data) {
+        routerLabel.put(page, path);
+        setData(page, data);
     }
-    public static void removeData(Pages page){
-        dataLabel.remove(page);
+
+    public static void removeData(Pages page) {
+        if (dataLabel.get(page) != null)
+            dataLabel.remove(page);
     }
-    public static void setData(Pages page, Object data){
-        dataLabel.put(page,data);
+
+    public static void setData(Pages page, Object data) {
+        dataLabel.put(page, data);
     }
-    public static Object getData(Pages page){
-       return dataLabel.get(page);
+
+    public static Object getData(Pages page) {
+        return dataLabel.get(page);
     }
 
     public static void switchTo(Pages page) throws IOException {
@@ -55,6 +63,7 @@ public final class Router {
         Parent resource = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource(scenePath)));
         root.getChildren().setAll(resource);
     }
+
     public static void goTo(Pages page) throws IOException {
         root = new VBox();
         switchTo(page);
@@ -62,13 +71,15 @@ public final class Router {
         window.setScene(new Scene(root));
         window.show();
     }
-    public static void goTo(Pages page,double windowWidth, double windowHeight) throws IOException {
+
+    public static void goTo(Pages page, double windowWidth, double windowHeight) throws IOException {
         switchTo(page);
         window.setTitle(windowTitle);
-        window.setScene(new Scene(root,windowWidth,windowHeight));
+        window.setScene(new Scene(root, windowWidth, windowHeight));
         window.show();
     }
-    public static void goTo(Pages page,boolean setFullScreen) throws IOException {
+
+    public static void goTo(Pages page, boolean setFullScreen) throws IOException {
         root = new VBox();
         switchTo(page);
         window.setTitle(windowTitle);
@@ -76,7 +87,8 @@ public final class Router {
         window.show();
         window.setMaximized(setFullScreen);
     }
-    public  static void showDialog(Pages page) throws IOException {
+
+    public static void showDialog(Pages page) throws IOException {
         dialog = new Stage();
         String scenePath = routerLabel.get(page);
         Parent resource = FXMLLoader.load(HelloApplication.class.getResource(scenePath));
@@ -86,8 +98,9 @@ public final class Router {
         dialog.setScene(dialogScene);
         dialog.show();
     }
-    public static void closeDialog(){
-        if(dialog.isShowing()) dialog.close();
+
+    public static void closeDialog() {
+        if (dialog.isShowing()) dialog.close();
     }
 
     public static void bind(Object ref, Stage win) {
@@ -107,7 +120,7 @@ public final class Router {
 
     public static void bind(Object ref, Stage win, String winTitle, double winWidth, double winHeight) {
         checkInstances(ref, win);
-        root.setPrefSize(winWidth,winHeight);
+        root.setPrefSize(winWidth, winHeight);
         windowTitle = winTitle;
         windowWidth = winWidth;
         windowHeight = winHeight;

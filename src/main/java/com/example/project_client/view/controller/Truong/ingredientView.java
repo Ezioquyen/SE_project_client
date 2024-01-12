@@ -6,7 +6,6 @@ import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -34,8 +33,7 @@ public final class ingredientView {
     @FXML
     TableView<Ingredient> tableView;
 
-    @FXML
-    public void initialize() throws IOException {
+    public void initialize(){
         try {
             setTableView();
             setColumn();
@@ -49,11 +47,11 @@ public final class ingredientView {
         Router.switchTo(Pages.MAIN_VIEW);
     }
     @FXML
-    public void addIngredient(ActionEvent event) throws IOException {
+    public void addIngredient() throws IOException {
         Router.switchTo(Pages.ADD_INGREDIENT);
     }
     @FXML
-    public void changeIngredient(ActionEvent event) {
+    public void changeIngredient() {
         try {
             ingredient = tableView.getSelectionModel().getSelectedItem();
             Router.switchTo(Pages.CHANGE_INGREDIENT);
@@ -63,7 +61,7 @@ public final class ingredientView {
         }
     }
     @FXML
-    public void deleteIngredient(ActionEvent event) throws Exception {
+    public void deleteIngredient() {
         try {
             ingredient = tableView.getSelectionModel().getSelectedItem();
             IngredientRepository.deleteIngredient(ingredient.getId().toString());

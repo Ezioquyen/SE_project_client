@@ -22,13 +22,17 @@ public class Product {
         this.image = image;
     }
     public Product(){
-        this.id = 1;
+        this.id = null;
         this.name = null;
         this.price = null;
         this.available = null;
         this.discount = null;
         this.image = null;
     }
+//    public String[] check() {
+//        String[] s;
+//        if(this.name == null) s.
+//    }
     public Integer getId() {
         return id;
     }

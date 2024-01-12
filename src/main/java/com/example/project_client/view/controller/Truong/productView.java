@@ -6,21 +6,16 @@ import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.Getter;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
 
-public final class productView implements Initializable {
+public final class productView {
     private static Product product;
     @FXML
     private TableColumn<Product, Integer> id;
@@ -40,8 +35,8 @@ public final class productView implements Initializable {
     private ObservableList<Product> tableList;
     @FXML
     TableView<Product> tableView;
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+
+    public void initialize() {
         try {
             setTableView();
             setColumn();
@@ -55,11 +50,11 @@ public final class productView implements Initializable {
         Router.switchTo(Pages.MAIN_VIEW);
     }
     @FXML
-    private void addProduct(ActionEvent event) throws IOException {
+    private void addProduct() throws IOException {
         Router.switchTo(Pages.ADD_PRODUCT);
     }
     @FXML
-    private void changeProduct(ActionEvent event) {
+    private void changeProduct() {
         try {
             product = tableView.getSelectionModel().getSelectedItem();
             Router.switchTo(Pages.CHANGE_PRODUCT);
@@ -69,7 +64,7 @@ public final class productView implements Initializable {
         }
     }
     @FXML
-    private void deleteProduct(ActionEvent event) {
+    private void deleteProduct() {
         try {
             product = tableView.getSelectionModel().getSelectedItem();
             ProductRepository.deleteProduct(product.getId().toString());

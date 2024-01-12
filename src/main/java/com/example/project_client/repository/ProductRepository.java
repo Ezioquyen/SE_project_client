@@ -6,7 +6,6 @@ import com.example.project_client.data.Request;
 import com.example.project_client.model.Product;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,9 +13,9 @@ import java.util.Objects;
 
 public final class ProductRepository {
     public static List<Product> getProductsApi() throws IOException {
-        String jsonpObject = Request.sendGetRequest(Api.productApi+"/getAll");
-        System.out.println(jsonpObject);
-        return JsonUtils.fromJson(jsonpObject, new TypeReference<>() {
+        String jsonObject = Request.sendGetRequest(Api.productApi+"/getAll");
+        System.out.println(jsonObject);
+        return JsonUtils.fromJson(jsonObject, new TypeReference<>() {
         });
     }
     public static void saveProduct(Product product) throws Exception {

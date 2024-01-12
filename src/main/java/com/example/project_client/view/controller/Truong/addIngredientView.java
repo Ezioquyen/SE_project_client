@@ -30,7 +30,7 @@ public class addIngredientView {
             System.out.println("ERROR");
         }
     }
-    private void setIngredient() throws Exception{
+    private void setIngredient() throws Exception {
         ingredient.setId(Integer.parseInt(id.getText()));
         ingredient.setName(name.getText());
         ingredient.setUnit_Price(Integer.parseInt(unit_Price.getText()));

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class UserRepository {
 
@@ -34,7 +35,27 @@ public class UserRepository {
             System.out.println("error: "+e);
         }
         return null;
-
+    }
+    public List<User> getByUserName(String userName) throws IOException {
+        return JsonUtils.fromJson(Request.sendGetRequest(Api.userApi + "/getByUsername/" + userName), new TypeReference<>() {
+        });
+    }
+    public List<User> getBySearch(String stringSearch) throws  IOException{
+        return JsonUtils.fromJson(Request.sendGetRequest(Api.userApi + "/getBySearch/" + stringSearch), new TypeReference<>() {
+        });
+    }
+    public void addUser(User user) throws Exception {
+        Request.sendPostRequest(Api.userApi + "/addUser", Objects.requireNonNull(JsonUtils.toJson(user)));
+    }
+    public void updateUser(User user) throws Exception {
+        Request.sendPutRequest(Api.userApi + "/updateUser", Objects.requireNonNull(JsonUtils.toJson(user)));
+    }
+    public void deleteUser(Integer id) throws IOException {
+        Request.sendDeleteRequest(Api.userApi + "/deleteUser/" + id);
+    }
+    public List<User> getByStaffId(String staffId) throws IOException {
+        return JsonUtils.fromJson(Request.sendGetRequest(Api.userApi + "/getByStaffId/" + staffId), new TypeReference<>() {
+        });
     }
 }
 

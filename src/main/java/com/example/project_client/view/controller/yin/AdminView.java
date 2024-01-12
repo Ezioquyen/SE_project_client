@@ -52,7 +52,6 @@ public class AdminView {
     @FXML
     void HandleCustomerClicked(ActionEvent event) throws IOException {
         Router.goTo(Pages.CUSTOMER_VIEW);
-        // Router.showDialog(Pages.CUSTOMER_VIEW);
     }
 
 

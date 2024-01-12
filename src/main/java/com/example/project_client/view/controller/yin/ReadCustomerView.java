@@ -22,6 +22,8 @@ public class ReadCustomerView implements Initializable {
 
     @FXML
     private Label phoneNumField;
+    @FXML
+    private Label totalField;
     public static Customer customer;
 
     public static Customer getCustomer() {
@@ -29,6 +31,7 @@ public class ReadCustomerView implements Initializable {
     }
 
     public static void setCustomer(Customer customer) {
+
         ReadCustomerView.customer = customer;
     }
 
@@ -43,6 +46,8 @@ public class ReadCustomerView implements Initializable {
         phoneNumField.setText(customer.getPhoneNumber());
         nameField.setText(customer.getName());
         dob.setText(customer.getDob());
+        totalField.setText(String.valueOf(customer.getTotal()));
+
 
     }
 

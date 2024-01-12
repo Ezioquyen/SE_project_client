@@ -87,15 +87,16 @@
                         </HBox>
                                 <ScrollPane fitToWidth="true" prefHeight="521.0" prefWidth="871.0" styleClass="shadow">
                                     <content>
-                                        <TableView fx:id="customerTable" onMousePressed="#HandleTableSelected" prefHeight="477.0" prefWidth="869.0" styleClass="table-row-cell">
+                                        <TableView fx:id="customerTable" onMousePressed="#HandleTableSelected" prefHeight="477.0" prefWidth="817.0" styleClass="table-row-cell">
                                             <columns>
                                                 <TableColumn fx:id="col_ID" minWidth="30.0" prefWidth="70.0" styleClass="alignCenter" text="ID" />
-                                                <TableColumn fx:id="col_phoneNumber" prefWidth="200.0" styleClass="alignCenter" text="Số điện thoại" />
-                                                <TableColumn fx:id="col_name" minWidth="50.0" prefWidth="250.0" styleClass="alignCenter" text="Họ Tên" />
+                                                <TableColumn fx:id="col_phoneNumber" prefWidth="180.0" styleClass="alignCenter" text="Số điện thoại" />
+                                                <TableColumn fx:id="col_name" minWidth="50.0" prefWidth="220.0" styleClass="alignCenter" text="Họ Tên" />
                                                 <TableColumn fx:id="col_dob" prefWidth="120.0" text="Dob" />
-                                    <TableColumn fx:id="col_read" prefWidth="50.0" sortable="false" text="Read" />
-                                    <TableColumn fx:id="col_edit" prefWidth="50.0" text="Edit" />
-                                    <TableColumn fx:id="col_delete" prefWidth="50.0" text="Delete" />
+                                    <TableColumn fx:id="col_total" prefWidth="120.0" text="Total" />
+                                    <TableColumn fx:id="col_read" prefWidth="50.0" text="Xem" />
+                                    <TableColumn fx:id="col_edit" prefWidth="50.0" text="Sửa" />
+                                    <TableColumn fx:id="col_delete" prefWidth="50.0" text="Xoá" />
                                             </columns>
                                         </TableView>
                                     </content>

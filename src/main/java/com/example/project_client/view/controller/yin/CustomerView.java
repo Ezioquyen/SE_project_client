@@ -44,6 +44,11 @@ public class CustomerView implements Initializable {
     @FXML
     private TableColumn<Customer, Boolean> col_read;
 
+    @FXML
+    private TableColumn<Customer, Integer> col_total;
+
+
+
 
 
     @FXML
@@ -86,6 +91,7 @@ public class CustomerView implements Initializable {
         col_phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_dob.setCellValueFactory(new PropertyValueFactory<>("dob"));
+        col_total.setCellValueFactory(new PropertyValueFactory<>("total"));
         col_edit.setCellFactory(createEditButtonCellFactory());
         col_delete.setCellFactory(createDeleteButtonCellFactory());
         col_read.setCellFactory(createReadButtonCellFactory());
@@ -210,7 +216,6 @@ public class CustomerView implements Initializable {
         if (result == ButtonType.OK) {
             customerRepository.deleteCustomer(Long.valueOf(customer.getId()));
         }
-        customerRepository.deleteCustomer(Long.valueOf(customer.getId()));
     }
     @FXML
     private void searchCustomer() {

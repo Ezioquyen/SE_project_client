@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.yin.ReadCustomerView">
+<AnchorPane prefHeight="584.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.yin.ReadCustomerView">
     <children>
         <HBox alignment="CENTER" layoutX="40.0" layoutY="21.0" prefHeight="81.0" prefWidth="553.0" AnchorPane.bottomAnchor="422.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="21.0">
             <children>
@@ -78,6 +78,26 @@
                   </Label>
                     </children>
                 </HBox>
+            <HBox alignment="CENTER" prefHeight="73.0" prefWidth="439.0">
+               <children>
+                  <Label prefHeight="44.0" prefWidth="215.0" text="Tổng tiền: ">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="totalField" prefHeight="17.0" prefWidth="308.0" text="total">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </HBox>
             </children>
         </VBox>
         <HBox layoutX="77.0" layoutY="484.0" prefHeight="40.0" prefWidth="446.0" />

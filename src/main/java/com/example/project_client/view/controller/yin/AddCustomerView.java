@@ -7,13 +7,11 @@ import com.example.project_client.router.Router;
 import com.example.project_client.view.controller.Quyen.components.DobFormatter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Optional;
 
 public class AddCustomerView {
 
@@ -54,45 +52,39 @@ public class AddCustomerView {
 
 
     @FXML
-    void saveCustomer(ActionEvent event) throws Exception {
-        if (validatePhoneNumber(getPhoneNumber()) &&
-                validateName(getName()) &&
-                emptyValidation("dob", dob.getEditor().getText().isEmpty())) {
+    void saveCustomer(ActionEvent event) {
+        String phoneNumber = getPhoneNumber();
+        String name = getName();
+
+        if (validatePhoneNumber(phoneNumber) && validateName(name) && emptyValidation("dob", dob.getEditor().getText().isEmpty())) {
             Customer customer = new Customer();
-            customer.setPhoneNumber(getPhoneNumber());
-            customer.setName(getName());
-// Assuming you have a method to get the selected date from the DatePicker
+            customer.setPhoneNumber(phoneNumber);
+            customer.setName(name);
+            customer.setTotal(0);
             LocalDate selectedDate = dob.getValue();
-
-// Using DobFormatter to convert LocalDate to String
             String formattedDob = DobFormatter.toString(selectedDate);
-
-// Set the formatted date of birth to the customer
             customer.setDob(formattedDob);
+
             try {
-                customerRepository.saveCustomer(customer);
+                // Check if the customer already exists
+                if (customerRepository.checkCustomer(phoneNumber)) {
+                    boolean confirmUpdate = showConfirmationDialog("Customer already exists", "Do you want to update the existing customer?");
+                    if (confirmUpdate) {
+                    //alert
+                    Customer existingCustomer = customerRepository.getCustomer(phoneNumber);
+                    existingCustomer.setName(customer.getName());
+                    existingCustomer.setDob(customer.getDob());
+                    customer.setTotal(0);
+                    customerRepository.saveCustomer(existingCustomer);
+                }} else {
+                    customerRepository.saveCustomer(customer);
+                }
+
+                saveAlert(customer);
+                clearFields();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-            saveAlert(customer);
-
-        } else {
-            try {
-                Customer customer = customerRepository.getCustomer(phoneNumField.getText());
-                customer.setPhoneNumber(getPhoneNumber());
-                customer.setName(getName());
-                // Assuming you have a method to get the selected date from the DatePicker
-                LocalDate selectedDate = dob.getValue();
-
-// Using DobFormatter to convert LocalDate to String
-                String formattedDob = DobFormatter.toString(selectedDate);
-                customer.setDob(formattedDob);
-                customerRepository.saveCustomer(customer);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            clearFields();
-
         }
     }
 
@@ -104,11 +96,10 @@ public class AddCustomerView {
     }
 
     private void saveAlert(Customer customer) {
-
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("User saved successfully.");
+        alert.setTitle("Customer saved successfully.");
         alert.setHeaderText(null);
-        alert.setContentText("The user " + customer.getPhoneNumber() + " " + customer.getName() + " has been created.");
+        alert.setContentText("The customer " + customer.getPhoneNumber() + " " + customer.getName() + " has been created.");
         alert.showAndWait();
     }
 
@@ -161,8 +152,15 @@ public class AddCustomerView {
         return true;
     }
 
+    private boolean showConfirmationDialog(String title, String contentText) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(contentText);
 
-
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == ButtonType.OK;
+    }
 }
 
 

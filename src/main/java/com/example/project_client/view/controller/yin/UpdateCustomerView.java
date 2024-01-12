@@ -8,10 +8,7 @@ import com.example.project_client.view.controller.Quyen.components.DobFormatter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -36,7 +33,7 @@ public class UpdateCustomerView implements Initializable {
     private TextField nameField;
 
     @FXML
-    private TextField phoneNumField;
+    private Label phoneNumField;
 
     @FXML
     private Button resetCustomerBtn;
@@ -66,46 +63,32 @@ public class UpdateCustomerView implements Initializable {
 
 
     @FXML
-    void saveCustomer(ActionEvent event) throws Exception {
-        if (validatePhoneNumber(getPhoneNumber()) &&
-                validateName(getName()) &&
-                emptyValidation("dob", dob.getEditor().getText().isEmpty())) {
-            Customer customer = new Customer();
-            customer.setPhoneNumber(getPhoneNumber());
-            customer.setName(getName());
-// Assuming you have a method to get the selected date from the DatePicker
-            LocalDate selectedDate = dob.getValue();
+    void saveCustomer(ActionEvent event) throws IOException {
+        String phoneNumber = selectCustomer.getPhoneNumber();
+        String name = getName();
+        LocalDate selectedDate = dob.getValue();
+        String formattedDob = DobFormatter.toString(selectedDate);
 
-// Using DobFormatter to convert LocalDate to String
-            String formattedDob = DobFormatter.toString(selectedDate);
+        if (validateName(name) && emptyValidation("dob", dob.getEditor().getText().isEmpty())) {
+                    Customer existingCustomer = customerRepository.getCustomer(phoneNumber);
+                    existingCustomer.setName(name);
 
-// Set the formatted date of birth to the customer
-            customer.setDob(formattedDob);
-            try {
-                customerRepository.saveCustomer(customer);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-            saveAlert(customer);
-
-        } else {
-            try {
-                Customer customer = customerRepository.getCustomer(phoneNumField.getText());
-                customer.setPhoneNumber(getPhoneNumber());
-                customer.setName(getName());
-                customer.setDob(null);
-                customerRepository.saveCustomer(customer);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            clearFields();
-
+                    existingCustomer.setDob(formattedDob);
+                    existingCustomer.setTotal(existingCustomer.getTotal());
+                    try {
+                        customerRepository.saveCustomer(existingCustomer);
+                        saveAlert(existingCustomer);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
         }
-    }
+
+
+
 
 
     private void clearFields() {
-        phoneNumField.clear();
         nameField.clear();
         dob.getEditor().clear();
     }
@@ -113,9 +96,9 @@ public class UpdateCustomerView implements Initializable {
     private void saveAlert(Customer customer) {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("User saved successfully.");
+        alert.setTitle("Customer updated successfully.");
         alert.setHeaderText(null);
-        alert.setContentText("The user " + customer.getPhoneNumber() + " " + customer.getName() + " has been created.");
+        alert.setContentText("The customer " + customer.getPhoneNumber() + " " + customer.getName() + " has been updated.");
         alert.showAndWait();
     }
 
@@ -133,11 +116,13 @@ public class UpdateCustomerView implements Initializable {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Validation Error");
         alert.setHeaderText(null);
-        if (field.equals("Role")) alert.setContentText("Please Select " + field);
-        else {
-            if (empty) alert.setContentText("Please Enter " + field);
-            else alert.setContentText("Please Enter Valid " + field);
+        if (empty) {
+            alert.setContentText("Please Enter " + field);
         }
+        else {
+            alert.setContentText("Please Enter Valid " + field);
+        }
+
         alert.showAndWait();
 
     }
@@ -151,30 +136,14 @@ public class UpdateCustomerView implements Initializable {
         return name.matches("^[a-zA-Z]+[\\-'\\s]?[a-zA-Z ]+$");
     }
 
-    boolean validatePhoneNumber(String phoneNumber) {
-        // verify if phone has 10 digits and start with 0
-        if (phoneNumber.length() != 10 || phoneNumber.charAt(0) != '0') {
-            validationAlert("Phone Number", false);
-
-            return false;
-        }
-        // verify if phone contains only number
-        try {
-            Integer.parseInt(phoneNumber);
-        } catch (NumberFormatException e) {
-            return false;
-        }
-        return true;
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        phoneNumField.setPromptText(selectCustomer.getPhoneNumber());
+        phoneNumField.setText(selectCustomer.getPhoneNumber());
         nameField.setText(selectCustomer.getName());
         System.out.println(selectCustomer.getDob());
         LocalDate localDate = DobFormatter.toDate(selectCustomer.getDob());
         dob.setValue(localDate);
-
 
     }
 }

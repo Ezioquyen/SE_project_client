@@ -9,7 +9,7 @@ module com.example.project_client {
 
     requires atlantafx.base;
     requires com.fasterxml.jackson.databind;
-    requires fontawesomefx;
+    requires com.fasterxml.jackson.datatype.jsr310;
 
     opens com.example.project_client to javafx.fxml;
     exports com.example.project_client;
@@ -17,6 +17,8 @@ module com.example.project_client {
     exports com.example.project_client.model;
     exports com.example.project_client.view.controller.Quyen;
     opens com.example.project_client.view.controller.Quyen to javafx.fxml;
+    exports com.example.project_client.view.controller.Khai;
+    opens com.example.project_client.view.controller.Khai to javafx.fxml;
     exports com.example.project_client.view.controller.yin;
     opens com.example.project_client.view.controller.yin to javafx.fxml;
 }

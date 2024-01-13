@@ -15,7 +15,7 @@ import java.io.IOException;
 public class changeProductView {
     @FXML
     private ChoiceBox<Boolean> choiceBox;
-    private Boolean[] available = {Boolean.FALSE, Boolean.TRUE};
+    private final Boolean[] available = {Boolean.FALSE, Boolean.TRUE};
     private Boolean[] check = {true, true, true, true, true, true};
     @FXML
     private TextField name, price, discount, image;
@@ -35,7 +35,7 @@ public class changeProductView {
         Router.switchTo(Pages.PRODUCT_VIEW);
     }
     @FXML
-    private void confirm() throws IOException {
+    private void confirm() {
         try {
             for(int i = 0; i < 6; ++i){
                 if(!check[i]){
@@ -47,7 +47,7 @@ public class changeProductView {
             Router.switchTo(Pages.PRODUCT_VIEW);
         }
         catch (Exception e){
-            raiseAlert(e.getMessage().toString());
+            raiseAlert(e.getMessage());
         }
     }
 
@@ -88,8 +88,13 @@ public class changeProductView {
         price.setPromptText(product.getPrice().toString());
         price.textProperty().addListener((observableValue, oldValue, newValue) -> {
             try {
-                if(!product.setPrice(Integer.parseInt(newValue))){
-                    throw new Exception();
+                try {
+                    if (!product.setPrice(Integer.parseInt(newValue))) {
+                        throw new Exception();
+                    }
+                }
+                catch (Exception e) {
+                    throw new Exception("Invalid price, price must be a number from 0 to 1000000");
                 }
                 check[2] = true;
                 priceAlert.setText("");
@@ -97,7 +102,7 @@ public class changeProductView {
             catch (Exception e){
                 check[2] = false;
                 product.setPrice(Integer.parseInt(price.getPromptText()));
-                priceAlert.setText("Invalid price, price must be a number from 0 to 1000000");
+                priceAlert.setText(e.getMessage());
             }
         });
     }
@@ -105,8 +110,13 @@ public class changeProductView {
         discount.setPromptText(product.getDiscount().toString());
         discount.textProperty().addListener((observableValue, oldValue, newValue) -> {
             try{
-                if(!product.setDiscount(Double.parseDouble(newValue))){
-                    throw new Exception();
+                try {
+                    if (!product.setDiscount(Double.parseDouble(newValue))) {
+                        throw new Exception();
+                    }
+                }
+                catch (Exception e) {
+                    throw new Exception("Invalid Discount, discount must be a real number from 0 to 100");
                 }
                 check[3] = true;
                 discountAlert.setText("");
@@ -114,7 +124,7 @@ public class changeProductView {
             catch (Exception e){
                 check[3] = false;
                 product.setDiscount(Double.parseDouble(discount.getPromptText()));
-                discountAlert.setText("Invalid Discount, discount must be a real number from 0 to 100");
+                discountAlert.setText(e.getMessage());
             }
         });
     }

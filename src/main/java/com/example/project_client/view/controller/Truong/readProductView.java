@@ -17,7 +17,7 @@ public class readProductView {
         getInformation();
     }
     @FXML
-    private void cancel() throws Exception{
+    private void cancel() throws Exception {
         Router.switchTo(Pages.PRODUCT_VIEW);
     }
     private void getInformation() {

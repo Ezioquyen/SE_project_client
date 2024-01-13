@@ -51,13 +51,16 @@ public final class productView {
         Router.switchTo(Pages.MAIN_VIEW);
     }
     @FXML
-    private void viewProduct(){
+    private void readProduct(){
         try {
             product = tableView.getSelectionModel().getSelectedItem();
+            if(product == null) {
+                throw new Exception("Please choose Product to view information");
+            }
             Router.switchTo(Pages.READ_PRODUCT);
         }
         catch (Exception e){
-            System.out.println("Please choose Product to view information");
+            raiseAlert(e.getMessage());
         }
     }
     @FXML
@@ -68,20 +71,26 @@ public final class productView {
     private void changeProduct() {
         try {
             product = tableView.getSelectionModel().getSelectedItem();
+            if(product == null) {
+                throw new Exception("Please choose Product to change");
+            }
             Router.switchTo(Pages.CHANGE_PRODUCT);
         }
         catch (Exception e){
-            System.out.println("Please choose Product to change");
+            raiseAlert(e.getMessage());
         }
     }
     @FXML
     private void deleteProduct() {
         try {
             product = tableView.getSelectionModel().getSelectedItem();
+            if(product == null){
+                throw new Exception("Please choose Product to delete");
+            }
             askDelete();
         }
         catch (Exception e){
-            System.out.println("Please choose Product to delete");
+            raiseAlert(e.getMessage());
         }
     }
     private void askDelete() {
@@ -110,11 +119,15 @@ public final class productView {
         } else {
             message = "Cancel delete";
         }
-        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-        alert1.setTitle("Information");
-        alert1.setHeaderText("Notification");
-        alert1.setContentText(message);
-        alert1.show();
+        raiseAlert(message);
+    }
+
+    private void raiseAlert(String alertText){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText("Notification");
+        alert.setContentText(alertText);
+        alert.show();
     }
     private void setTableView() throws IOException {
         products = ProductRepository.getProductsApi();
@@ -131,8 +144,5 @@ public final class productView {
     }
     public static Product getProduct() {
         return product;
-    }
-    public static List<Product> getProducts() {
-        return products;
     }
 }

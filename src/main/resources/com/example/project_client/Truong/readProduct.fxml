@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 
 <AnchorPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Truong.readProductView">
    <children>
@@ -12,12 +12,12 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="id" layoutX="303.0" layoutY="98.0" text="ID">
+      <Label fx:id="id" layoutX="303.0" layoutY="98.0" text="ID" textFill="#a84040">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="name" layoutX="303.0" layoutY="158.0" text="Name">
+      <Label fx:id="name" layoutX="303.0" layoutY="158.0" text="Name" textFill="#a84040">
          <font>
             <Font size="18.0" />
          </font>
@@ -27,7 +27,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="price" layoutX="303.0" layoutY="226.0" text="Price">
+      <Label fx:id="price" layoutX="303.0" layoutY="226.0" text="Price" textFill="#a84040">
          <font>
             <Font size="18.0" />
          </font>
@@ -37,7 +37,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="available" layoutX="303.0" layoutY="301.0" text="Available">
+      <Label fx:id="available" layoutX="303.0" layoutY="301.0" text="Available" textFill="#a84040">
          <font>
             <Font size="18.0" />
          </font>
@@ -47,7 +47,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="discount" layoutX="303.0" layoutY="378.0" text="Discount">
+      <Label fx:id="discount" layoutX="303.0" layoutY="378.0" text="Discount" textFill="#a84040">
          <font>
             <Font size="18.0" />
          </font>
@@ -57,7 +57,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="image" layoutX="303.0" layoutY="456.0" text="Image">
+      <Label fx:id="image" layoutX="303.0" layoutY="456.0" text="Image" textFill="#a84040">
          <font>
             <Font size="18.0" />
          </font>

@@ -16,7 +16,7 @@
                   <Button layoutX="380.0" layoutY="38.0" mnemonicParsing="false" onAction="#changeProduct" text="Change Product" />
                   <Button layoutX="211.0" layoutY="38.0" mnemonicParsing="false" onAction="#addProduct" text="Add Product" />
                   <Button layoutX="550.0" layoutY="38.0" mnemonicParsing="false" onAction="#deleteProduct" text="Delete Product" />
-                  <Button layoutX="50.0" layoutY="38.0" mnemonicParsing="false" onAction="#viewProduct" text="Information" />
+                  <Button layoutX="50.0" layoutY="38.0" mnemonicParsing="false" onAction="#readProduct" text="Information" />
                </children>
             </Pane>
             <ScrollPane layoutX="169.0" layoutY="164.0" prefHeight="280.0" prefWidth="465.0">

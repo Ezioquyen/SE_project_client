@@ -11,6 +11,6 @@ import java.util.Objects;
 
 public class OrderBillRepository {
     public void saveOrderBillApi(Object data) throws Exception {
-        Request.sendPostRequest(Api.orderBillApi+"/saveBill", Objects.requireNonNull(JsonUtils.toJson(data))) ;
+        Request.sendPutRequest(Api.orderBillApi+"/saveBill", Objects.requireNonNull(JsonUtils.toJson(data))) ;
     }
 }

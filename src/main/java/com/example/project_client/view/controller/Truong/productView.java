@@ -30,7 +30,7 @@ public final class productView {
     @FXML
     private TableColumn<Product, String> image;
     @Getter
-    private List<Product> products;
+    private static List<Product> products;
     @FXML
     private ObservableList<Product> tableList;
     @FXML
@@ -40,6 +40,7 @@ public final class productView {
         try {
             setTableView();
             setColumn();
+            product = products.get(products.size() - 1);
         }
         catch (Exception e){
             System.out.println("ERROR");
@@ -130,5 +131,8 @@ public final class productView {
     }
     public static Product getProduct() {
         return product;
+    }
+    public static List<Product> getProducts() {
+        return products;
     }
 }

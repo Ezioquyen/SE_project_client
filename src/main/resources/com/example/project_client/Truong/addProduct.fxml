@@ -8,8 +8,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Truong.addProductView">
    <children>
-      <Button layoutX="322.0" layoutY="347.0" mnemonicParsing="false" onAction="#cancel" text="cancel" />
-      <Button layoutX="132.0" layoutY="347.0" mnemonicParsing="false" onAction="#confirm" text="confirm" />
+      <Label layoutX="112.0" layoutY="50.0" text="ID:" />
       <Label layoutX="110.0" layoutY="105.0" text="Name:" />
       <TextField fx:id="name" layoutX="209.0" layoutY="97.0" promptText="name" />
       <Label layoutX="110.0" layoutY="149.0" text="Price:" />
@@ -20,8 +19,12 @@
       <TextField fx:id="image" layoutX="209.0" layoutY="226.0" promptText="image" />
       <Label layoutX="110.0" layoutY="271.0" text="Available:" />
       <ChoiceBox fx:id="choiceBox" layoutX="208.0" layoutY="264.0" prefWidth="150.0" />
-      <TextField fx:id="id" layoutX="208.0" layoutY="41.0" promptText="id" />
-      <Label layoutX="112.0" layoutY="50.0" text="ID:" />
-      <Label fx:id="nameAlert" layoutX="215.0" layoutY="74.0" textFill="RED" />
+      <Button layoutX="132.0" layoutY="347.0" mnemonicParsing="false" onAction="#confirm" text="confirm" />
+      <Button layoutX="322.0" layoutY="347.0" mnemonicParsing="false" onAction="#cancel" text="cancel" />
+      <Label fx:id="nameAlert" layoutX="215.0" layoutY="74.0" text="input name" textFill="RED" />
+      <Label fx:id="priceAlert" layoutX="217.0" layoutY="122.0" text="input price" textFill="RED" />
+      <Label fx:id="discountAlert" layoutX="209.0" layoutY="166.0" text="input discount" textFill="RED" />
+      <Label fx:id="imageAlert" layoutX="217.0" layoutY="211.0" text="input image" textFill="RED" />
+      <Label fx:id="id" layoutX="217.0" layoutY="45.0" text="id" />
    </children>
 </AnchorPane>

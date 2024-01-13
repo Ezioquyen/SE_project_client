@@ -5,6 +5,7 @@ import com.example.project_client.repository.ProductRepository;
 import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
@@ -21,22 +22,32 @@ public class changeProductView {
     private void initialize() throws Exception {
         choiceBox.getItems().addAll(available);
         product = productView.getProduct();
-        System.out.println("Change product:"+product.getName());
+        System.out.println("Change product: "+product.getName());
         setField();
     }
     @FXML
     private void cancel() throws IOException {
+        raiseAlert("Cancel change product");
         Router.switchTo(Pages.PRODUCT_VIEW);
     }
     @FXML
     private void confirm() throws IOException {
         try {
-                ProductRepository.updateProduct(product);
-                Router.switchTo(Pages.PRODUCT_VIEW);
+            ProductRepository.updateProduct(product);
+            raiseAlert("Changed Product");
+            Router.switchTo(Pages.PRODUCT_VIEW);
         }
         catch (Exception e){
-            System.out.println("ERROR");
+            raiseAlert(e.toString());
         }
+    }
+
+    private void raiseAlert(String alertText){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText("Notification");
+        alert.setContentText(alertText);
+        alert.show();
     }
     private void setField() throws Exception {
         try {

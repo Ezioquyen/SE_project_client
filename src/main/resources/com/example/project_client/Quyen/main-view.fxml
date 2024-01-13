@@ -8,16 +8,15 @@
 <SplitPane dividerPositions="0.829211229946524" prefHeight="659.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Quyen.MainView">
    <VBox prefWidth="662.0" />
    <VBox>
-      <Button mnemonicParsing="false" onAction="#switchToCreateOrderView" text="Create order" />
-      <VBox prefHeight="319.0" prefWidth="98.0">
-         <Button mnemonicParsing="false" onAction="#switchToManagePromotionView" text="Manage Promotion" />
 
-              <Button mnemonicParsing="false" onAction="#switchToCreateOrderView" text="Create order" />
-              <VBox prefHeight="319.0" prefWidth="98.0">
-                  <children>
-                      <Button mnemonicParsing="false" onAction="#switchToIngredientView" text="Ingredient" />
-                      <Button mnemonicParsing="false" onAction="#switchToProductView" text="Product" />
-                  </children></VBox>
+      <VBox prefHeight="319.0" prefWidth="98.0">
+
+          <VBox prefHeight="319.0" prefWidth="98.0">
+              <Button mnemonicParsing="false" onAction="#switchToManagePromotionView" text="Manage Promotion"/>
+              <Button mnemonicParsing="false" onAction="#switchToCreateOrderView" text="Create order"/>
+              <Button mnemonicParsing="false" onAction="#switchToIngredientView" text="Ingredient"/>
+              <Button mnemonicParsing="false" onAction="#switchToProductView" text="Product"/>
+          </VBox>
 
       </VBox>
    </VBox>

@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CreateOrderViewModel {
-    private final ProductRepository productRepository = new ProductRepository();
+
     private final PromotionRepository promotionRepository = new PromotionRepository();
     @Getter
     private List<Product> products;
@@ -42,7 +42,7 @@ public class CreateOrderViewModel {
         original.addListener(((observableValue, number, t1) -> orderBill.setOriginal(t1.intValue())));
         deduction.addListener(((observableValue, number, t1) -> orderBill.setDeduction(t1.intValue())));
         total.addListener(((observableValue, number, t1) -> orderBill.setTotal(t1.intValue())));
-        products = productRepository.getProductsApi();
+        products = ProductRepository.getProductsApi();
         promotion = Promotion.fromData(promotionRepository.getPromotionByDate(LocalDate.now()));
     }
 
@@ -87,12 +87,12 @@ public class CreateOrderViewModel {
         });
     }
     public void resetPromotion(){
-        orderBill.setPromotion(0);
+        orderBill.setPromotion("");
         deduction.setValue(0);
         total.set(original.getValue());
     }
     public void updatePromotion(){
-        orderBill.setPromotion(0);
+        orderBill.setPromotion("");
         deduction.setValue(0);
         count.forEach(((product, simpleIntegerProperty) -> {
             if(promotion.getProducts().get(product.getId())!=null){
@@ -100,6 +100,6 @@ public class CreateOrderViewModel {
             }
         }));
         total.setValue(original.getValue()-deduction.getValue());
-        orderBill.setPromotion(promotion.getId());
+        orderBill.setPromotion(promotion.getName());
     }
 }

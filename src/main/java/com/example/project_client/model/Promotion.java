@@ -38,7 +38,7 @@ public class Promotion {
         return data;
     }
     public static Promotion fromData(Map<String,Object> data){
-        System.out.println(data);
+        if(data.isEmpty()) return null;
         Promotion promotion = new Promotion();
         promotion.setId((Integer) data.get("id"));
         promotion.setName(data.get("name").toString());

@@ -20,6 +20,6 @@ public class OrderBill {
     private Boolean payMethod = true;
     private Integer deduction = 0;
     private Integer original = 0;
-    private Integer promotion = 0;
+    private String promotion = "";
     private List<Map<String, Object>> products = new ArrayList<>();
 }

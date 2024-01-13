@@ -16,6 +16,31 @@ public class Request {
         return handleResponse(connection);
     }
 
+    public static void sendDeleteRequest(String apiUrl, String id) throws Exception{
+        URL url = new URL(apiUrl);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("DELETE");
+        connection.setRequestProperty("Content-Type", "application/json");
+        connection.setDoOutput(true);
+        try (OutputStream os = connection.getOutputStream()) {
+            byte[] input = id.getBytes("utf-8");
+            os.write(input, 0, input.length);
+        }
+        int responseCode = connection.getResponseCode();
+        System.out.println("\nSending 'DELETE' request to URL : " + url);
+        System.out.println("Delete Data : " + id);
+        System.out.println("Response Code : " + responseCode);
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        String inputLine;
+        StringBuilder response = new StringBuilder();
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+    }
+
     public static void sendPostRequest(String url, String data) throws Exception {
         URL obj = new URL(url);
         HttpURLConnection connection = (HttpURLConnection) obj.openConnection();

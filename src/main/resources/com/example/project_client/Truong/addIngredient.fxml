@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Truong.addIngredientView">
+   <children>
+      <Button layoutX="224.0" layoutY="337.0" mnemonicParsing="false" onAction="#confirm" text="confirm" />
+      <Button layoutX="312.0" layoutY="337.0" mnemonicParsing="false" onAction="#cancel" text="cancel" />
+      <Label layoutX="122.0" layoutY="84.0" text="ID:" />
+      <TextField fx:id="id" layoutX="215.0" layoutY="80.0" />
+      <TextField fx:id="name" layoutX="215.0" layoutY="121.0" />
+      <Label layoutX="122.0" layoutY="125.0" text="Name:" />
+      <TextField fx:id="unit_Price" layoutX="215.0" layoutY="167.0" />
+      <Label layoutX="122.0" layoutY="171.0" text="Unit_price:" />
+      <TextField fx:id="unit" layoutX="215.0" layoutY="215.0" />
+      <Label layoutX="122.0" layoutY="219.0" text="Unit:" />
+   </children>
+</AnchorPane>

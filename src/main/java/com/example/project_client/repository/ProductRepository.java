@@ -9,10 +9,22 @@ import com.fasterxml.jackson.core.type.TypeReference;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
-public class ProductRepository {
-    public List<Product> getProductsApi() throws IOException {
-        return JsonUtils.fromJson(Request.sendGetRequest(Api.productApi+"/getAll"), new TypeReference<>() {
+public final class ProductRepository {
+    public static List<Product> getProductsApi() throws IOException {
+        String jsonObject = Request.sendGetRequest(Api.productApi+"/getAll");
+        System.out.println(jsonObject);
+        return JsonUtils.fromJson(jsonObject, new TypeReference<>() {
         });
+    }
+    public static void saveProduct(Product product) throws Exception {
+        Request.sendPostRequest(Api.productApi+"/save", Objects.requireNonNull(JsonUtils.toJson(product)));
+    }
+    public static void updateProduct(Product product) throws Exception {
+        Request.sendPutRequest(Api.productApi+"/update", Objects.requireNonNull(JsonUtils.toJson(product)));
+    }
+    public static void deleteProduct(String id) throws Exception {
+        Request.sendDeleteRequest(Api.productApi+"/delete", id);
     }
 }

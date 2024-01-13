@@ -22,4 +22,12 @@ public class MainView {
     public void switchToManagePromotionView() throws IOException {
         Router.switchTo(Pages.PROMOTIONS_MANAGEMENT);
     }
+    @FXML
+    public void switchToIngredientView(ActionEvent event) throws IOException {
+        Router.switchTo(Pages.INGREDIENT_VIEW);
+    }
+    @FXML
+    public void switchToProductView(ActionEvent event) throws IOException {
+        Router.switchTo(Pages.PRODUCT_VIEW);
+    }
 }

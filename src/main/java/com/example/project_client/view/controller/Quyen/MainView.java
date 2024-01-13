@@ -5,12 +5,17 @@ import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Pagination;
+import javafx.scene.layout.VBox;
 
 
 import java.io.IOException;
 
 public class MainView {
-
+    @FXML
+    Pagination pagination;
+    @FXML
+    VBox vBox;
     @FXML
     void initialize(){
     }

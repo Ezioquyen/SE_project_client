@@ -20,6 +20,9 @@ public class ConfirmationViewModel {
     private Customer customer = new Customer();
     private Integer deductionDob = 0;
     private Integer deductionTotal = 0;
+    @Getter
+    @Setter
+    private  OrderBill orderBill;
     private final CustomerRepository customerRepository = new CustomerRepository();
 
     public void findCustomer() throws IOException {
@@ -33,15 +36,15 @@ public class ConfirmationViewModel {
         customerRepository.saveCustomer(customer);
     }
 
-    public Boolean checkDob(OrderBill orderBill, LocalDate localDate) {
+    public Boolean checkDob(LocalDate localDate) {
 
         if (Objects.equals(localDate.format(DateTimeFormatter.ofPattern("dd-MM")), LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM")))) {
-            addDobDeduction(orderBill);
+            addDobDeduction();
 
             return true;
 
         } else {
-            subDobDeduction(orderBill);
+            subDobDeduction();
             deductionDob = 0;
 
             return false;
@@ -49,39 +52,39 @@ public class ConfirmationViewModel {
         }
     }
 
-    public Boolean checkTotal(OrderBill orderBill,Integer total) {
+    public Boolean checkTotal() {
 
         Integer totalCheck = 500000;
-        if(total > totalCheck){
-            addTotalDeduction(orderBill);
+        if(customer.getTotal() > totalCheck){
+            addTotalDeduction();
 
             return true;
         }else {
-            subTotalDeduction(orderBill);
+            subTotalDeduction();
             deductionTotal = 0;
 
             return false;
         }
     }
 
-   private void addDobDeduction(OrderBill orderBill) {
+   private void addDobDeduction() {
         deductionDob = orderBill.getOriginal() * 10 / 100;
         orderBill.setDeduction(orderBill.getDeduction() + deductionDob);
         orderBill.setTotal(orderBill.getOriginal() - orderBill.getDeduction());
     }
 
-    private void addTotalDeduction(OrderBill orderBill) {
+    private void addTotalDeduction() {
         deductionTotal =  orderBill.getOriginal() * 10 / 100;
         orderBill.setDeduction(orderBill.getDeduction() + deductionTotal);
         orderBill.setTotal(orderBill.getOriginal() - orderBill.getDeduction());
     }
 
-    public void subDobDeduction(OrderBill orderBill) {
+    public void subDobDeduction() {
         orderBill.setDeduction(orderBill.getDeduction() - deductionDob);
         orderBill.setTotal(orderBill.getOriginal() - orderBill.getDeduction());
     }
 
-    public void subTotalDeduction(OrderBill orderBill) {
+    public void subTotalDeduction() {
         orderBill.setDeduction(orderBill.getDeduction() - deductionTotal);
         orderBill.setTotal(orderBill.getOriginal() - orderBill.getDeduction());
     }

@@ -100,7 +100,7 @@ public class CreateOrderView implements InitStyles {
         createOrderViewModel.getTotal().addListener((obs, oldVal, newVal) -> total.setText(NumberFormat.getNumberInstance(Locale.US).format(newVal.intValue()) + " VND"));
         createOrderViewModel.getDeduction().addListener((obs, oldVal, newVal) -> deduction.setText("- " + NumberFormat.getNumberInstance(Locale.US).format(newVal.intValue()) + " VND"));
         createOrderViewModel.getOriginal().addListener((obs, oldVal, newVal) -> original.setText(NumberFormat.getNumberInstance(Locale.US).format(newVal.intValue()) + " VND"));
-        Router.setData(Pages.CREATE_ORDER_VIEW, createOrderViewModel);
+        Router.setData(Pages.CREATE_ORDER_VIEW, createOrderViewModel.getOrderBill());
     }
 
     @FXML

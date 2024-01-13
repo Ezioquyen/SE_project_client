@@ -15,15 +15,11 @@
    <center>
       <SplitPane dividerPositions="0.829211229946524" prefHeight="706.0" prefWidth="859.0">
          <VBox>
-            <children>
-               <HBox>
-                  <children>
-                     <TextField promptText="Nhập mã hóa đơn" />
-                  </children>
-               </HBox>
-               <VBox prefHeight="685.0" prefWidth="710.0" />
-               <Pagination />
-            </children>
+            <HBox>
+               <TextField promptText="Nhập mã hóa đơn"/>
+            </HBox>
+            <VBox fx:id="vBox" prefHeight="685.0" prefWidth="710.0"/>
+            <Pagination fx:id="pagination"/>
          </VBox>
          <VBox>
       
@@ -42,14 +38,12 @@
    </center>
    <top>
       <HBox BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Coffee management" />
-            <Region HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" text="Quit" />
-         </children>
          <padding>
-            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
          </padding>
+         <Label text="Coffee management"/>
+         <Region HBox.hgrow="ALWAYS"/>
+         <Button mnemonicParsing="false" text="Quit"/>
       </HBox>
    </top>
    <padding>

@@ -6,7 +6,7 @@ module com.example.project_client {
     requires lombok;
     requires atlantafx.styles;
     requires org.kordamp.ikonli.material2;
-
+    requires itextpdf;
     requires atlantafx.base;
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.datatype.jsr310;
@@ -21,4 +21,6 @@ module com.example.project_client {
     opens com.example.project_client.view.controller.Khai to javafx.fxml;
     exports com.example.project_client.view.controller.Truong;
     opens com.example.project_client.view.controller.Truong to javafx.fxml;
+    exports com.example.project_client.view.controller.Quyen.event;
+    opens com.example.project_client.view.controller.Quyen.event to javafx.fxml;
 }

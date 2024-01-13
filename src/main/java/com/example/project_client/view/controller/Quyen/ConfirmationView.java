@@ -1,11 +1,12 @@
 package com.example.project_client.view.controller.Quyen;
 
 
+import com.example.project_client.model.OrderBill;
 import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
 import com.example.project_client.view.controller.Quyen.components.DobFormatter;
+import com.example.project_client.view.controller.Quyen.event.ViewToggle;
 import com.example.project_client.viewModel.Quyen.ConfirmationViewModel;
-import com.example.project_client.viewModel.Quyen.CreateOrderViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -34,27 +35,28 @@ public class ConfirmationView {
     @FXML
     Label notification;
     private final ConfirmationViewModel confirmationViewModel = new ConfirmationViewModel();
-    private final CreateOrderViewModel createOrderViewModel = (CreateOrderViewModel) Router.getData(Pages.CREATE_ORDER_VIEW);
+
 
     @FXML
     public void initialize() {
-
+        confirmationViewModel.setOrderBill( (OrderBill) Router.getData(Pages.CREATE_ORDER_VIEW));
+ 
         ToggleGroup toggleGroup = new ToggleGroup();
         toggleGroup.getToggles().addAll(qr, cash);
         qr.setSelected(true);
         dob.valueProperty().addListener(((observableValue, localDate, t1) -> {
 
             confirmationViewModel.getCustomer().setDob(DobFormatter.toString(t1));
-            if (confirmationViewModel.checkDob(createOrderViewModel.getOrderBill(), t1)) {
+            if (confirmationViewModel.checkDob( t1)) {
                 money.setText("");
                 if (!dobSale.isVisible()) totalSale.setVisible(true);
-                money.setPromptText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(createOrderViewModel.getOrderBill().getTotal().toString())));
+                money.setPromptText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(confirmationViewModel.getOrderBill().getTotal().toString())));
             }else {
                 if (dobSale.isVisible()) totalSale.setVisible(false);
             }
-            money.setPromptText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(createOrderViewModel.getOrderBill().getTotal().toString())));
+            money.setPromptText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(confirmationViewModel.getOrderBill().getTotal().toString())));
         }));
-        cash.selectedProperty().addListener(((observableValue, aBoolean, t1) -> createOrderViewModel.getOrderBill().setPayMethod(!t1)));
+        cash.selectedProperty().addListener(((observableValue, aBoolean, t1) -> confirmationViewModel.getOrderBill().setPayMethod(!t1)));
         phoneNumber.textProperty().addListener((e, oldVal, newVal) -> {
             if (!newVal.matches("\\d*")) {
                 phoneNumber.setText(newVal.replaceAll("\\D", ""));
@@ -62,10 +64,10 @@ public class ConfirmationView {
             confirmationViewModel.getCustomer().setPhoneNumber(phoneNumber.getText());
             try {
                 confirmationViewModel.findCustomer();
-                if (confirmationViewModel.checkTotal(createOrderViewModel.getOrderBill(), confirmationViewModel.getCustomer().getTotal())) {
+                if (confirmationViewModel.checkTotal()) {
                     money.setText("");
                     if (!totalSale.isVisible()) totalSale.setVisible(true);
-                    money.setPromptText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(createOrderViewModel.getOrderBill().getTotal().toString())));
+                    money.setPromptText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(confirmationViewModel.getOrderBill().getTotal().toString())));
                 } else if (totalSale.isVisible()) totalSale.setVisible(false);
 
             } catch (IOException ex) {
@@ -92,7 +94,7 @@ public class ConfirmationView {
 
         });
         customerName.textProperty().addListener((obs, oldVal, newVal) -> confirmationViewModel.getCustomer().setName(newVal));
-        money.setPromptText(NumberFormat.getNumberInstance(Locale.US).format(createOrderViewModel.getTotal().intValue()));
+        money.setPromptText(NumberFormat.getNumberInstance(Locale.US).format(confirmationViewModel.getOrderBill().getTotal()));
         money.textProperty().addListener(((observableValue, oldVal, newVal) -> {
             String val = newVal;
             if (!newVal.matches("\\d*")) {
@@ -100,13 +102,13 @@ public class ConfirmationView {
             }
             if (!val.isEmpty()) {
                 money.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(val)));
-                createOrderViewModel.getOrderBill().setReceived(Integer.parseInt(val));
-                createOrderViewModel.getOrderBill().setChangeMoney(Integer.parseInt(val) - createOrderViewModel.getOrderBill().getTotal());
+                confirmationViewModel.getOrderBill().setReceived(Integer.parseInt(val));
+                confirmationViewModel.getOrderBill().setChangeMoney(Integer.parseInt(val) - confirmationViewModel.getOrderBill().getTotal());
             } else {
                 money.setText(val);
             }
         }));
-        money.setText(NumberFormat.getNumberInstance(Locale.US).format(createOrderViewModel.getOrderBill().getTotal()));
+        money.setText(NumberFormat.getNumberInstance(Locale.US).format(confirmationViewModel.getOrderBill().getTotal()));
 
 
         Router.setData(Pages.CONFIRMATION_VIEW, confirmationViewModel);
@@ -114,8 +116,8 @@ public class ConfirmationView {
 
     @FXML
     public void close() {
-        confirmationViewModel.subDobDeduction(createOrderViewModel.getOrderBill());
-        confirmationViewModel.subTotalDeduction(createOrderViewModel.getOrderBill());
+        confirmationViewModel.subDobDeduction();
+        confirmationViewModel.subTotalDeduction();
         Router.closeDialog();
     }
 
@@ -130,9 +132,10 @@ public class ConfirmationView {
         Router.closeDialog();
 
         if (!phoneNumber.getText().isEmpty()) {
-            confirmationViewModel.getCustomer().setTotal(confirmationViewModel.getCustomer().getTotal() + createOrderViewModel.getOrderBill().getTotal());
+            confirmationViewModel.getCustomer().setTotal(confirmationViewModel.getCustomer().getTotal() + confirmationViewModel.getOrderBill().getTotal());
             confirmationViewModel.saveCustomer();
         }
+        ViewToggle.setIsCreateBill(true);
         Router.switchTo(Pages.ORDER_BILL_VIEW);
     }
 

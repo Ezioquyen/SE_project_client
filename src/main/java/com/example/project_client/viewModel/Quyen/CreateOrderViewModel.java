@@ -83,6 +83,9 @@ public class CreateOrderViewModel {
             Map<String,Object> productData = new HashMap<>();
             productData.put("productId",product.getId());
             productData.put("count",simpleIntegerProperty.intValue());
+            productData.put("image",product.getImage());
+            productData.put("price",product.getPrice());
+            productData.put("name",product.getName());
             orderBill.getProducts().add(productData);
         });
     }

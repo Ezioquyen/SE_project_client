@@ -91,7 +91,7 @@ public final class Router {
     public static void showDialog(Pages page) throws IOException {
         dialog = new Stage();
         String scenePath = routerLabel.get(page);
-        Parent resource = FXMLLoader.load(HelloApplication.class.getResource(scenePath));
+        Parent resource = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource(scenePath)));
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initOwner(window);
         Scene dialogScene = new Scene(resource);

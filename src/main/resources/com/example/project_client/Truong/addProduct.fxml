@@ -1,30 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Truong.addProductView">
+<AnchorPane prefHeight="568.0" prefWidth="714.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Truong.addProductView">
    <children>
-      <Label layoutX="112.0" layoutY="50.0" text="ID:" />
-      <Label layoutX="110.0" layoutY="105.0" text="Name:" />
-      <TextField fx:id="name" layoutX="209.0" layoutY="97.0" promptText="name" />
-      <Label layoutX="110.0" layoutY="149.0" text="Price:" />
-      <TextField fx:id="price" layoutX="209.0" layoutY="141.0" promptText="price" />
-      <Label layoutX="110.0" layoutY="194.0" text="Discount:" />
-      <TextField fx:id="discount" layoutX="209.0" layoutY="186.0" promptText="discount" />
-      <Label layoutX="110.0" layoutY="234.0" text="Image:" />
-      <TextField fx:id="image" layoutX="209.0" layoutY="226.0" promptText="image" />
-      <Label layoutX="110.0" layoutY="271.0" text="Available:" />
-      <ChoiceBox fx:id="choiceBox" layoutX="208.0" layoutY="264.0" prefWidth="150.0" />
-      <Button layoutX="132.0" layoutY="347.0" mnemonicParsing="false" onAction="#confirm" text="confirm" />
-      <Button layoutX="322.0" layoutY="347.0" mnemonicParsing="false" onAction="#cancel" text="cancel" />
-      <Label fx:id="nameAlert" layoutX="215.0" layoutY="74.0" text="input name" textFill="RED" />
-      <Label fx:id="priceAlert" layoutX="217.0" layoutY="122.0" text="input price" textFill="RED" />
-      <Label fx:id="discountAlert" layoutX="209.0" layoutY="166.0" text="input discount" textFill="RED" />
-      <Label fx:id="imageAlert" layoutX="217.0" layoutY="211.0" text="input image" textFill="RED" />
-      <Label fx:id="id" layoutX="217.0" layoutY="45.0" text="id" />
+      <Label layoutX="107.0" layoutY="63.0" text="Name:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextField fx:id="name" layoutX="231.0" layoutY="55.0" promptText="name">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Label layoutX="107.0" layoutY="154.0" text="Price:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextField fx:id="price" layoutX="231.0" layoutY="146.0" promptText="price">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Label layoutX="107.0" layoutY="247.0" text="Discount:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextField fx:id="discount" layoutX="231.0" layoutY="239.0" promptText="discount">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Label layoutX="107.0" layoutY="336.0" text="Image:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextField fx:id="image" layoutX="231.0" layoutY="328.0" promptText="image">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Label layoutX="107.0" layoutY="411.0" text="Available:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <ChoiceBox fx:id="choiceBox" layoutX="231.0" layoutY="404.0" prefHeight="30.0" prefWidth="157.0" />
+      <Button layoutX="157.0" layoutY="347.0" mnemonicParsing="false" onAction="#confirm" text="confirm" AnchorPane.bottomAnchor="28.0">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button layoutX="275.0" layoutY="347.0" mnemonicParsing="false" onAction="#cancel" text="cancel" AnchorPane.bottomAnchor="28.0">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Label fx:id="nameAlert" layoutX="240.0" layoutY="25.0" text="input name" textFill="RED">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="priceAlert" layoutX="239.0" layoutY="119.0" text="input price" textFill="RED">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="discountAlert" layoutX="240.0" layoutY="216.0" text="input discount" textFill="RED">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="imageAlert" layoutX="239.0" layoutY="305.0" text="input image" textFill="RED">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -6,6 +6,7 @@ import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import lombok.Getter;
 
@@ -17,7 +18,9 @@ public class addProductView {
     @FXML
     private ChoiceBox<Boolean> choiceBox;
     @FXML
-    private TextField id, name, price, discount, image;
+    private TextField name, price, discount, image;
+    @FXML
+    private Label nameAlert, priceAlert, discountAlert, imageAlert;
     private final Boolean[] available = {Boolean.FALSE, Boolean.TRUE};
     @FXML
     public void initialize() {
@@ -30,20 +33,54 @@ public class addProductView {
     @FXML
     public void confirm() throws Exception {
         try {
-            setProduct();
+            if(setProduct()){
+                throw new Exception("Invalid Field");
+            }
             ProductRepository.saveProduct(product);
             Router.switchTo(Pages.PRODUCT_VIEW);
         }
         catch (Exception e) {
-            System.out.println("ERROR");
+            System.out.println(e);
         }
     }
-    private void setProduct() throws Exception {
-        product.setId(Integer.parseInt(id.getText()));
-        product.setName(name.getText());
-        product.setPrice(Integer.parseInt(price.getText()));
-        product.setDiscount(Double.parseDouble(discount.getText()));
-        product.setImage(image.getText());
+    private Boolean setProduct() {
+        Boolean check = Boolean.FALSE;
+        try {
+            if(!product.setName(name.getText())){
+                throw new Exception();
+            }
+            nameAlert.setText("");
+        }
+        catch (Exception e) {
+            check = Boolean.TRUE;
+            nameAlert.setText("Invalid name, name must be a String");
+        }
+        try {
+            if(!product.setPrice(Integer.parseInt(price.getText()))){
+                throw new Exception();
+            }
+        }
+        catch (Exception e){
+            check = Boolean.TRUE;
+            System.out.println("Invalid price, price must be a number from 0 to 1000000");
+        }
+        try{
+            if(!product.setDiscount(Double.parseDouble(discount.getText()))){
+                throw new Exception();
+            }
+        }
+        catch (Exception e){
+            check = Boolean.TRUE;
+            System.out.println("Invalid Discount, discount must be a real number from 0 to 100");
+        }
+        try {
+            product.setImage(image.getText());
+        }
+        catch (Exception e){
+            check = Boolean.TRUE;
+            System.out.println("Invalid Image");
+        }
         product.setAvailable(choiceBox.getValue());
+        return check;
     }
 }

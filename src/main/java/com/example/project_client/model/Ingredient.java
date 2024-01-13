@@ -18,6 +18,7 @@ public class Ingredient {
         this.unit = unit;
         this.unit_Price = unit_Price;
     }
+
     public Ingredient(){
         this.id = 1;
         this.name = null;
@@ -39,5 +40,39 @@ public class Ingredient {
 
     public Integer getUnit_Price() {
         return unit_Price;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Boolean setName(String name) {
+        if(name.equals("")){
+            return Boolean.FALSE;
+        }
+        else {
+            this.name = name;
+            return Boolean.TRUE;
+        }
+    }
+
+    public Boolean setUnit(String unit) {
+        if(unit.equals("")){
+            return Boolean.FALSE;
+        }
+        else {
+            this.unit = unit;
+            return Boolean.TRUE;
+        }
+    }
+
+    public Boolean setUnit_Price(Integer unit_Price) {
+        if(unit_Price > 1000000 || unit_Price < 0){
+            return Boolean.FALSE;
+        }
+        else {
+            this.unit_Price = unit_Price;
+            return Boolean.TRUE;
+        }
     }
 }

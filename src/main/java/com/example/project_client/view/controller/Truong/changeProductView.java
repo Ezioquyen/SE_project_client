@@ -39,26 +39,31 @@ public class changeProductView {
         }
     }
     private void setField() throws Exception {
-        id.setPromptText(product.getId().toString());
-        id.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            product.setId(Integer.valueOf(newValue));
-        });
-        name.setPromptText(product.getName());
-        name.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            product.setName(newValue);
-        });
-        price.setPromptText(product.getPrice().toString());
-        price.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            product.setPrice(Integer.valueOf(newValue));
-        });
-        discount.setPromptText(product.getDiscount().toString());
-        discount.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            product.setDiscount(Double.valueOf(newValue));
-        });
-        image.setPromptText(product.getImage());
-        image.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            product.setImage(newValue);
-        });
-        choiceBox.setValue(product.getAvailable());
+        try {
+            id.setPromptText(product.getId().toString());
+            id.textProperty().addListener((observableValue, oldValue, newValue) -> {
+                product.setId(Integer.valueOf(newValue));
+            });
+            name.setPromptText(product.getName());
+            name.textProperty().addListener((observableValue, oldValue, newValue) -> {
+                product.setName(newValue);
+            });
+            price.setPromptText(product.getPrice().toString());
+            price.textProperty().addListener((observableValue, oldValue, newValue) -> {
+                product.setPrice(Integer.valueOf(newValue));
+            });
+            discount.setPromptText(product.getDiscount().toString());
+            discount.textProperty().addListener((observableValue, oldValue, newValue) -> {
+                product.setDiscount(Double.valueOf(newValue));
+            });
+            image.setPromptText(product.getImage());
+            image.textProperty().addListener((observableValue, oldValue, newValue) -> {
+                product.setImage(newValue);
+            });
+            choiceBox.setValue(product.getAvailable());
+        }
+        catch (Exception e) {
+            System.out.println("ERROR");
+        }
     }
 }

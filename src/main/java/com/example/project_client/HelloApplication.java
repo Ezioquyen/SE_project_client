@@ -35,6 +35,7 @@ public class HelloApplication extends Application {
         Router.setRouter(Pages.PRODUCT_VIEW, "Truong/productScene.fxml");
         Router.setRouter(Pages.ADD_PRODUCT, "Truong/addProduct.fxml");
         Router.setRouter(Pages.CHANGE_PRODUCT, "Truong/changeProduct.fxml");
+        Router.setRouter(Pages.READ_PRODUCT,"Truong/readProduct.fxml");
     }
     public static void main(String[] args) {
         launch();

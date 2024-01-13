@@ -20,7 +20,8 @@
       <TextField fx:id="image" layoutX="209.0" layoutY="226.0" promptText="image" />
       <Label layoutX="110.0" layoutY="271.0" text="Available:" />
       <ChoiceBox fx:id="choiceBox" layoutX="208.0" layoutY="264.0" prefWidth="150.0" />
-      <TextField fx:id="id" layoutX="208.0" layoutY="59.0" promptText="id" />
-      <Label layoutX="112.0" layoutY="68.0" text="ID:" />
+      <TextField fx:id="id" layoutX="208.0" layoutY="41.0" promptText="id" />
+      <Label layoutX="112.0" layoutY="50.0" text="ID:" />
+      <Label fx:id="nameAlert" layoutX="215.0" layoutY="74.0" textFill="RED" />
    </children>
 </AnchorPane>

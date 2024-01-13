@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Truong.readProductView">
+   <children>
+      <Label layoutX="196.0" layoutY="81.0" text="ID:" />
+      <Label fx:id="id" layoutX="265.0" layoutY="81.0" text="ID" />
+      <Label fx:id="name" layoutX="265.0" layoutY="118.0" text="ID" />
+      <Label layoutX="196.0" layoutY="118.0" text="Name:" />
+      <Label fx:id="price" layoutX="265.0" layoutY="154.0" text="ID" />
+      <Label layoutX="196.0" layoutY="154.0" text="Price:" />
+      <Label fx:id="available" layoutX="265.0" layoutY="200.0" text="ID" />
+      <Label fx:id="available" layoutX="196.0" layoutY="200.0" text="Available:" />
+      <Label fx:id="discount" layoutX="265.0" layoutY="246.0" text="ID" />
+      <Label layoutX="196.0" layoutY="246.0" text="Discount:" />
+      <Label fx:id="image" layoutX="265.0" layoutY="289.0" text="ID" />
+      <Label layoutX="196.0" layoutY="289.0" text="Image:" />
+      <Button layoutX="435.0" layoutY="28.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+   </children>
+</AnchorPane>

@@ -98,16 +98,13 @@ public class CreateOrderBillViewModel {
 
     public void setProductOfOrderBill() {
         orderBill.getProducts().clear();
-        count.forEach((product, simpleIntegerProperty) -> {
-
-            orderBill.getProducts().add(new OrderBill.Product(product.getImage(), simpleIntegerProperty.intValue(), product.getName(), product.getPrice()));
-        });
+        count.forEach((product, simpleIntegerProperty) -> orderBill.getProducts().add(new OrderBill.Product(product.getId(), product.getImage(), simpleIntegerProperty.intValue(), product.getName(), product.getPrice())));
     }
 
     public void resetPromotion() {
         orderBill.setPromotionName("");
-        deduction.setValue(0);
-        total.set(original.getValue());
+        deduction.setValue(original.intValue() * deductionForCustomer.intValue() / 100);
+        total.set(original.getValue() - deduction.getValue());
     }
 
     public void updatePromotion() {
@@ -118,6 +115,7 @@ public class CreateOrderBillViewModel {
                 deduction.setValue(deduction.getValue() + simpleIntegerProperty.intValue() * (promotion.getProducts().get(product.getId()) * product.getPrice() / 100));
             }
         }));
+        deduction.setValue(deduction.getValue() + original.intValue() * deductionForCustomer.intValue() / 100);
         total.setValue(original.getValue() - deduction.getValue());
         orderBill.setPromotionName(promotion.getName());
     }

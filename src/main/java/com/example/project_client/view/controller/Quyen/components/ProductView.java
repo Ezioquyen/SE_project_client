@@ -17,7 +17,8 @@ import java.util.Objects;
 
 @Getter
 public class ProductView extends Card {
-    private Product product;
+    private final Product product;
+
     public ProductView(Product product) {
         this.product = product;
         getStyleClass().add(Styles.INTERACTIVE);
@@ -34,6 +35,7 @@ public class ProductView extends Card {
         VBox vBox = new VBox(nameLabel, priceLabel, availabilityLabel);
         setHeader(imageView);
         setBody(vBox);
+        this.setDisable(!product.getAvailable());
 
     }
 }

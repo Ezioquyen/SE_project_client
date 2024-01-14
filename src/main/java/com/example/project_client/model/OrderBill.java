@@ -2,6 +2,7 @@ package com.example.project_client.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ import java.util.List;
 
 
 @Data
+
 public class OrderBill {
     private String id = "";
     private String buyDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -26,17 +28,21 @@ public class OrderBill {
     private List<Product> products = new ArrayList<>();
 
     @Data
+
     public static class Product {
+        private Integer productId;
         private String image;
         private Integer count;
         private String name;
         private Integer price;
-
         @JsonCreator
-        public Product(@JsonProperty("image") String image,
+
+        public Product(@JsonProperty("productId") Integer productId,
+                       @JsonProperty("image") String image,
                        @JsonProperty("count") Integer count,
                        @JsonProperty("name") String name,
                        @JsonProperty("price") Integer price) {
+            this.productId = productId;
             this.image = image;
             this.count = count;
             this.name = name;

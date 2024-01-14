@@ -82,7 +82,9 @@ public class PromotionView {
 
         if (showWarning()) {
             promotionViewModel.createPromotion();
+            Router.switchTo(Pages.MAIN_VIEW);
         }
+
     }
 
     @FXML

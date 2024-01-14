@@ -40,6 +40,8 @@ public class CreateOrderView implements InitStyles {
     TextField money;
     @FXML
     ComboBox<String> method;
+    @FXML
+    Label receiveTotalWarn;
 
     @FXML
     Label dobNotify;
@@ -93,11 +95,11 @@ public class CreateOrderView implements InitStyles {
             if (!val.isEmpty()) {
                 money.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(val)));
                 createOrderBillViewModel.getOrderBill().setReceived(Integer.parseInt(val));
-                createOrderBillViewModel.getOrderBill().setChangeMoney(Integer.parseInt(val) - createOrderBillViewModel.getOrderBill().getTotal());
             } else {
                 money.setText(val);
             }
         }));
+
         if (createOrderBillViewModel.getPromotion() != null) {
             promotionContainer.getChildren().add(insertPromotion());
         }
@@ -142,7 +144,7 @@ public class CreateOrderView implements InitStyles {
     @FXML
     public void showConfirmDialogView() throws IOException {
 
-        createOrderBillViewModel.setProductOfOrderBill();
+
         Router.setData(Pages.CREATE_ORDER_VIEW, createOrderBillViewModel);
         Router.showDialog(Pages.CUSTOMER_INFORMATION_INPUT_VIEW);
     }
@@ -159,7 +161,9 @@ public class CreateOrderView implements InitStyles {
             if (!createOrderBillViewModel.getCustomer().getPhoneNumber().isEmpty()) {
                 createOrderBillViewModel.getCustomer().setTotal(createOrderBillViewModel.getCustomer().getTotal() + createOrderBillViewModel.getOrderBill().getTotal());
                 createOrderBillViewModel.saveCustomer();
+
             }
+            createOrderBillViewModel.setProductOfOrderBill();
             ViewToggle.setIsCreateBill(true);
             ViewToggle.setOrderBill(createOrderBillViewModel.getOrderBill());
             Router.switchTo(Pages.ORDER_BILL_VIEW);
@@ -197,14 +201,19 @@ public class CreateOrderView implements InitStyles {
     }
 
     private Boolean validate() {
+
+        if(createOrderBillViewModel.getOrderBill().getReceived()<createOrderBillViewModel.getOrderBill().getTotal()){
+            if (!notifyContainer.getChildren().contains(receiveTotalWarn)) notifyContainer.getChildren().add(receiveTotalWarn);
+            return false;
+        } else notifyContainer.getChildren().remove(receiveTotalWarn);
         if (money.getText().isEmpty()) {
             if (!notifyContainer.getChildren().contains(moneyWarn)) notifyContainer.getChildren().add(moneyWarn);
             return false;
-        }
+        } else notifyContainer.getChildren().remove(moneyWarn);
         if (listView.getItems().isEmpty()) {
             if (!notifyContainer.getChildren().contains(productWarn)) notifyContainer.getChildren().add(productWarn);
             return false;
-        }
+        } else notifyContainer.getChildren().remove(productWarn);
         return true;
     }
 

@@ -2,8 +2,7 @@ package com.example.project_client.viewModel.Quyen;
 
 import com.example.project_client.model.OrderBill;
 import com.example.project_client.repository.OrderBillRepository;
-import com.example.project_client.router.Pages;
-import com.example.project_client.router.Router;
+
 import com.example.project_client.view.controller.Quyen.components.PDFExporter;
 import javafx.stage.FileChooser;
 import lombok.Getter;
@@ -24,6 +23,7 @@ public class OrderBillViewModel {
 
             data.setId("OB" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("ssmmHHddMMyyyy")));
             data.setUserStaffId("USS32");
+            data.setChangeMoney(data.getReceived() - data.getChangeMoney());
             orderBillRepository.saveOrderBillApi(data);
             export(orderBill);
         }
@@ -31,7 +31,11 @@ public class OrderBillViewModel {
     private void export(OrderBill orderBill){
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Bill", "*.pdf"));
+        String absPath = "D:\\Bill";
+        fileChooser.setInitialDirectory(new File(absPath));
+        fileChooser.setInitialFileName(orderBill.getId());
         File file = fileChooser.showSaveDialog(null);
+
         if (file != null) {
             try (FileOutputStream ignored = new FileOutputStream(file)) {
                 PDFExporter.exportToPDF(orderBill,file.getAbsolutePath());

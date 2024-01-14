@@ -63,7 +63,7 @@ public class addProductView {
         setPrice();
         setDiscount();
         setImage();
-        choiceBox.setValue(product.getAvailable());
+        choiceBox.setValue(Boolean.TRUE);
     }
     private void setName(){
         name.setPromptText("input name");

@@ -32,7 +32,6 @@
                                 <TableColumn fx:id="address" prefWidth="75.0" text="Address" />
                                 <TableColumn fx:id="role" prefWidth="75.0" text="Role" />
                                 <TableColumn fx:id="salaryPerDay" prefWidth="75.0" text="Salary" />
-                                <TableColumn fx:id="is_removed" prefWidth="75.0" text="IsRemoved" />
                             </columns>
                         </TableView>
                     </content>

@@ -13,14 +13,19 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
-        Router.bind(this, stage, "Hello World", 1920, 1080);
+        Application.setUserAgentStylesheet(new NordLight().getUserAgentStylesheet());
+        Router.bind(this, stage, "Hello World", 1680, 800);
         init();
-        Router.goTo(Pages.MAIN_VIEW_PROFIT);
-
+        Router.goTo(Pages.LOGIN_VIEW);
     }
+    public void init(){
+        Router.setRouter(Pages.LOGIN_VIEW, "yin/login-view.fxml");
+        Router.setRouter(Pages.ADMIN_VIEW, "yin/admin-view.fxml");
+        Router.setRouter(Pages.CUSTOMER_VIEW, "yin/customer-view.fxml");
+        Router.setRouter(Pages.ADD_CUSTOMER_VIEW, "yin/add-customer-view.fxml");
+        Router.setRouter(Pages.UPDATE_CUSTOMER_VIEW, "yin/update-customer-view.fxml");
+        Router.setRouter(Pages.READ_CUSTOMER_VIEW, "yin/read-customer-view.fxml");
 
-    public void init() {
         Router.setRouter(Pages.MAIN_VIEW, "Quyen/main-view.fxml");
         Router.setRouter(Pages.CREATE_ORDER_VIEW, "Quyen/create-order-view.fxml");
         Router.setRouter(Pages.ORDER_BILL_VIEW, "Quyen/order-bill-view.fxml");
@@ -44,8 +49,8 @@ public class HelloApplication extends Application {
         Router.setRouter(Pages.PRODUCT_VIEW, "Truong/productScene.fxml");
         Router.setRouter(Pages.ADD_PRODUCT, "Truong/addProduct.fxml");
         Router.setRouter(Pages.CHANGE_PRODUCT, "Truong/changeProduct.fxml");
-    }
 
+    }
     public static void main(String[] args) {
         launch();
     }

@@ -12,5 +12,4 @@ public class Customer {
     private String name = "";
     private String dob = "";
     private Integer total = 0;
-
 }

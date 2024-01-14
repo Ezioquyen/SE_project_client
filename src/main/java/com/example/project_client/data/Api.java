@@ -10,4 +10,5 @@ public class Api {
     public final static String billIngredientApi = domain + "/billIngredientCal";
     public final static String billProductApi = domain + "/billProductCal";
     public final static String promotionApi = domain + "/promotion";
+    public final static String userApi = domain + "/users";
 }

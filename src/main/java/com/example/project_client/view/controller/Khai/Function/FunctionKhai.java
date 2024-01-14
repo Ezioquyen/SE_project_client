@@ -1,7 +1,16 @@
 package com.example.project_client.view.controller.Khai.Function;
+import atlantafx.base.theme.Styles;
+import com.example.project_client.router.Pages;
+import com.example.project_client.router.Router;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.material2.Material2AL;
 
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -67,5 +76,34 @@ public class FunctionKhai {
             return "-" + result.substring(1, result.length() - 3) + " đồng";
         }
         return "0 đồng";
+    }
+
+    public static Button createBtn(String text, FontIcon fontIcon){
+        Button button = new Button(text, fontIcon);
+        button.getStyleClass().addAll(Styles.BUTTON_OUTLINED, Styles.ACCENT, Styles.LARGE);
+        button.setPrefHeight(50);
+        button.setPrefWidth(200);
+        button.setMnemonicParsing(true);
+        button.setContentDisplay(ContentDisplay.RIGHT);
+        return button;
+    }
+
+    public static void validLabel(Label label){
+        label.getStyleClass().addAll(Styles.ACCENT, Styles.TITLE_4);
+    }
+
+    public static void addBtnReturn(HBox hbox){
+        Region region = new Region();
+        HBox.setHgrow(region, Priority.ALWAYS);
+        Button returnBtn = new Button(null, new FontIcon(Material2AL.CLOSE));
+        returnBtn.getStyleClass().addAll(Styles.BUTTON_ICON,Styles.FLAT, Styles.DANGER);
+        hbox.getChildren().addAll(region, returnBtn);
+        returnBtn.setOnAction(e -> {
+            try {
+                Router.switchTo(Pages.MAIN_VIEW_PROFIT);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
     }
 }

@@ -78,6 +78,11 @@ public class MainView {
         });
     }
 
+
+    @FXML
+    public void switchToStaffView() throws IOException {
+        Router.switchTo(Pages.STAFF_VIEW);
+    }
 }
 
 @Getter

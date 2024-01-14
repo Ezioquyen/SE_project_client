@@ -40,16 +40,18 @@ public class HelloApplication extends Application {
         Router.setRouter(Pages.BILL_INGREDIENT_CAL_VIEW, "Khai/BillIngredientCalView.fxml");
         Router.setRouter(Pages.BILL_PRODUCT_CAL_VIEW, "Khai/BillProductCalView.fxml");
         Router.setRouter(Pages.PROFIT_CAL_VIEW, "Khai/ProfitCalView.fxml");
-
-
-
+        Router.setRouter(Pages.PROMOTION_VIEW,"Quyen/promotion-view.fxml");
+        Router.setRouter(Pages.SELECT_PRODUCT_FOR_PROMOTION_VIEW,"Quyen/select-product-for-promotion.fxml");
+        Router.setRouter(Pages.PROMOTIONS_MANAGEMENT,"Quyen/promotions-management.fxml");
         Router.setRouter(Pages.INGREDIENT_VIEW, "Truong/ingredientScene.fxml");
         Router.setRouter(Pages.ADD_INGREDIENT, "Truong/addIngredient.fxml");
         Router.setRouter(Pages.CHANGE_INGREDIENT, "Truong/changeIngredient.fxml");
         Router.setRouter(Pages.PRODUCT_VIEW, "Truong/productScene.fxml");
         Router.setRouter(Pages.ADD_PRODUCT, "Truong/addProduct.fxml");
         Router.setRouter(Pages.CHANGE_PRODUCT, "Truong/changeProduct.fxml");
-
+        Router.setRouter(Pages.ADD_STAFF_VIEW, "Thang/addStaffScreen.fxml");
+        Router.setRouter(Pages.STAFF_VIEW, "Thang/staffScreen.fxml");
+        Router.setRouter(Pages.UPDATE_STAFF_VIEW, "Thang/updateStaffScreen.fxml");
     }
     public static void main(String[] args) {
         launch();

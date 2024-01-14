@@ -1,25 +1,26 @@
 package com.example.project_client.viewModel.Quyen;
 
+import com.example.project_client.model.Customer;
 import com.example.project_client.model.OrderBill;
 import com.example.project_client.model.Product;
 import com.example.project_client.model.Promotion;
+import com.example.project_client.repository.CustomerRepository;
 import com.example.project_client.repository.ProductRepository;
 import com.example.project_client.repository.PromotionRepository;
-
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
-
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CreateOrderViewModel {
 
+public class CreateOrderBillViewModel {
     private final PromotionRepository promotionRepository = new PromotionRepository();
     @Getter
     private List<Product> products;
@@ -33,15 +34,30 @@ public class CreateOrderViewModel {
     private final SimpleIntegerProperty total = new SimpleIntegerProperty(0);
     @Getter
     private final SimpleIntegerProperty deduction = new SimpleIntegerProperty(0);
+    private final SimpleIntegerProperty deductionForCustomer = new SimpleIntegerProperty(0);
+    @Getter
+    private final SimpleBooleanProperty dobNotify = new SimpleBooleanProperty(false);
+    @Getter
+    private final SimpleBooleanProperty totalNotify = new SimpleBooleanProperty(false);
     @Getter
     private Promotion promotion;
     @Setter
     private Boolean applyPromotion = false;
+    @Setter
+    @Getter
+    private Customer customer = new Customer();
+    private final CustomerRepository customerRepository = new CustomerRepository();
 
     public void initData() throws IOException {
         original.addListener(((observableValue, number, t1) -> orderBill.setOriginal(t1.intValue())));
         deduction.addListener(((observableValue, number, t1) -> orderBill.setDeduction(t1.intValue())));
         total.addListener(((observableValue, number, t1) -> orderBill.setTotal(t1.intValue())));
+
+        deductionForCustomer.addListener((observableValue, oldVal, newVal) -> {
+            deduction.setValue(deduction.getValue() + original.getValue() * (newVal.intValue() - oldVal.intValue()) / 100);
+            total.setValue(original.getValue() - deduction.getValue());
+        });
+
         products = ProductRepository.getProductsApi();
         promotion = Promotion.fromData(promotionRepository.getPromotionByDate(LocalDate.now()));
     }
@@ -49,7 +65,8 @@ public class CreateOrderViewModel {
     public void addMoreProduct(Product product) {
         count.get(product).set(count.get(product).getValue() + 1);
         original.setValue(original.getValue() + product.getPrice());
-        if (promotion != null&&applyPromotion)
+        deduction.setValue(deduction.getValue() + product.getPrice() * deductionForCustomer.doubleValue() / 100);
+        if (promotion != null && applyPromotion)
             if (promotion.getProducts().get(product.getId()) != null) {
                 deduction.setValue(deduction.getValue() + product.getPrice() * promotion.getProducts().get(product.getId()) / 100);
             }
@@ -62,7 +79,8 @@ public class CreateOrderViewModel {
         if (count.get(product).getValue() == 0) {
             count.remove(product);
         }
-        if (promotion != null&&applyPromotion)
+        deduction.setValue(deduction.getValue() - product.getPrice() * deductionForCustomer.doubleValue() / 100);
+        if (promotion != null && applyPromotion)
             if (promotion.getProducts().get(product.getId()) != null) {
                 deduction.setValue(deduction.getValue() - product.getPrice() * promotion.getProducts().get(product.getId()) / 100);
             }
@@ -77,32 +95,51 @@ public class CreateOrderViewModel {
     public boolean check(Product product) {
         return count.get(product) == null;
     }
-    public void setProductOfOrderBill(){
+
+    public void setProductOfOrderBill() {
         orderBill.getProducts().clear();
         count.forEach((product, simpleIntegerProperty) -> {
-            Map<String,Object> productData = new HashMap<>();
-            productData.put("productId",product.getId());
-            productData.put("count",simpleIntegerProperty.intValue());
-            productData.put("image",product.getImage());
-            productData.put("price",product.getPrice());
-            productData.put("name",product.getName());
-            orderBill.getProducts().add(productData);
+
+            orderBill.getProducts().add(new OrderBill.Product(product.getImage(), simpleIntegerProperty.intValue(), product.getName(), product.getPrice()));
         });
     }
-    public void resetPromotion(){
-        orderBill.setPromotion("");
+
+    public void resetPromotion() {
+        orderBill.setPromotionName("");
         deduction.setValue(0);
         total.set(original.getValue());
     }
-    public void updatePromotion(){
-        orderBill.setPromotion("");
+
+    public void updatePromotion() {
+        orderBill.setPromotionName("");
         deduction.setValue(0);
         count.forEach(((product, simpleIntegerProperty) -> {
-            if(promotion.getProducts().get(product.getId())!=null){
-                deduction.setValue(deduction.getValue()+ simpleIntegerProperty.intValue()* (promotion.getProducts().get(product.getId())*product.getPrice()/100));
+            if (promotion.getProducts().get(product.getId()) != null) {
+                deduction.setValue(deduction.getValue() + simpleIntegerProperty.intValue() * (promotion.getProducts().get(product.getId()) * product.getPrice() / 100));
             }
         }));
-        total.setValue(original.getValue()-deduction.getValue());
-        orderBill.setPromotion(promotion.getName());
+        total.setValue(original.getValue() - deduction.getValue());
+        orderBill.setPromotionName(promotion.getName());
+    }
+
+    public void saveCustomer() throws Exception {
+        customerRepository.saveCustomer(customer);
+    }
+
+    public void setCustomerPhone() {
+        orderBill.setCustomerPhoneNumber(customer.getPhoneNumber().isEmpty() ? "" : customer.getPhoneNumber());
+    }
+
+    public void checkCustomerForPromo(LocalDate localDate) {
+        deductionForCustomer.setValue(0);
+        if (customer.getTotal() > 500000 && !customer.getPhoneNumber().isEmpty()) {
+            totalNotify.setValue(true);
+            deductionForCustomer.setValue(deductionForCustomer.getValue() + 10);
+        } else totalNotify.setValue(false);
+
+        if (localDate.format(DateTimeFormatter.ofPattern("MM-dd")).equals(LocalDate.now().format(DateTimeFormatter.ofPattern("MM-dd"))) && !customer.getPhoneNumber().isEmpty()) {
+            deductionForCustomer.setValue(deductionForCustomer.getValue() + 10);
+            dobNotify.setValue(true);
+        } else dobNotify.setValue(false);
     }
 }

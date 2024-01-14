@@ -1,12 +1,14 @@
 package com.example.project_client.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 
 @Data
 public class OrderBill {
@@ -20,6 +22,25 @@ public class OrderBill {
     private Boolean payMethod = true;
     private Integer deduction = 0;
     private Integer original = 0;
-    private String promotion = "";
-    private List<Map<String, Object>> products = new ArrayList<>();
+    private String promotionName = "";
+    private List<Product> products = new ArrayList<>();
+
+    @Data
+    public static class Product {
+        private String image;
+        private Integer count;
+        private String name;
+        private Integer price;
+
+        @JsonCreator
+        public Product(@JsonProperty("image") String image,
+                       @JsonProperty("count") Integer count,
+                       @JsonProperty("name") String name,
+                       @JsonProperty("price") Integer price) {
+            this.image = image;
+            this.count = count;
+            this.name = name;
+            this.price = price;
+        }
+    }
 }

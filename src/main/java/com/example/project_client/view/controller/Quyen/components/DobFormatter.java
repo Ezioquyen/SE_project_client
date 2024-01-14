@@ -10,6 +10,7 @@ public class DobFormatter {
         return dob.format(formatter);
     }
     public static LocalDate toDate(String dob){
+        if(dob.isEmpty()) return LocalDate.now();
         return LocalDate.parse(dob);
     }
 }

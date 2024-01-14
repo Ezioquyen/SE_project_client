@@ -21,9 +21,8 @@ public class OrderBillViewModel {
     public void initData(OrderBill orderBill, Boolean isCreate) throws Exception {
         this.data = orderBill;
         if(isCreate) {
-            ConfirmationViewModel confirmationViewModel = (ConfirmationViewModel) Router.getData(Pages.CONFIRMATION_VIEW);
+
             data.setId("OB" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("ssmmHHddMMyyyy")));
-            data.setCustomerPhoneNumber(confirmationViewModel.getCustomer().getPhoneNumber().isEmpty() ? "" : confirmationViewModel.getCustomer().getPhoneNumber());
             data.setUserStaffId("USS32");
             orderBillRepository.saveOrderBillApi(data);
             export(orderBill);

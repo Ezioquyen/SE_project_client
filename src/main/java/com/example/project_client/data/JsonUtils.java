@@ -36,7 +36,7 @@ public class JsonUtils {
             System.out.println("Convert 2 success");
             return objectMapper.readValue(json, typeReference);
         } catch (JsonProcessingException e) {
-            System.out.println("Convert 2 fail");
+            e.printStackTrace();
             return null;
         }
     }

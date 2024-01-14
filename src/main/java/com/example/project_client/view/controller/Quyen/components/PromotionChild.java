@@ -27,7 +27,7 @@ public class PromotionChild extends VBox {
         });
     }
     private void click(Promotion promotion) throws IOException {
-        Router.setData(Pages.PROMOTIONS_MANAGEMENT,promotion);
-        Router.switchTo(Pages.SELECT_PRODUCT_FOR_PROMOTION_VIEW);
+        Router.setData(Pages.MAIN_VIEW,promotion);
+        Router.switchTo(Pages.PROMOTION_VIEW);
     }
 }

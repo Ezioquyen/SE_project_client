@@ -105,8 +105,8 @@ public class PDFExporter {
         table.setWidths(columnWidths);
         addTableHeader(table, "Tên mặt hàng", "SL", "Đơn giá", "Thành tiền");
 
-        orderBill.getProducts().forEach(product -> addTableHeader(table, product.get("name").toString(), product.get("count").toString(), NumberFormat.getNumberInstance(Locale.US).format(product.get("price")), NumberFormat.getNumberInstance(Locale.US).format(
-                Long.parseLong(product.get("count").toString()) * Long.parseLong(product.get("price").toString()))));
+        orderBill.getProducts().forEach(product -> addTableHeader(table, product.getName(), product.getCount().toString(), NumberFormat.getNumberInstance(Locale.US).format(product.getPrice()), NumberFormat.getNumberInstance(Locale.US).format(
+                (long) product.getCount() * product.getPrice())));
         document.add(new Paragraph(" ", font));
         document.add(table);
     }

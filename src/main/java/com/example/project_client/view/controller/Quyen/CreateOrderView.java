@@ -1,23 +1,25 @@
 package com.example.project_client.view.controller.Quyen;
 
 import atlantafx.base.theme.Styles;
-import com.example.project_client.model.Product;
 import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
 import com.example.project_client.view.controller.Quyen.components.ProductCount;
 import com.example.project_client.view.controller.Quyen.components.ProductView;
+import com.example.project_client.view.controller.Quyen.event.ViewToggle;
 import com.example.project_client.view.controller.Quyen.interfaces.InitStyles;
-import com.example.project_client.viewModel.Quyen.CreateOrderViewModel;
+import com.example.project_client.viewModel.Quyen.CreateOrderBillViewModel;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.material2.Material2AL;
 
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class CreateOrderView implements InitStyles {
     @FXML
@@ -33,44 +35,77 @@ public class CreateOrderView implements InitStyles {
     @FXML
     VBox promotionContainer;
     @FXML
-    Label warning;
-    @FXML
     Button create;
     @FXML
-    Button cancel;
+    TextField money;
     @FXML
-    CreateOrderViewModel createOrderViewModel = new CreateOrderViewModel();
+    ComboBox<String> method;
+
+    @FXML
+    Label dobNotify;
+    @FXML
+    Label totalNotify;
+    @FXML
+    Label moneyWarn;
+    @FXML
+    Label productWarn;
+
+    @FXML
+    VBox notifyContainer;
+    @FXML
+    Button back;
+
+    @FXML
+    TextField filter;
+    private final List<ProductView> productViews = new ArrayList<>();
+    @FXML
+    CreateOrderBillViewModel createOrderBillViewModel = new CreateOrderBillViewModel();
 
     @FXML
     void initialize() throws IOException {
+        createOrderBillViewModel.initData();
         initStyle();
-        createOrderViewModel.initData();
-        if (createOrderViewModel.getPromotion() != null) {
-            HBox hBox = new HBox();
-            Label label = new Label(createOrderViewModel.getPromotion().getName());
-            Region region = new Region();
-            CheckBox checkBox = new CheckBox("Áp dụng");
-            checkBox.selectedProperty().addListener((observable -> {
-                if (checkBox.isSelected()) {
-                    createOrderViewModel.setApplyPromotion(true);
-                    createOrderViewModel.updatePromotion();
-                } else {
-                    createOrderViewModel.setApplyPromotion(false);
-                    createOrderViewModel.resetPromotion();
+        method.getItems().addAll("Chuyển khoản", "Tiền mặt");
+        method.getSelectionModel().selectFirst();
+        method.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> createOrderBillViewModel.getOrderBill().setPayMethod(t1.equals("Tiền mặt")));
+        notifyContainer.getChildren().clear();
+
+        createOrderBillViewModel.getDobNotify().addListener((observableValue, aBoolean, t1) -> {
+            if (t1) {
+                if (!notifyContainer.getChildren().contains(dobNotify)) {
+                    notifyContainer.getChildren().add(dobNotify);
                 }
-            }));
-            if (!createOrderViewModel.getPromotion().getNeedCondition()) {
-                checkBox.setSelected(true);
-                checkBox.setDisable(true);
+            } else notifyContainer.getChildren().remove(dobNotify);
+        });
+        createOrderBillViewModel.getTotalNotify().addListener((observableValue, aBoolean, t1) -> {
+            if (t1) {
+                if (!notifyContainer.getChildren().contains(totalNotify)) {
+                    notifyContainer.getChildren().add(totalNotify);
+                }
+            } else notifyContainer.getChildren().remove(totalNotify);
+        });
+        createOrderBillViewModel.getTotal().addListener((observable, oldVal, newVal) -> money.setPromptText(NumberFormat.getNumberInstance(Locale.US).format(newVal.intValue())));
+        money.textProperty().addListener(((observableValue, oldVal, newVal) -> {
+            String val = newVal;
+            if (!newVal.matches("\\d*")) {
+                val = newVal.replaceAll("\\D", "");
             }
-            hBox.getChildren().addAll(label, region, checkBox);
-            HBox.setHgrow(region, Priority.ALWAYS);
-            promotionContainer.getChildren().add(hBox);
+            if (!val.isEmpty()) {
+                money.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(val)));
+                createOrderBillViewModel.getOrderBill().setReceived(Integer.parseInt(val));
+                createOrderBillViewModel.getOrderBill().setChangeMoney(Integer.parseInt(val) - createOrderBillViewModel.getOrderBill().getTotal());
+            } else {
+                money.setText(val);
+            }
+        }));
+        if (createOrderBillViewModel.getPromotion() != null) {
+            promotionContainer.getChildren().add(insertPromotion());
         }
-        for (Product product : createOrderViewModel.getProducts()) {
+        createOrderBillViewModel.getProducts().forEach(product -> {
             ProductView productView = new ProductView(product);
-            productView.setOnMouseClicked((e) -> {
-                if (createOrderViewModel.check(product)) {
+            productViews.add(productView);
+            productView.setOnMouseClicked(e -> {
+                if (createOrderBillViewModel.check(product)) {
                     ProductCount productCount = new ProductCount(product);
                     productCount.getTextField().textProperty().addListener(((observableValue1, s, t11) -> {
                         if (!t11.matches("\\d*")) {
@@ -78,44 +113,38 @@ public class CreateOrderView implements InitStyles {
                         }
                         if (t11.isEmpty()) t11 = "1";
                         productCount.getTextField().setText(t11);
-                        createOrderViewModel.getCount().get(product).setValue(Integer.parseInt(t11));
+                        createOrderBillViewModel.getCount().get(product).setValue(Integer.parseInt(t11));
                     }));
-                    createOrderViewModel.initCount(product);
-                    createOrderViewModel.getCount().get(product).addListener(((observableValue, number, t1) -> {
+                    createOrderBillViewModel.initCount(product);
+                    createOrderBillViewModel.getCount().get(product).addListener(((observableValue, number, t1) -> {
                                 if (t1.intValue() == 0) listView.getItems().remove(productCount);
                                 else {
                                     productCount.getTextField().setText(t1.toString());
-
                                     productCount.getLabel2().setText(NumberFormat.getNumberInstance(Locale.US).format(product.getPrice() * t1.longValue()) + " VND");
                                 }
                             })
                     );
-                    productCount.getSub().setOnAction((actionEvent) -> createOrderViewModel.reduceProduct(product));
-                    productCount.getAdd().setOnAction((actionEven) -> createOrderViewModel.addMoreProduct(product));
+                    productCount.getSub().setOnAction((actionEvent) -> createOrderBillViewModel.reduceProduct(product));
+                    productCount.getAdd().setOnAction((actionEven) -> createOrderBillViewModel.addMoreProduct(product));
                     listView.getItems().add(productCount);
-                } else createOrderViewModel.addMoreProduct(product);
+                } else createOrderBillViewModel.addMoreProduct(product);
             });
             productsPane.getChildren().add(productView);
-        }
-        createOrderViewModel.getTotal().addListener((obs, oldVal, newVal) -> total.setText(NumberFormat.getNumberInstance(Locale.US).format(newVal.intValue()) + " VND"));
-        createOrderViewModel.getDeduction().addListener((obs, oldVal, newVal) -> deduction.setText("- " + NumberFormat.getNumberInstance(Locale.US).format(newVal.intValue()) + " VND"));
-        createOrderViewModel.getOriginal().addListener((obs, oldVal, newVal) -> original.setText(NumberFormat.getNumberInstance(Locale.US).format(newVal.intValue()) + " VND"));
-        Router.setData(Pages.CREATE_ORDER_VIEW, createOrderViewModel.getOrderBill());
+        });
+        createOrderBillViewModel.getTotal().addListener((obs, oldVal, newVal) -> total.setText(NumberFormat.getNumberInstance(Locale.US).format(newVal.intValue()) + " VND"));
+        createOrderBillViewModel.getDeduction().addListener((obs, oldVal, newVal) -> deduction.setText("- " + NumberFormat.getNumberInstance(Locale.US).format(newVal.intValue()) + " VND"));
+        createOrderBillViewModel.getOriginal().addListener((obs, oldVal, newVal) -> original.setText(NumberFormat.getNumberInstance(Locale.US).format(newVal.intValue()) + " VND"));
+        Router.setData(Pages.CREATE_ORDER_VIEW, createOrderBillViewModel.getOrderBill());
+        filter.textProperty().addListener(((observableValue, s, t1) -> filter(t1)));
+
     }
 
     @FXML
     public void showConfirmDialogView() throws IOException {
-        if (listView.getItems().isEmpty()) {
-            if (!warning.isVisible()) {
-                warning.setVisible(true);
-            }
-            return;
-        }
-        if (warning.isVisible()) {
-            warning.setVisible(false);
-        }
-        createOrderViewModel.setProductOfOrderBill();
-        Router.showDialog(Pages.CONFIRMATION_VIEW);
+
+        createOrderBillViewModel.setProductOfOrderBill();
+        Router.setData(Pages.CREATE_ORDER_VIEW, createOrderBillViewModel);
+        Router.showDialog(Pages.CUSTOMER_INFORMATION_INPUT_VIEW);
     }
 
     @FXML
@@ -123,10 +152,66 @@ public class CreateOrderView implements InitStyles {
         Router.switchTo(Pages.MAIN_VIEW);
     }
 
+
+    @FXML
+    public void confirm() throws Exception {
+        if (validate()) {
+            if (!createOrderBillViewModel.getCustomer().getPhoneNumber().isEmpty()) {
+                createOrderBillViewModel.getCustomer().setTotal(createOrderBillViewModel.getCustomer().getTotal() + createOrderBillViewModel.getOrderBill().getTotal());
+                createOrderBillViewModel.saveCustomer();
+            }
+            ViewToggle.setIsCreateBill(true);
+            ViewToggle.setOrderBill(createOrderBillViewModel.getOrderBill());
+            Router.switchTo(Pages.ORDER_BILL_VIEW);
+        }
+    }
+
     @Override
     public void initStyle() {
-        create.getStyleClass().add(Styles.SUCCESS);
-        cancel.getStyleClass().add(Styles.DANGER);
+        back.setGraphic(new FontIcon(Material2AL.KEYBOARD_ARROW_LEFT));
         Styles.toggleStyleClass(listView, Styles.BORDERED);
+    }
+
+    public HBox insertPromotion() {
+        HBox hBox = new HBox();
+        Label label = new Label(createOrderBillViewModel.getPromotion().getName());
+        Region region = new Region();
+        CheckBox checkBox = new CheckBox("Áp dụng");
+        checkBox.selectedProperty().addListener((observable -> {
+            if (checkBox.isSelected()) {
+                createOrderBillViewModel.setApplyPromotion(true);
+                createOrderBillViewModel.updatePromotion();
+            } else {
+                createOrderBillViewModel.setApplyPromotion(false);
+                createOrderBillViewModel.resetPromotion();
+            }
+        }));
+        if (!createOrderBillViewModel.getPromotion().getNeedCondition()) {
+            checkBox.setSelected(true);
+            checkBox.setDisable(true);
+        }
+        hBox.getChildren().addAll(label, region, checkBox);
+        HBox.setHgrow(region, Priority.ALWAYS);
+
+        return hBox;
+    }
+
+    private Boolean validate() {
+        if (money.getText().isEmpty()) {
+            if (!notifyContainer.getChildren().contains(moneyWarn)) notifyContainer.getChildren().add(moneyWarn);
+            return false;
+        }
+        if (listView.getItems().isEmpty()) {
+            if (!notifyContainer.getChildren().contains(productWarn)) notifyContainer.getChildren().add(productWarn);
+            return false;
+        }
+        return true;
+    }
+
+    private void filter(String value) {
+        productsPane.getChildren().clear();
+        productsPane.getChildren().addAll(productViews.stream().filter(e ->
+                e.getProduct().getName().contains(value)
+        ).collect(Collectors.toList()));
     }
 }

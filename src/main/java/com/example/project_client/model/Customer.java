@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Customer {
-    private Integer id =0;
+    private Integer id = 0;
     private String phoneNumber = "";
-    private String name = null;
-    private String dob = null;
+    private String name = "";
+    private String dob = "";
     private Integer total = 0;
 
 }

@@ -2,71 +2,135 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<SplitPane dividerPositions="0.6955" prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19"
-           xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="com.example.project_client.view.controller.Quyen.CreateOrderView">
-   <ScrollPane>
-      <FlowPane fx:id="productsPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                prefHeight="400.0" prefWidth="930.0"/>
-   </ScrollPane>
-   <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0">
-      <padding>
-         <Insets top="15.0"/>
-      </padding>
-      <ListView fx:id="listView" fixedCellSize="60.0">
-         <padding>
-            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
-         </padding>
-      </ListView>
-      <VBox fx:id="promotionContainer">
-         <padding>
-            <Insets left="15.0" right="15.0"/>
-         </padding>
-      </VBox>
-      <VBox>
-         <HBox>
+<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Quyen.CreateOrderView">
+   <center>
+      <SplitPane dividerPositions="0.5764">
+         <VBox>
+            <children>
+               <HBox>
+                  <children>
+                     <TextField fx:id="filter" promptText="Nhập tên sản phẩm">
+                        <HBox.margin>
+                           <Insets left="15.0" />
+                        </HBox.margin>
+                     </TextField>
+                  </children>
+                  <padding>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </padding>
+               </HBox>
+               <ScrollPane prefHeight="900.0" prefWidth="900.0">
+                  <FlowPane fx:id="productsPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="750.0" />
+               </ScrollPane>
+            </children>
             <padding>
-               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+               <Insets left="10.0" />
             </padding>
-            <Label text="Tổng giá trị:"/>
-            <Region HBox.hgrow="ALWAYS"/>
-            <Label fx:id="original" text="0 VND"/>
-         </HBox>
-         <HBox>
-            <padding>
-               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
-            </padding>
-            <Label text="Khấu  trừ"/>
-            <Region HBox.hgrow="ALWAYS"/>
-            <Label fx:id="deduction" text="0 VND"/>
-         </HBox>
-         <HBox>
-            <padding>
-               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
-            </padding>
-            <Label text="Tổng cộng:"/>
-            <Region HBox.hgrow="ALWAYS"/>
-            <Label fx:id="total" text="0 VND"/>
-         </HBox>
-         <HBox>
-            <padding>
-               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
-            </padding>
-            <Button fx:id="create" mnemonicParsing="false" onAction="#showConfirmDialogView" text="Create"/>
-            <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancel" text="Cancel"/>
-         </HBox>
-         <HBox alignment="CENTER">
-            <Label fx:id="warning" text="Vui lòng chọn sản phẩm!" textFill="#f70909" visible="false"/>
-         </HBox>
-      </VBox>
-   </VBox>
-</SplitPane>
+         </VBox>
+         <VBox spacing="10.0">
+            <ListView fx:id="listView" fixedCellSize="60.0" prefHeight="346.0" prefWidth="422.0">
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+            </ListView>
+            <VBox fx:id="promotionContainer">
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+            </VBox>
+            <VBox>
+               <HBox>
+                  <padding>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="15.0" />
+                  </padding>
+                  <Label text="Tổng giá trị:" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label fx:id="original" text="0 VND" />
+               </HBox>
+               <HBox>
+                  <padding>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="15.0" />
+                  </padding>
+                  <Label text="Khấu  trừ" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label fx:id="deduction" text="0 VND" />
+               </HBox>
+               <HBox>
+                  <padding>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="15.0" />
+                  </padding>
+                  <Label text="Tổng cộng:" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label fx:id="total" text="0 VND" />
+               </HBox>
+               <HBox alignment="CENTER">
+                  <children>
+                     <Label text="Số tiền:" />
+                     <Region HBox.hgrow="ALWAYS" />
+                     <TextField fx:id="money" />
+                  </children>
+                  <padding>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </padding>
+               </HBox>
+               <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="130.0" spacing="10.0">
+                  <children>
+                     <Label text="Phương thức thanh toán:" />
+                     <Region HBox.hgrow="ALWAYS" />
+                     <ComboBox fx:id="method" prefWidth="150.0" />
+                  </children>
+                  <padding>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </padding>
+               </HBox>
+               <HBox spacing="5.0">
+                  <padding>
+                     <Insets bottom="5.0" left="5.0" right="15.0" top="15.0" />
+                  </padding>
+                  <Button mnemonicParsing="false" onAction="#confirm" styleClass="success" text="Xác nhận" />
+                  <Button fx:id="create" mnemonicParsing="false" onAction="#showConfirmDialogView" styleClass="accent" text="Điền thông tin khách hàng" />
+                  <Region HBox.hgrow="ALWAYS" />
+               </HBox>
+               <VBox fx:id="notifyContainer" prefWidth="290.0">
+                  <children>
+                     <Label fx:id="productWarn" layoutX="10.0" layoutY="10.0" text="Vui lòng chọn sản phẩm!" textFill="#f70909" />
+                     <Label fx:id="moneyWarn" text="Vui lòng nhập số tiền!" textFill="#f70909" />
+                     <Label fx:id="dobNotify" prefHeight="20.0" prefWidth="283.0" text="Khách hàng được giảm giá 10% sinh nhật!" textFill="#0fb736" wrapText="true" />
+                     <Label fx:id="totalNotify" layoutX="10.0" layoutY="10.0" text="Khách hàng được giảm giá 10% đạt hạn mức mua!" textFill="#0fb736" wrapText="true" />
+                  </children>
+                  <padding>
+                     <Insets left="15.0" />
+                  </padding>
+               </VBox>
+            </VBox>
+         </VBox>
+      </SplitPane>
+   </center>
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="1000.0" BorderPane.alignment="CENTER_LEFT">
+         <children>
+            <Button fx:id="back" mnemonicParsing="false" onAction="#cancel" prefHeight="50.0" prefWidth="50.0" styleClass="accent">
+               <HBox.margin>
+                  <Insets left="25.0" />
+               </HBox.margin>
+               <graphic>
+                  <FontIcon />
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>

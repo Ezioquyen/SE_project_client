@@ -30,4 +30,9 @@ public class MainView {
     public void switchToProductView() throws IOException {
         Router.switchTo(Pages.PRODUCT_VIEW);
     }
+
+    @FXML
+    public void switchToStaffView() throws IOException {
+        Router.switchTo(Pages.STAFF_VIEW);
+    }
 }

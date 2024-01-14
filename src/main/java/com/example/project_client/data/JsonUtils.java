@@ -12,7 +12,6 @@ import java.util.Map;
 public class JsonUtils {
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
-
     public static String toJson(Object object) {
         objectMapper.registerModule(new JavaTimeModule());
         try {
@@ -25,6 +24,7 @@ public class JsonUtils {
     }
 
     public static <T> T fromJson(String json, Class<T> valueType) {
+        objectMapper.registerModule(new JavaTimeModule());
         try {
             return objectMapper.readValue(json, valueType);
         } catch (JsonProcessingException e) {
@@ -32,11 +32,12 @@ public class JsonUtils {
         }
     }
     public static <T> T fromJson(String json, TypeReference<T> typeReference) {
+        objectMapper.registerModule(new JavaTimeModule());
         try {
             System.out.println("Convert 2 success");
             return objectMapper.readValue(json, typeReference);
         } catch (JsonProcessingException e) {
-            System.out.println("Convert 2 fail");
+            System.out.println("Convert 2 fail" + e.getMessage() + e.getCause());
             return null;
         }
     }

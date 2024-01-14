@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Thang.StaffView">
+    <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
+            <children>
+                <Pane prefHeight="80.0" prefWidth="800.0">
+                    <children>
+                        <Button layoutX="300.0" layoutY="38.0" mnemonicParsing="false" onAction="#updateStaff" text="Update Staff" />
+                        <Button layoutX="150.0" layoutY="38.0" mnemonicParsing="false" onAction="#addStaff"  text="Add Staff" />
+                        <Button layoutX="450.0" layoutY="38.0" mnemonicParsing="false" onAction="#deleteStaff" text="Delete Staff" />
+                        <Button layoutX="600.0" layoutY="38.0" mnemonicParsing="false" onAction="#cancelStaff" text="Cancel" />
+                    </children>
+                </Pane>
+                <TextField fx:id="searchTextField" layoutX="299.0" layoutY="400.0" promptText="Search..." />
+                <ScrollPane layoutX="39.0" layoutY="100.0" prefHeight="280.0" prefWidth="850.0">
+                    <content>
+                        <TableView fx:id="tableView" prefHeight="670.0" prefWidth="750.0">
+                            <columns>
+                                <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
+                                <TableColumn fx:id="name" prefWidth="75.0" text="Name" />
+                                <TableColumn fx:id="gender" prefWidth="75.0" text="Gender" />
+                                <TableColumn fx:id="dob" prefWidth="75.0" text="Dob" />
+                                <TableColumn fx:id="phoneNumber" prefWidth="75.0" text="Phone Number" />
+                                <TableColumn fx:id="email" prefWidth="75.0" text="Email" />
+                                <TableColumn fx:id="address" prefWidth="75.0" text="Address" />
+                                <TableColumn fx:id="role" prefWidth="75.0" text="Role" />
+                                <TableColumn fx:id="salaryPerDay" prefWidth="75.0" text="Salary" />
+                                <TableColumn fx:id="is_removed" prefWidth="75.0" text="IsRemoved" />
+                            </columns>
+                        </TableView>
+                    </content>
+                </ScrollPane>
+            </children>
+        </AnchorPane>
+    </content>
+</ScrollPane>

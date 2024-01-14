@@ -21,4 +21,6 @@ module com.example.project_client {
     opens com.example.project_client.view.controller.Khai to javafx.fxml;
     exports com.example.project_client.view.controller.Truong;
     opens com.example.project_client.view.controller.Truong to javafx.fxml;
+    exports com.example.project_client.view.controller.Thang;
+    opens com.example.project_client.view.controller.Thang to javafx.fxml;
 }

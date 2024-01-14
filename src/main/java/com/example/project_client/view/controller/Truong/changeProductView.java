@@ -5,7 +5,9 @@ import com.example.project_client.repository.ProductRepository;
 import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -13,52 +15,132 @@ import java.io.IOException;
 public class changeProductView {
     @FXML
     private ChoiceBox<Boolean> choiceBox;
-    private Boolean[] available = {Boolean.FALSE, Boolean.TRUE};
+    private final Boolean[] available = {Boolean.FALSE, Boolean.TRUE};
+    private Boolean[] check = {true, true, true, true, true, true};
     @FXML
-    private TextField id, name, price, discount, image;
+    private TextField name, price, discount, image;
+    @FXML
+    private Label id, nameAlert, priceAlert, discountAlert, imageAlert;
     private Product product;
     @FXML
     private void initialize() throws Exception {
         choiceBox.getItems().addAll(available);
         product = productView.getProduct();
-        System.out.println("Change product:"+product.getName());
+        System.out.println("Change product: "+product.getName());
         setField();
     }
     @FXML
     private void cancel() throws IOException {
+        raiseAlert("Cancel change product");
         Router.switchTo(Pages.PRODUCT_VIEW);
     }
     @FXML
-    private void confirm() throws IOException {
+    private void confirm() {
         try {
-                ProductRepository.updateProduct(product);
-                Router.switchTo(Pages.PRODUCT_VIEW);
+            for(int i = 0; i < 6; ++i){
+                if(!check[i]){
+                    throw new Exception("Cannot change product");
+                }
+            }
+            ProductRepository.updateProduct(product);
+            raiseAlert("Changed Product");
+            Router.switchTo(Pages.PRODUCT_VIEW);
         }
         catch (Exception e){
-            System.out.println("ERROR");
+            raiseAlert(e.getMessage());
         }
     }
+
+    private void raiseAlert(String alertText){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText("Notification");
+        alert.setContentText(alertText);
+        alert.show();
+    }
     private void setField() throws Exception {
-        id.setPromptText(product.getId().toString());
-        id.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            product.setId(Integer.valueOf(newValue));
-        });
+        id.setText(product.getId().toString());
+        setName();
+        setPrice();
+        setDiscount();
+        setImage();
+        choiceBox.setValue(product.getAvailable());
+    }
+    private void setName(){
         name.setPromptText(product.getName());
         name.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            product.setName(newValue);
+            try {
+                if(!product.setName(newValue)){
+                    throw new Exception();
+                }
+                check[1] = true;
+                nameAlert.setText("");
+            }
+            catch (Exception e) {
+                check[1] = false;
+                product.setName(name.getPromptText());
+                nameAlert.setText("Invalid name, name must be a String");
+            }
         });
+    }
+
+    private void setPrice() {
         price.setPromptText(product.getPrice().toString());
         price.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            product.setPrice(Integer.valueOf(newValue));
+            try {
+                try {
+                    if (!product.setPrice(Integer.parseInt(newValue))) {
+                        throw new Exception();
+                    }
+                }
+                catch (Exception e) {
+                    throw new Exception("Invalid price, price must be a number from 0 to 1000000");
+                }
+                check[2] = true;
+                priceAlert.setText("");
+            }
+            catch (Exception e){
+                check[2] = false;
+                product.setPrice(Integer.parseInt(price.getPromptText()));
+                priceAlert.setText(e.getMessage());
+            }
         });
+    }
+    private void setDiscount() {
         discount.setPromptText(product.getDiscount().toString());
         discount.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            product.setDiscount(Double.valueOf(newValue));
+            try{
+                try {
+                    if (!product.setDiscount(Double.parseDouble(newValue))) {
+                        throw new Exception();
+                    }
+                }
+                catch (Exception e) {
+                    throw new Exception("Invalid Discount, discount must be a real number from 0 to 100");
+                }
+                check[3] = true;
+                discountAlert.setText("");
+            }
+            catch (Exception e){
+                check[3] = false;
+                product.setDiscount(Double.parseDouble(discount.getPromptText()));
+                discountAlert.setText(e.getMessage());
+            }
         });
+    }
+    private void setImage() {
         image.setPromptText(product.getImage());
         image.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            product.setImage(newValue);
+            try {
+                product.setImage(newValue);
+                check[4] = true;
+                imageAlert.setText("");
+            }
+            catch (Exception e){
+                check[4] = false;
+                product.setImage(image.getPromptText());
+                imageAlert.setText("Invalid Image");
+            }
         });
-        choiceBox.setValue(product.getAvailable());
     }
 }

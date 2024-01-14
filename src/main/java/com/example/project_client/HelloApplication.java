@@ -52,6 +52,8 @@ public class HelloApplication extends Application {
         Router.setRouter(Pages.ADD_STAFF_VIEW, "Thang/addStaffScreen.fxml");
         Router.setRouter(Pages.STAFF_VIEW, "Thang/staffScreen.fxml");
         Router.setRouter(Pages.UPDATE_STAFF_VIEW, "Thang/updateStaffScreen.fxml");
+        Router.setRouter(Pages.READ_PRODUCT,"Truong/readProduct.fxml");
+        Router.setRouter(Pages.READ_INGREDIENT,"Truong/readIngredient.fxml");
     }
     public static void main(String[] args) {
         launch();

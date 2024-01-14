@@ -41,8 +41,7 @@ public class StaffView {
     private TableColumn<Staff, String> role;
     @FXML
     private TableColumn<Staff, Integer> salaryPerDay;
-    @FXML
-    private TableColumn<Staff, Boolean> is_removed;
+
 
     @Getter
     private List<Staff> staffs;
@@ -60,7 +59,6 @@ public class StaffView {
         }
         catch (Exception e){
             System.out.println("ERROR");
-//            System.out.println(staffs);
         }
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             filterTable(newValue);
@@ -79,7 +77,7 @@ public class StaffView {
                 StaffView.createAlert(Alert.AlertType.WARNING, "Bạn chưa chọn nhân viên", "", "Thông báo" ).show();
             }
             idUpdate = staff.getId();
-            Router.switchTo(Pages.UPDATE_STAFF_VIEW);
+            Router.showDialog(Pages.UPDATE_STAFF_VIEW);
         }
         catch (Exception e){
             System.out.println(e.getMessage());
@@ -109,7 +107,6 @@ public class StaffView {
 
     private void setTableView() throws IOException {
         staffs = staffCalRepository.getAllStaffApi();
-        staffs.removeIf(Staff::getIs_removed);
         tableList = FXCollections.observableArrayList(staffs);
         tableView.setItems(tableList);
     }
@@ -123,7 +120,6 @@ public class StaffView {
         address.setCellValueFactory(new PropertyValueFactory<>("address"));
         role.setCellValueFactory(new PropertyValueFactory<>("role"));
         salaryPerDay.setCellValueFactory(new PropertyValueFactory<>("salaryPerDay"));
-        is_removed.setCellValueFactory(new PropertyValueFactory<>("is_removed"));
     }
 
     public static Alert createAlert(Alert.AlertType type, String content, String header, String title) {

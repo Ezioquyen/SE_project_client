@@ -192,10 +192,8 @@ public class UpdateStaffView {
         staff.setRole(addressField.getText());
         staff.setEmail(emailField.getText());
         staff.setPhoneNumber(phoneField.getText());
-        staff.setIs_removed(false);
         RadioButton choseBtn = (RadioButton) genderToggleGroup.getSelectedToggle();
         staff.setGender(choseBtn.getText().toLowerCase(Locale.ROOT));
-        staff.setIs_removed(false);
         staffCalRepository.updateStaffApi(staff);
         StaffView.createAlert(Alert.AlertType.CONFIRMATION,"Bạn đã cập nhật thành công thông tin nhân viên " + staff.getName(), "","Thông báo").show();
         Router.switchTo(Pages.STAFF_VIEW);

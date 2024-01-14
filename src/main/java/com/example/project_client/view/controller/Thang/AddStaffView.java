@@ -183,7 +183,6 @@ public class AddStaffView {
         RadioButton choseBtn = (RadioButton) genderToggleGroup.getSelectedToggle();
         staff.setGender(choseBtn.getText().toLowerCase(Locale.ROOT));
         staff.setRole(roleField.getText());
-        staff.setIs_removed(false);
         staff.setSalaryPerDay(Integer.parseInt(salaryField.getText()));
         StaffCalRepository.saveStaffApi(staff);
         StaffView.createAlert(Alert.AlertType.CONFIRMATION,"Bạn đã thêm thành công thông tin nhân viên ", "","Thông báo").show();

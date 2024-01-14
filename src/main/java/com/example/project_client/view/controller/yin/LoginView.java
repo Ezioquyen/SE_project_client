@@ -1,4 +1,5 @@
 package com.example.project_client.view.controller.yin;
+import com.example.project_client.event.Data;
 import com.example.project_client.model.User;
 import com.example.project_client.repository.UserRepository;
 import com.example.project_client.router.Pages;
@@ -34,6 +35,9 @@ public class LoginView {
         List<User> listUser = new UserRepository().getAllUsers();
 
         boolean foundUser = false;
+
+
+
         boolean isAdmin = false;
 
         for (User user : listUser) {
@@ -56,6 +60,8 @@ public class LoginView {
         } else {
             showErrorAlert("Đăng nhập thất bại", "Vui lòng thử lại!");
         }
+        //TODO thay new User = User sau khi dang nhap
+        Data.setUser(new User());
     }
 
 

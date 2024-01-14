@@ -41,8 +41,6 @@ public class HelloApplication extends Application {
         Router.setRouter(Pages.BILL_PRODUCT_CAL_VIEW, "Khai/BillProductCalView.fxml");
         Router.setRouter(Pages.PROFIT_CAL_VIEW, "Khai/ProfitCalView.fxml");
         Router.setRouter(Pages.PROMOTION_VIEW,"Quyen/promotion-view.fxml");
-        Router.setRouter(Pages.SELECT_PRODUCT_FOR_PROMOTION_VIEW,"Quyen/select-product-for-promotion.fxml");
-        Router.setRouter(Pages.PROMOTIONS_MANAGEMENT,"Quyen/promotions-management.fxml");
         Router.setRouter(Pages.INGREDIENT_VIEW, "Truong/ingredientScene.fxml");
         Router.setRouter(Pages.ADD_INGREDIENT, "Truong/addIngredient.fxml");
         Router.setRouter(Pages.CHANGE_INGREDIENT, "Truong/changeIngredient.fxml");

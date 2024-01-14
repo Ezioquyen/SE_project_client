@@ -185,34 +185,16 @@ public class UpdateStaffView {
                 return;
             }
         }
-//        Staff newStaff = new Staff();
-        idField.textProperty().addListener((observableValue, s, t1) -> {
-            staff.setId(t1);
-        });
-        nameField.textProperty().addListener((observableValue, s, t1) -> {
-            staff.setName(t1);
-        });
-        emailField.textProperty().addListener((observableValue, s, t1) -> {
-            staff.setEmail(t1);
-        });
-        phoneField.textProperty().addListener((observableValue, s, t1) -> {
-            staff.setPhoneNumber(t1);
-        });
-        birthDatePicker.valueProperty().addListener(((observableValue, localDate, t1) -> {
-            staff.setDob(t1);
-        }));
-        addressField.textProperty().addListener((observableValue, s, t1) -> {
-            staff.setAddress(t1);
-        });
-
+        staff.setId(idField.getText());
+        staff.setDob(birthDatePicker.getValue());
+        staff.setName(nameField.getText());
+        staff.setAddress(addressField.getText());
+        staff.setRole(addressField.getText());
+        staff.setEmail(emailField.getText());
+        staff.setPhoneNumber(phoneField.getText());
+        staff.setIs_removed(false);
         RadioButton choseBtn = (RadioButton) genderToggleGroup.getSelectedToggle();
         staff.setGender(choseBtn.getText().toLowerCase(Locale.ROOT));
-        roleField.textProperty().addListener((observableValue, s, t1) -> {
-            staff.setRole(t1);
-        });
-        salaryField.textProperty().addListener((observableValue, s, t1) -> {
-            staff.setSalaryPerDay(Integer.valueOf(t1));
-        });
         staff.setIs_removed(false);
         staffCalRepository.updateStaffApi(staff);
         StaffView.createAlert(Alert.AlertType.CONFIRMATION,"Bạn đã cập nhật thành công thông tin nhân viên " + staff.getName(), "","Thông báo").show();

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
@@ -63,23 +64,30 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Pane layoutX="1170.0" prefHeight="768.0" prefWidth="292.0" style="-fx-background-color: #ac573d;">
+               <children>
+                  <Circle fill="DODGERBLUE" layoutX="15.0" layoutY="749.0" radius="100.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-fill: #ac573d;" />
+               </children>
+            </Pane>
          </children>
       </Pane>
-      <ScrollPane layoutX="216.0" layoutY="281.0" prefHeight="391.0" prefWidth="531.0">
+      <ScrollPane layoutX="263.0" layoutY="291.0" prefHeight="391.0" prefWidth="531.0">
          <content>
-            <TableView fx:id="tableView" prefHeight="387.0" prefWidth="525.0" style="-fx-background-color: #f8f4f1;">
+            <TableView fx:id="tableView" prefHeight="387.0" prefWidth="525.0">
               <columns>
-                <TableColumn fx:id="id" prefWidth="73.0" text="ID" />
-                <TableColumn fx:id="name" prefWidth="207.0" text="Name" />
-                  <TableColumn fx:id="unit" prefWidth="152.0" text="Unit" />
-                  <TableColumn fx:id="unit_Price" prefWidth="90.0" text="Unit Price" />
+                <TableColumn fx:id="id" prefWidth="73.0" style="-fx-background-color: #c0b9bf;" text="ID" />
+                <TableColumn fx:id="name" prefWidth="207.0" style="-fx-background-color: #c0b9bf;" text="Name" />
+                  <TableColumn fx:id="unit" prefWidth="152.0" style="-fx-background-color: #c0b9bf;" text="Unit" />
+                  <TableColumn fx:id="unit_Price" prefWidth="90.0" style="-fx-background-color: #c0b9bf;" text="Unit Price" />
               </columns>
             </TableView>
          </content>
       </ScrollPane>
-      <TextField fx:id="searchTextField" layoutX="324.0" layoutY="200.0" prefHeight="43.0" prefWidth="220.0" promptText="search">
+      <TextField fx:id="searchTextField" layoutX="403.0" layoutY="198.0" prefHeight="43.0" prefWidth="220.0" promptText="search" style="-fx-background-color: #f9d388;">
          <font>
             <Font size="17.0" />
          </font></TextField>
+      <Ellipse fill="DODGERBLUE" layoutX="84.0" layoutY="702.0" radiusX="28.0" radiusY="45.0" rotate="-22.6" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-fill: #ac4600;" />
+      <Ellipse fill="DODGERBLUE" layoutX="136.0" layoutY="700.0" radiusX="36.0" radiusY="59.0" rotate="42.5" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-fill: #ac573d;" />
    </children>
 </AnchorPane>

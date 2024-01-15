@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -49,9 +50,28 @@
             <Font name="System Bold" size="29.0" />
          </font>
       </Label>
-      <Button layoutX="738.0" layoutY="56.0" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: #000000;" text="Cancel" textFill="WHITE">
+      <Button layoutX="845.0" layoutY="51.0" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: #000000;" text="Cancel" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font></Button>
+      <Label layoutX="434.0" layoutY="37.0" text="Add ingredient" textFill="#ff7657">
+         <font>
+            <Font name="System Bold" size="41.0" />
+         </font>
+      </Label>
+      <Pane layoutX="1087.0" prefHeight="768.0" prefWidth="300.0" style="-fx-background-color: #e38e6f;">
+         <children>
+            <ImageView fitHeight="406.0" fitWidth="249.0" layoutX="23.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/addIngredient.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="381.0" fitWidth="249.0" layoutX="21.0" layoutY="413.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/product.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

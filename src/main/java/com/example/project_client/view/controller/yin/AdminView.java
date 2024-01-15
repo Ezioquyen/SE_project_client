@@ -45,7 +45,7 @@ public class AdminView {
     }
 
     @FXML
-    void HandleAddUserClicked(ActionEvent event) throws IOException {
+    void HandleAddUserClicked() throws IOException {
         Router.switchTo(Pages.USER_MAIN_VIEW);
     }
 

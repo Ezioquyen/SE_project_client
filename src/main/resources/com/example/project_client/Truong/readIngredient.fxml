@@ -7,48 +7,51 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Truong.readIngredientView">
+<AnchorPane prefHeight="859.0" prefWidth="1081.0" style="-fx-background-color: eaded6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Truong.readIngredientView">
    <children>
-      <Label layoutX="121.0" layoutY="62.0" text="ID:">
+      <Label layoutX="121.0" layoutY="143.0" text="ID:">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Label>
-      <Label layoutX="121.0" layoutY="226.0" text="Unit:">
+      <Label layoutX="121.0" layoutY="381.0" text="Unit:">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Label>
-      <Label layoutX="119.0" layoutY="145.0" text="Name:">
+      <Label layoutX="119.0" layoutY="266.0" text="Name:">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Label>
-      <Label layoutX="121.0" layoutY="312.0" text="Unit Price:">
+      <Label layoutX="121.0" layoutY="499.0" text="Unit Price:">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Label>
-      <Label fx:id="id" layoutX="259.0" layoutY="62.0" text="id">
+      <Label fx:id="id" layoutX="337.0" layoutY="143.0" text="id" textFill="#3300ff">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Label fx:id="name" layoutX="259.0" layoutY="146.0" text="name">
+      <Label fx:id="name" layoutX="337.0" layoutY="267.0" text="name" textFill="#3300ff">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Label fx:id="unit" layoutX="260.0" layoutY="225.0" text="unit">
+      <Label fx:id="unit" layoutX="338.0" layoutY="380.0" text="unit" textFill="#3300ff">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Label fx:id="unit_Price" layoutX="260.0" layoutY="312.0" text="unit price">
+      <Label fx:id="unit_Price" layoutX="338.0" layoutY="499.0" text="unit price" textFill="#3300ff">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Button layoutX="434.0" layoutY="30.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+      <Button layoutX="538.0" layoutY="30.0" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: #000000;" text="Cancel" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Button>
    </children>
 </AnchorPane>

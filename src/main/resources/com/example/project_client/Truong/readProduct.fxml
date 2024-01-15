@@ -6,21 +6,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Truong.readProductView">
+<AnchorPane prefHeight="808.0" prefWidth="1158.0" style="-fx-background-color: eaded6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Truong.readProductView">
    <children>
       <Label layoutX="172.0" layoutY="98.0" text="ID:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="id" layoutX="303.0" layoutY="98.0" text="ID" textFill="#a84040">
+      <Label fx:id="id" layoutX="303.0" layoutY="98.0" text="ID" textFill="#2500ff">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="name" layoutX="303.0" layoutY="158.0" text="Name" textFill="#a84040">
+      <Label fx:id="name" layoutX="303.0" layoutY="158.0" text="Name" textFill="#2500ff">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
       <Label layoutX="172.0" layoutY="158.0" text="Name:">
@@ -28,9 +28,9 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="price" layoutX="303.0" layoutY="226.0" text="Price" textFill="#a84040">
+      <Label fx:id="price" layoutX="303.0" layoutY="226.0" text="Price" textFill="#2500ff">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
       <Label layoutX="172.0" layoutY="226.0" text="Price:">
@@ -38,9 +38,9 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="available" layoutX="303.0" layoutY="301.0" text="Available" textFill="#a84040">
+      <Label fx:id="available" layoutX="303.0" layoutY="301.0" text="Available" textFill="#2500ff">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
       <Label layoutX="172.0" layoutY="301.0" text="Available:">
@@ -48,9 +48,9 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="discount" layoutX="303.0" layoutY="378.0" text="Discount" textFill="#a84040">
+      <Label fx:id="discount" layoutX="303.0" layoutY="378.0" text="Discount" textFill="#2500ff">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
       <Label layoutX="172.0" layoutY="378.0" text="Discount:">
@@ -63,9 +63,9 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="412.0" layoutY="27.0" mnemonicParsing="false" onAction="#cancel" text="Cancel">
+      <Button layoutX="412.0" layoutY="27.0" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: #000000;" text="Cancel" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Button>
       <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="275.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true" />

@@ -49,6 +49,7 @@ public class changeProductView {
                     throw new Exception("Cannot change product");
                 }
             }
+            product.setAvailable(choiceBox.getSelectionModel().getSelectedItem());
             ProductRepository.updateProduct(product);
             raiseAlert("Changed Product");
             Router.switchTo(Pages.PRODUCT_VIEW);
@@ -71,10 +72,11 @@ public class changeProductView {
         setPrice();
         setDiscount();
         image.setText(product.getImage().replace(System.getProperty("user.dir") + "\\src\\main\\resources\\com\\example\\project_client\\images\\", ""));
-        choiceBox.setValue(product.getAvailable());
+        choiceBox.setValue(Boolean.TRUE);
     }
     private void setName(){
         name.setPromptText(product.getName());
+        name.setStyle("-fx-text-fill: white;" + "-fx-background-color: black;");
         name.textProperty().addListener((observableValue, oldValue, newValue) -> {
             try {
                 if(!product.setName(newValue)){
@@ -93,6 +95,7 @@ public class changeProductView {
 
     private void setPrice() {
         price.setPromptText(product.getPrice().toString());
+        price.setStyle("-fx-text-fill: white;" + "-fx-background-color: black;");
         price.textProperty().addListener((observableValue, oldValue, newValue) -> {
             try {
                 try {
@@ -115,6 +118,7 @@ public class changeProductView {
     }
     private void setDiscount() {
         discount.setPromptText(product.getDiscount().toString());
+        discount.setStyle("-fx-text-fill: white;" + "-fx-background-color: black;");
         discount.textProperty().addListener((observableValue, oldValue, newValue) -> {
             try{
                 try {

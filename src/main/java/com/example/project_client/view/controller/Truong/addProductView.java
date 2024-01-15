@@ -30,6 +30,7 @@ public class addProductView {
     @FXML
     public void initialize() throws Exception {
         choiceBox.getItems().addAll(available);
+        product.setAvailable(Boolean.TRUE);
         System.out.println("Add product");
         setField();
     }
@@ -46,6 +47,7 @@ public class addProductView {
                     throw new Exception("Invalid Field");
                 }
             }
+            product.setAvailable(choiceBox.getSelectionModel().getSelectedItem());
             ProductRepository.saveProduct(product);
             raiseAlert("Added Product");
             Router.switchTo(Pages.PRODUCT_VIEW);
@@ -65,11 +67,12 @@ public class addProductView {
         setName();
         setPrice();
         setDiscount();
-//        setImage();
         choiceBox.setValue(Boolean.TRUE);
+//        choiceBox.setStyle("-fx-text-fill: white;" + "-fx-background-color: black;" +   "-fx-mark-color: orange;");
     }
     private void setName(){
         name.setPromptText("input name");
+        name.setStyle("-fx-text-fill: white;" + "-fx-background-color: black;");
         name.textProperty().addListener((observableValue, oldValue, newValue) -> {
             try {
                 if(!product.setName(newValue)){
@@ -87,6 +90,7 @@ public class addProductView {
 
     private void setPrice() {
         price.setPromptText("input price");
+        price.setStyle("-fx-text-fill: white;" + "-fx-background-color: black;");
         price.textProperty().addListener((observableValue, oldValue, newValue) -> {
             try {
                 try {
@@ -108,6 +112,7 @@ public class addProductView {
     }
     private void setDiscount() {
         discount.setPromptText("input discount");
+        discount.setStyle("-fx-text-fill: white;" + "-fx-background-color: black;");
         discount.textProperty().addListener((observableValue, oldValue, newValue) -> {
             try{
                 try {

@@ -128,10 +128,10 @@ public final class productView {
         }
         raiseAlert(message);
     }
-    @FXML
-    private void addimg() {
-        addImage.saveImage();
-    }
+//    @FXML
+//    private void addimg() {
+//        addImage.saveImage();
+//    }
     private void filterTable(String keyword) {
         ObservableList<Product> filteredList = tableList.filtered(staff ->
                 convertToString(staff.getName()).toLowerCase().contains(keyword.toLowerCase())

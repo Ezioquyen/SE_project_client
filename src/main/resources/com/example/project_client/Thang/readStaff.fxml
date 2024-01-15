@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <?import javafx.scene.layout.StackPane?>
-<StackPane prefWidth="1366" prefHeight="768" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Thang.AddStaffView">
+<StackPane prefWidth="1366" prefHeight="768" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Thang.ReadStaffView">
     <children>
         <GridPane fx:id="formTable" hgap="20.0" maxWidth="-Infinity" prefHeight="400.0" prefWidth="1100.0" vgap="10.0">
             <columnConstraints>
@@ -36,34 +36,7 @@
             <children>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnSpan="4" GridPane.rowIndex="5">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#clear" text="Clear">
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                            <graphic>
-                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <viewport>
-                                        <Rectangle2D />
-                                    </viewport>
-                                    <image>
-                                        <Image url="@img/reload.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </Button>
-                        <Button  mnemonicParsing="false" onAction="#addStaff"  text="Insert">
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                            <graphic>
-                                <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@img/save.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </Button>
-                        <Button  mnemonicParsing="false" onAction="#cancel" text="Cancel">
+                        <Button  mnemonicParsing="false" onAction="#cancelUpdate" text="Cancel">
                             <cursor>
                                 <Cursor fx:constant="HAND" />
                             </cursor>
@@ -80,11 +53,9 @@
                         <Insets top="10.0" />
                     </GridPane.margin>
                 </HBox>
-<!--                <Label text="ID" styleClass="labeladdview" />-->
-<!--                <TextField fx:id="idField" alignment="TOP_LEFT" maxWidth="-Infinity" prefWidth="160.0" promptText="MaNhanVien" GridPane.columnIndex="1" GridPane.hgrow="NEVER" />-->
-                <Label text="Email" styleClass="labeladdview" GridPane.columnIndex="2" />
+                                <Label text="Email" styleClass="labeladdview" GridPane.columnIndex="2" />
                 <TextField fx:id="emailField" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="250.0" promptText="Email" GridPane.columnIndex="3" GridPane.hgrow="NEVER" />
-                <TextField fx:id="nameField" alignment="TOP_LEFT" maxWidth="-Infinity" prefWidth="300.0" promptText="Name" GridPane.columnIndex="1" GridPane.hgrow="NEVER"  />
+                <TextField fx:id="nameField" alignment="TOP_LEFT" maxWidth="-Infinity" prefWidth="300.0" promptText="Name" GridPane.columnIndex="1" GridPane.hgrow="NEVER" />
                 <TextField fx:id="phoneField" alignment="TOP_LEFT" maxWidth="-Infinity" prefWidth="300.0" promptText="Phone Number" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="addressField" alignment="TOP_LEFT" maxWidth="-Infinity" prefWidth="300.0" promptText="Address" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <DatePicker fx:id="birthDatePicker" maxHeight="-Infinity" prefHeight="31.0" prefWidth="300.0" promptText="dd-mm-yyyy" GridPane.columnIndex="1" GridPane.rowIndex="3" />

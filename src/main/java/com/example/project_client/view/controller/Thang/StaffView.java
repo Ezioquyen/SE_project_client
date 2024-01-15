@@ -107,6 +107,21 @@ public class StaffView {
        Router.switchTo(Pages.ADMIN_VIEW);
     }
 
+    @FXML
+    private void readStaff() throws IOException {
+        try {
+            staff = tableView.getSelectionModel().getSelectedItem();
+            if(staff == null) {
+                StaffView.createAlert(Alert.AlertType.WARNING, "Bạn chưa chọn nhân viên", "", "Thông báo" ).show();
+            }
+            idUpdate = staff.getId();
+            Router.switchTo(Pages.READ_STAFF_VIEW);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
     private void setTableView() throws IOException {
         staffs = staffCalRepository.getAllStaffApi();
         tableList = FXCollections.observableArrayList(staffs);
@@ -139,9 +154,9 @@ public class StaffView {
         // Lọc và hiển thị chỉ các dòng phù hợp với từ khóa tìm kiếm
         ObservableList<Staff> filteredList = tableList.filtered(staff ->
                         staff.getName().toLowerCase().contains(keyword.toLowerCase())
-//                                ||
-//                                staff.getEmail().toLowerCase().contains(keyword.toLowerCase())
-                // ... Thêm các trường khác cần tìm kiếm ...
+//                                || staff.getPhoneNumber().toLowerCase().contains(keyword.toLowerCase())
+//                                || staff.getRole().toLowerCase().contains(keyword.toLowerCase())
+                 // ... Thêm các trường khác cần tìm kiếm ...
         );
 
         // Cập nhật TableView với danh sách đã lọc

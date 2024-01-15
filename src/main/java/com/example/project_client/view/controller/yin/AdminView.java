@@ -1,58 +1,33 @@
 package com.example.project_client.view.controller.yin;
 
+import com.example.project_client.HelloApplication;
 import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class AdminView {
 
-    @FXML
-    private HBox ProductBox;
 
     @FXML
-    private BorderPane SceneBorderPane;
+    VBox mainPane;
 
     @FXML
-    private HBox acceptOrderBox;
-
-    @FXML
-    private HBox addUserBox;
-
-    @FXML
-    private Button addUserBtn;
-
-    @FXML
-    private HBox changePasswordBox;
-
-    @FXML
-    private HBox checkHistoryBox;
-
-    @FXML
-    private Button customerBtn;
-
-    @FXML
-    private Button logoutBtn;
-
-    @FXML
-    private HBox pendingOrderBox;
-
-    @FXML
-    private Button productBtn;
-
-    @FXML
-    private HBox revenue;
-
-    @FXML
-    private Button revenueBtn;
-
-    @FXML
-    private Button userBtn;
+    void initialize() throws IOException {
+        //Quyen
+        String scenePath = Router.getRouterLabel().get(Pages.MAIN_VIEW);
+        Parent resource = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource(scenePath)));
+        mainPane.getChildren().setAll(resource);
+    }
 
     @FXML
     void HandleAddUserClicked(ActionEvent event) {
@@ -62,8 +37,9 @@ public class AdminView {
     @FXML
     void HandleCustomerClicked(ActionEvent event) throws IOException {
         Router.goTo(Pages.CUSTOMER_VIEW);
-       // Router.showDialog(Pages.CUSTOMER_VIEW);
+        // Router.showDialog(Pages.CUSTOMER_VIEW);
     }
+
 
     @FXML
     void HandleProductClicked(ActionEvent event) {
@@ -79,10 +55,17 @@ public class AdminView {
     void HandleStaffClicked(ActionEvent event) {
 
     }
+
     @FXML
     void HandleSignOut(ActionEvent event) throws IOException {
-    Router.goTo(Pages.LOGIN_VIEW);
+        Router.goTo(Pages.LOGIN_VIEW);
     }
 
+    @FXML
+    void switchToMainView() throws IOException {
+        String scenePath = Router.getRouterLabel().get(Pages.MAIN_VIEW);
+        Parent resource = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource(scenePath)));
+        mainPane.getChildren().setAll(resource);
+    }
 }
 

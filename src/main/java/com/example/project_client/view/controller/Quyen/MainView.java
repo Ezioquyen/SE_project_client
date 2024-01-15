@@ -3,19 +3,21 @@ package com.example.project_client.view.controller.Quyen;
 import atlantafx.base.controls.Card;
 import atlantafx.base.controls.Tile;
 import atlantafx.base.theme.Styles;
+import com.example.project_client.event.Data;
 import com.example.project_client.model.OrderBill;
 import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
 import com.example.project_client.view.controller.Quyen.components.PromotionChild;
 import com.example.project_client.view.controller.Quyen.event.ViewToggle;
+import com.example.project_client.view.controller.Quyen.interfaces.InitStyles;
 import com.example.project_client.viewModel.Quyen.MainViewModel;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Pagination;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
+import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.material2.Material2AL;
+import org.kordamp.ikonli.material2.Material2MZ;
 
 import java.io.IOException;
 
@@ -23,7 +25,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class MainView {
+public class MainView implements InitStyles {
     @FXML
     Pagination pagination;
 
@@ -31,10 +33,19 @@ public class MainView {
     ListView<PromotionChild> listView;
     @FXML
     TextField filter;
+    @FXML
+    Button createOrder;
+    @FXML
+    Button createPromotion;
     private final MainViewModel mainViewModel = new MainViewModel();
 
     @FXML
     void initialize() throws IOException {
+        if(!(Data.getUser().getStaffId() ==null)){
+            createPromotion.setVisible(false);
+        } else {
+            createOrder.setVisible(false);
+        }
         mainViewModel.initModel();
         mainViewModel.getPromotions().forEach(e -> listView.getItems().add(new PromotionChild(e)));
         filter.textProperty().addListener((observableValue, s, t1) -> filter(mainViewModel.getOrderBills(), t1));
@@ -42,20 +53,12 @@ public class MainView {
 
     }
 
+
     @FXML
     public void switchToCreateOrderView() throws IOException {
         Router.switchTo(Pages.CREATE_ORDER_VIEW);
     }
 
-    @FXML
-    public void switchToIngredientView() throws IOException {
-        Router.switchTo(Pages.INGREDIENT_VIEW);
-    }
-
-    @FXML
-    public void switchToProductView() throws IOException {
-        Router.switchTo(Pages.PRODUCT_VIEW);
-    }
 
     @FXML
     void create() throws IOException {
@@ -63,14 +66,15 @@ public class MainView {
     }
 
     private void filter(List<OrderBill> orderBillsList, String value) {
+        initStyle();
         List<OrderBill> orderBills = orderBillsList.stream().filter(e -> e.getId().contains(value)).collect(Collectors.toList());
         int size = orderBills.size();
-        pagination.setPageCount(size % 6 == 0 ? size / 6 : (size / 6 + 1));
+        pagination.setPageCount(size % 4 == 0 ? size / 4 : (size / 4 + 1));
         pagination.setCurrentPageIndex(0);
         pagination.setMaxPageIndicatorCount(5);
         pagination.setPageFactory(index -> {
             VBox vBox = new VBox();
-            IntStream.range(index * 6, index * 6 + 5).forEach(e -> {
+            IntStream.range(index * 4, index * 4 + 4).forEach(e -> {
                         if (e < size) vBox.getChildren().add(new MyCard(orderBills.get(e)));
                     }
             );
@@ -79,9 +83,11 @@ public class MainView {
     }
 
 
-    @FXML
-    public void switchToStaffView() throws IOException {
-        Router.switchTo(Pages.STAFF_VIEW);
+
+    @Override
+    public void initStyle() {
+        createOrder.getStyleClass().add(Styles.ACCENT);
+        createOrder.setGraphic(new FontIcon(Material2MZ.PLUS));
     }
 }
 

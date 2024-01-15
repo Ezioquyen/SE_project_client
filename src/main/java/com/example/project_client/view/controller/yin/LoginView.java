@@ -1,4 +1,5 @@
 package com.example.project_client.view.controller.yin;
+
 import com.example.project_client.event.Data;
 import com.example.project_client.model.User;
 import com.example.project_client.repository.UserRepository;
@@ -18,8 +19,10 @@ public class LoginView {
     private TextField usernameField;
     @FXML
     private PasswordField passwordField;
-    @FXML private Button loginButton;
-    @FXML private Label invalidLoginLabel;
+    @FXML
+    private Button loginButton;
+    @FXML
+    private Label invalidLoginLabel;
 
     @FXML
     private void handleLoginButton(ActionEvent event) throws IOException {
@@ -37,31 +40,22 @@ public class LoginView {
         boolean foundUser = false;
 
 
-
-        boolean isAdmin = false;
+        User thisUser = new User();
 
         for (User user : listUser) {
             if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
                 foundUser = true;
-
-                if (user.getStaffId() == null) {
-                    isAdmin = true;
-                    break;
-                }
+                thisUser = user;
             }
         }
 
         if (foundUser) {
-            if (isAdmin) {
-                Router.goTo(Pages.ADMIN_VIEW);
-            } else {
-                Router.goTo(Pages.MAIN_VIEW);
-            }
+            Data.setUser(thisUser);
+            Router.goTo(Pages.ADMIN_VIEW);
+
         } else {
             showErrorAlert("Đăng nhập thất bại", "Vui lòng thử lại!");
         }
-        //TODO thay new User = User sau khi dang nhap
-        Data.setUser(new User());
     }
 
 

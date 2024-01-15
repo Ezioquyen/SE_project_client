@@ -1,5 +1,6 @@
 package com.example.project_client.viewModel.Quyen;
 
+import com.example.project_client.event.Data;
 import com.example.project_client.model.OrderBill;
 import com.example.project_client.repository.OrderBillRepository;
 
@@ -22,7 +23,7 @@ public class OrderBillViewModel {
         if(isCreate) {
 
             data.setId("OB" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("ssmmHHddMMyyyy")));
-            data.setUserStaffId("USS32");
+            data.setUserStaffId(Data.getUser().getStaffId());
             data.setChangeMoney(data.getReceived() - data.getChangeMoney());
             orderBillRepository.saveOrderBillApi(data);
             export(orderBill);

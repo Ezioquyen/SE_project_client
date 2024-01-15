@@ -151,7 +151,7 @@ public class CreateOrderView implements InitStyles {
 
     @FXML
     public void cancel() throws IOException {
-        Router.switchTo(Pages.MAIN_VIEW);
+        Router.switchTo(Pages.ADMIN_VIEW);
     }
 
 

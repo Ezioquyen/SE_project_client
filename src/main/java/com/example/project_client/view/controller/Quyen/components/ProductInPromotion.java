@@ -1,6 +1,7 @@
 package com.example.project_client.view.controller.Quyen.components;
 
 import atlantafx.base.theme.Styles;
+import com.example.project_client.event.Data;
 import com.example.project_client.model.Product;
 import com.example.project_client.view.controller.Quyen.interfaces.InitStyles;
 import javafx.geometry.Insets;
@@ -37,6 +38,9 @@ public class ProductInPromotion extends HBox implements InitStyles {
         this.getChildren().addAll(labelCoffee, region, textField, labelPercent, button);
 
         this.setPadding(new Insets(10.0, 10.0, 10.0, 10.0));
+
+           setDisable(!(Data.getUser().getStaffId() ==null));
+
     }
 
     @Override

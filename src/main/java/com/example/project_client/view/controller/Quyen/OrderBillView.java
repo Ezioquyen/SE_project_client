@@ -95,7 +95,7 @@ public class OrderBillView {
 
     @FXML
     public void done() throws IOException {
-        Router.switchTo(Pages.MAIN_VIEW);
+        Router.switchTo(Pages.ADMIN_VIEW);
     }
     @FXML
     public void createNewBill() throws IOException {

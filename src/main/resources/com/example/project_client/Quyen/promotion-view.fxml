@@ -6,6 +6,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -25,16 +26,20 @@
         <padding>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
         </padding>
-        <HBox alignment="CENTER" spacing="10.0">
+        <HBox fx:id="topHBox" alignment="CENTER" spacing="10.0">
             <Label text="Products:" />
             <Region HBox.hgrow="ALWAYS" />
          <Button fx:id="addAll" mnemonicParsing="false" onAction="#addAll" text="Add all" />
             <TextField fx:id="percent" prefHeight="36.0" prefWidth="46.0" promptText="0" text="10" />
             <Label text="\%" />
         </HBox>
-        <FlowPane fx:id="productsPane" />
+      <ScrollPane prefHeight="700.0" prefWidth="651.0">
+         <content>
+              <FlowPane fx:id="productsPane" />
+         </content>
+      </ScrollPane>
     </VBox>
-    <VBox prefHeight="1000.0" prefWidth="540.0">
+    <VBox>
       <TabPane side="RIGHT" tabClosingPolicy="UNAVAILABLE">
          <tabs>
             <Tab text="Products">
@@ -46,7 +51,7 @@
                <content>
                   <VBox alignment="CENTER">
                      <children>
-                        <VBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="600.0">
+                        <VBox fx:id="infor" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="600.0">
                            <padding>
                               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                            </padding>
@@ -92,9 +97,9 @@
             </Tab>
          </tabs>
       </TabPane>
-        <HBox prefHeight="66.0" prefWidth="646.0" spacing="10.0">
-         <Button mnemonicParsing="false" onAction="#confirmation" text="Xác nhận" />
-            <Button mnemonicParsing="false" onAction="#cancel" text="Hủy" />
+        <HBox fx:id="btnCont" prefHeight="66.0" prefWidth="646.0" spacing="10.0">
+         <Button fx:id="confirmation" mnemonicParsing="false" onAction="#confirmation" text="Xác nhận" />
+            <Button mnemonicParsing="false" onAction="#cancel" text="Quay lại" />
          <Region HBox.hgrow="ALWAYS" />
          <Button fx:id="remove" mnemonicParsing="false" onAction="#remove" text="Xóa" />
          <padding>
@@ -120,5 +125,8 @@
             </VBox>
          </children>
         </VBox>
+      <padding>
+         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+      </padding>
     </VBox>
 </SplitPane>

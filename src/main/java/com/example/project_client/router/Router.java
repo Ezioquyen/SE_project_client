@@ -28,6 +28,7 @@ public final class Router {
     private static String windowTitle;
     private static Double windowWidth;
     private static Double windowHeight;
+    @Getter
 
     private static final Map<Pages, String> routerLabel = new HashMap<>();
     private static final Map<Pages, Object> dataLabel = new HashMap<>();

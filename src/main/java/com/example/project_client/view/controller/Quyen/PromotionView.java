@@ -1,5 +1,6 @@
 package com.example.project_client.view.controller.Quyen;
 
+import com.example.project_client.event.Data;
 import com.example.project_client.model.Promotion;
 import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
@@ -9,6 +10,7 @@ import com.example.project_client.viewModel.Quyen.PromotionViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -42,13 +44,29 @@ public class PromotionView {
     VBox warningVBox;
     @FXML
     VBox parent;
+    @FXML
+    HBox btnCont;
+    @FXML
+    Button confirmation;
+    @FXML
+    HBox topHBox;
+    @FXML
+    VBox infor;
+
     private final PromotionViewModel promotionViewModel = new PromotionViewModel();
 
     @FXML
     void initialize() throws IOException {
+        if(!(Data.getUser().getStaffId() ==null)){
+            btnCont.getChildren().remove(confirmation);
+            productsPane.setDisable(true);
+            infor.setDisable(true);
+            topHBox.setDisable(true);
+        }
         parent.getChildren().remove(warningVBox);
         promotionViewModel.initData((Promotion) Router.getData(Pages.MAIN_VIEW));
-        remove.setVisible(!promotionViewModel.getIsCreate());
+        remove.setVisible(!promotionViewModel.getIsCreate()&&(Data.getUser().getStaffId() ==null));
+
         productsPane.getChildren().addAll(promotionViewModel.getProducts().stream().map(e -> {
             ProductView productView = new ProductView(e);
             productView.setOnMouseClicked(mouseEvent -> insertProduct(productView, Double.parseDouble(percent.getText())));
@@ -63,6 +81,7 @@ public class PromotionView {
             }
             percent.setText(t1);
         }));
+
 
         name.setText(promotionViewModel.getPromotion().getName());
         information.setText(promotionViewModel.getPromotion().getInformation());
@@ -82,7 +101,7 @@ public class PromotionView {
 
         if (showWarning()) {
             promotionViewModel.createPromotion();
-            Router.switchTo(Pages.MAIN_VIEW);
+            Router.switchTo(Pages.ADMIN_VIEW);
         }
 
     }
@@ -90,7 +109,7 @@ public class PromotionView {
     @FXML
     void cancel() throws IOException {
         Router.removeData(Pages.MAIN_VIEW);
-        Router.switchTo(Pages.MAIN_VIEW);
+        Router.switchTo(Pages.ADMIN_VIEW);
     }
 
     @FXML

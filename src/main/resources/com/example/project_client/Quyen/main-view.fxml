@@ -5,61 +5,67 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Pagination?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Quyen.MainView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1116.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Quyen.MainView">
    <center>
-      <SplitPane dividerPositions="0.829211229946524" prefHeight="706.0" prefWidth="859.0">
-         <VBox>
-            <HBox>
-               <TextField fx:id="filter" promptText="Nhập mã hóa đơn" />
+      <HBox>
+         <children>
+            <VBox prefHeight="688.0" prefWidth="821.0">
+               <HBox prefHeight="74.0" prefWidth="900.0" style="-fx-border-color: gray transparent gray gray;">
+                  <TextField fx:id="filter" promptText="Nhập mã hóa đơn" />
+                  <Region HBox.hgrow="ALWAYS" />
+                    <Button fx:id="createOrder" mnemonicParsing="false" onAction="#switchToCreateOrderView" prefHeight="50.0" prefWidth="50.0" />
+                  <padding>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </padding>
+               </HBox>
+               <HBox alignment="CENTER" prefWidth="900.0">
+                  <children>
+                     <Pagination fx:id="pagination" prefHeight="650.0" prefWidth="900.0" styleClass="bullet" HBox.hgrow="ALWAYS" />
+                  </children>
+               </HBox>
+            </VBox>
+            <VBox spacing="5.0" style="-fx-border-color: gray;">
+         
+                  <VBox />
+               <VBox alignment="TOP_CENTER" prefHeight="422.0" prefWidth="337.0" spacing="5.0">
+                  <children>
+                     <HBox alignment="CENTER" style="-fx-background-color: green;" styleClass="success">
+                        <children>
+                           <Label text="Các chương trình khuyến mãi" textFill="WHITE">
+                              <font>
+                                 <Font size="20.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </HBox>
+                     <ListView fx:id="listView" />
+                     <Button fx:id="createPromotion" mnemonicParsing="false" onAction="#create" text="Tạo khuyến mãi" />
+                  </children>
+               </VBox>
                <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets left="15.0" right="15.0" />
                </padding>
-            </HBox>
-            <HBox alignment="CENTER" prefWidth="900.0">
-               <children>
-                  <Pagination fx:id="pagination" prefHeight="650.0" prefWidth="900.0" styleClass="bullet" HBox.hgrow="ALWAYS" />
-               </children>
-            </HBox>
-         </VBox>
-         <VBox spacing="5.0">
-      
-            <VBox prefHeight="319.0" prefWidth="98.0">
-      
-                <VBox prefHeight="319.0" prefWidth="98.0">
-                    <Button mnemonicParsing="false" onAction="#switchToCreateOrderView" text="Create order" />
-                    <Button mnemonicParsing="false" onAction="#switchToIngredientView" text="Ingredient" />
-                    <Button mnemonicParsing="false" onAction="#switchToProductView" text="Product" />
-                   <Button mnemonicParsing="false" onAction="#switchToStaffView" text="Staff" />
-                </VBox>
-      
             </VBox>
-            <VBox alignment="TOP_CENTER" spacing="5.0">
-               <children>
-                  <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" />
-                  <Button mnemonicParsing="false" onAction="#create" text="Tạo khuyến mãi" />
-               </children>
-            </VBox>
-            <padding>
-               <Insets left="15.0" />
-            </padding>
-         </VBox>
-      </SplitPane>
+         </children>
+      </HBox>
    </center>
    <top>
-      <HBox BorderPane.alignment="CENTER">
+      <HBox style="-fx-background-color: #915412;" BorderPane.alignment="CENTER">
          <padding>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </padding>
-         <Label text="Coffee management" />
+         <Label text="ĐƠN HÀNG VÀ KHUYẾN MÃI " textFill="WHITE">
+            <font>
+               <Font size="30.0" />
+            </font></Label>
          <Region HBox.hgrow="ALWAYS" />
-         <Button mnemonicParsing="false" text="Quit" />
       </HBox>
    </top>
    <padding>

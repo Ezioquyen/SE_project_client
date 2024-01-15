@@ -6,68 +6,58 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="808.0" prefWidth="1158.0" style="-fx-background-color: eaded6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Truong.readProductView">
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: eaded6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Truong.readProductView">
    <children>
-      <Label layoutX="172.0" layoutY="98.0" text="ID:">
+      <Label layoutX="416.0" layoutY="129.0" text="ID:">
          <font>
-            <Font size="18.0" />
+            <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="id" layoutX="303.0" layoutY="98.0" text="ID" textFill="#2500ff">
+      <Label fx:id="id" layoutX="588.0" layoutY="129.0" text="ID" textFill="#2500ff">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="name" layoutX="303.0" layoutY="158.0" text="Name" textFill="#2500ff">
+      <Label fx:id="name" layoutX="588.0" layoutY="218.0" text="Name" textFill="#2500ff">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="172.0" layoutY="158.0" text="Name:">
+      <Label layoutX="416.0" layoutY="218.0" text="Name:">
          <font>
-            <Font size="18.0" />
+            <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="price" layoutX="303.0" layoutY="226.0" text="Price" textFill="#2500ff">
+      <Label fx:id="price" layoutX="587.0" layoutY="310.0" text="Price" textFill="#2500ff">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="172.0" layoutY="226.0" text="Price:">
+      <Label layoutX="415.0" layoutY="310.0" text="Price:">
          <font>
-            <Font size="18.0" />
+            <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="available" layoutX="303.0" layoutY="301.0" text="Available" textFill="#2500ff">
+      <Label fx:id="available" layoutX="586.0" layoutY="401.0" text="Available" textFill="#2500ff">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="172.0" layoutY="301.0" text="Available:">
+      <Label layoutX="414.0" layoutY="401.0" text="Available:">
          <font>
-            <Font size="18.0" />
+            <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="discount" layoutX="303.0" layoutY="378.0" text="Discount" textFill="#2500ff">
+      <Label layoutX="412.0" layoutY="500.0" text="Image:">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="172.0" layoutY="378.0" text="Discount:">
+      <Button layoutX="868.0" layoutY="43.0" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: #000000;" text="Cancel" textFill="WHITE">
          <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="172.0" layoutY="456.0" text="Image:">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Button layoutX="412.0" layoutY="27.0" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: #000000;" text="Cancel" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="275.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="image" fitHeight="188.0" fitWidth="256.0" layoutX="581.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

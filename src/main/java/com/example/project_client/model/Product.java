@@ -10,16 +10,14 @@ public class Product {
     private String name;
     private Integer price;
     private Boolean available;
-    private Double discount;
     private String image;
 
     @JsonCreator
-    public Product(@JsonProperty("id") Integer id,@JsonProperty("name") String name, @JsonProperty("price") Integer price,@JsonProperty("available") Boolean available,@JsonProperty("discount") Double discount,@JsonProperty("image") String image) {
+    public Product(@JsonProperty("id") Integer id,@JsonProperty("name") String name, @JsonProperty("price") Integer price,@JsonProperty("available") Boolean available,@JsonProperty("image") String image) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.available = available;
-        this.discount = discount;
         this.image = image;
     }
 
@@ -28,7 +26,6 @@ public class Product {
         this.name = null;
         this.price = null;
         this.available = null;
-        this.discount = null;
         this.image = null;
     }
 
@@ -44,9 +41,6 @@ public class Product {
         return available;
     }
 
-    public Double getDiscount() {
-        return discount;
-    }
 
     public Integer getPrice() {
         return price;
@@ -68,14 +62,6 @@ public class Product {
             this.name = name;
             return Boolean.TRUE;
         }
-    }
-
-    public Boolean setDiscount(Double discount) {
-        if(discount > 100 || discount < 0){
-            return Boolean.FALSE;
-        }
-        this.discount = discount;
-        return Boolean.TRUE;
     }
 
     public Boolean setPrice(Integer price) {

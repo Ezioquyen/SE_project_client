@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public class readProductView {
     @FXML
-    private Label id, name, price, available, discount;
+    private Label id, name, price, available;
     @FXML
     private ImageView image;
     private Product product;
@@ -31,7 +31,6 @@ public class readProductView {
         name.setText(product.getName());
         price.setText(product.getPrice().toString());
         available.setText(product.getAvailable().toString());
-        discount.setText(product.getDiscount().toString());
         image.setFitHeight(150.0);
         image.setFitWidth(200.0);
         image.setPreserveRatio(true);

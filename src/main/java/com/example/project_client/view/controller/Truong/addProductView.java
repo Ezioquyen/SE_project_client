@@ -22,11 +22,11 @@ public class addProductView {
     @FXML
     private Button image;
     @FXML
-    private TextField name, price, discount;
+    private TextField name, price;
     @FXML
-    private Label nameAlert, priceAlert, discountAlert, imageAlert;
+    private Label nameAlert, priceAlert, imageAlert;
     private final Boolean[] available = {Boolean.FALSE, Boolean.TRUE};
-    private Boolean[] check = {true, false, false, false, false, true};
+    private Boolean[] check = {true, false, false, true, false, true};
     @FXML
     public void initialize() throws Exception {
         choiceBox.getItems().addAll(available);
@@ -66,7 +66,6 @@ public class addProductView {
     private void setField() {
         setName();
         setPrice();
-        setDiscount();
         choiceBox.setValue(Boolean.TRUE);
 //        choiceBox.setStyle("-fx-text-fill: white;" + "-fx-background-color: black;" +   "-fx-mark-color: orange;");
     }
@@ -107,28 +106,6 @@ public class addProductView {
             catch (Exception e){
                 check[2] = false;
                 priceAlert.setText(e.getMessage());
-            }
-        });
-    }
-    private void setDiscount() {
-        discount.setPromptText("input discount");
-        discount.setStyle("-fx-text-fill: white;" + "-fx-background-color: black;");
-        discount.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            try{
-                try {
-                    if (!product.setDiscount(Double.parseDouble(newValue))) {
-                        throw new Exception();
-                    }
-                }
-                catch (Exception e) {
-                    throw new Exception("Invalid Discount, discount must be a real number from 0 to 100");
-                }
-                check[3] = true;
-                discountAlert.setText("");
-            }
-            catch (Exception e){
-                check[3] = false;
-                discountAlert.setText(e.getMessage());
             }
         });
     }

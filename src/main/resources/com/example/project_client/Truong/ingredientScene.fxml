@@ -6,16 +6,16 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="831.0" prefWidth="1150.0" style="-fx-background-color: eaded6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Truong.ingredientView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: eaded6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Truong.ingredientView">
    <children>
-      <Pane prefHeight="115.0" prefWidth="1168.0" style="-fx-background-color: #ba9073;">
+      <Pane prefHeight="174.0" prefWidth="1366.0" style="-fx-background-color: #ba9073;">
          <children>
-            <Button layoutX="731.0" layoutY="11.0" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: #000000;" text="Cancel" textFill="WHITE">
+            <Button layoutX="974.0" layoutY="19.0" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: #000000;" text="Cancel" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="203.0" layoutY="56.0" mnemonicParsing="false" onAction="#addIngredient" style="-fx-background-color: #000000;" text="Add Ingredient" textFill="WHITE">
+            <Button layoutX="291.0" layoutY="81.0" mnemonicParsing="false" onAction="#addIngredient" style="-fx-background-color: #000000;" text="Add Ingredient" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -27,7 +27,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="370.0" layoutY="56.0" mnemonicParsing="false" onAction="#changeIngredient" style="-fx-background-color: #000000;" text="Change Ingredient" textFill="WHITE">
+            <Button layoutX="535.0" layoutY="81.0" mnemonicParsing="false" onAction="#changeIngredient" style="-fx-background-color: #000000;" text="Change Ingredient" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -39,7 +39,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="564.0" layoutY="56.0" mnemonicParsing="false" onAction="#deleteIngredient" style="-fx-background-color: #000000;" text="Delete Ingredient" textFill="WHITE">
+            <Button layoutX="783.0" layoutY="81.0" mnemonicParsing="false" onAction="#deleteIngredient" style="-fx-background-color: #000000;" text="Delete Ingredient" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -51,7 +51,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="31.0" layoutY="56.0" mnemonicParsing="false" onAction="#readIngredient" style="-fx-background-color: #000000;" text="Read Ingredient" textFill="WHITE">
+            <Button layoutX="41.0" layoutY="81.0" mnemonicParsing="false" onAction="#readIngredient" style="-fx-background-color: #000000;" text="Read Ingredient" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -65,19 +65,19 @@
             </Button>
          </children>
       </Pane>
-      <ScrollPane layoutX="231.0" layoutY="244.0" prefHeight="333.0" prefWidth="397.0">
+      <ScrollPane layoutX="216.0" layoutY="281.0" prefHeight="391.0" prefWidth="531.0">
          <content>
-            <TableView fx:id="tableView" prefHeight="327.0" prefWidth="404.0" style="-fx-background-color: #f8f4f1;">
+            <TableView fx:id="tableView" prefHeight="387.0" prefWidth="525.0" style="-fx-background-color: #f8f4f1;">
               <columns>
-                <TableColumn fx:id="id" prefWidth="59.0" text="ID" />
-                <TableColumn fx:id="name" prefWidth="159.0" text="Name" />
-                  <TableColumn fx:id="unit" prefWidth="96.0" text="Unit" />
-                  <TableColumn fx:id="unit_Price" prefWidth="77.0" text="Unit Price" />
+                <TableColumn fx:id="id" prefWidth="73.0" text="ID" />
+                <TableColumn fx:id="name" prefWidth="207.0" text="Name" />
+                  <TableColumn fx:id="unit" prefWidth="152.0" text="Unit" />
+                  <TableColumn fx:id="unit_Price" prefWidth="90.0" text="Unit Price" />
               </columns>
             </TableView>
          </content>
       </ScrollPane>
-      <TextField fx:id="searchTextField" layoutX="314.0" layoutY="132.0" promptText="search">
+      <TextField fx:id="searchTextField" layoutX="324.0" layoutY="200.0" prefHeight="43.0" prefWidth="220.0" promptText="search">
          <font>
             <Font size="17.0" />
          </font></TextField>

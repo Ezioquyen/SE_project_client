@@ -9,21 +9,21 @@ public class Ingredient {
     private Integer id;
     private String name;
     private String unit;
-    private Integer unit_Price;
+    private Integer unitPrice;
 
     @JsonCreator
-    public Ingredient(@JsonProperty("id") Integer id, @JsonProperty("name") String name, @JsonProperty("unit") String unit, @JsonProperty("unit_Price") Integer unit_Price){
+    public Ingredient(@JsonProperty("id") Integer id, @JsonProperty("name") String name, @JsonProperty("unit") String unit, @JsonProperty("unitPrice") Integer unit_Price){
         this.id = id;
         this.name = name;
         this.unit = unit;
-        this.unit_Price = unit_Price;
+        this.unitPrice = unit_Price;
     }
 
     public Ingredient(){
         this.id = 1;
         this.name = null;
         this.unit = null;
-        this.unit_Price = null;
+        this.unitPrice = null;
     }
 
     public Integer getId() {
@@ -39,7 +39,7 @@ public class Ingredient {
     }
 
     public Integer getUnit_Price() {
-        return unit_Price;
+        return unitPrice;
     }
 
     public void setId(Integer id) {
@@ -71,7 +71,7 @@ public class Ingredient {
             return Boolean.FALSE;
         }
         else {
-            this.unit_Price = unit_Price;
+            this.unitPrice = unit_Price;
             return Boolean.TRUE;
         }
     }

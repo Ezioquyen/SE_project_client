@@ -7,76 +7,64 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="921.0" prefWidth="1092.0" style="-fx-background-color: eaded6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Truong.changeProductView">
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: eaded6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Truong.changeProductView">
    <children>
-      <Button layoutX="154.0" layoutY="531.0" mnemonicParsing="false" onAction="#confirm" style="-fx-background-color: #000000;" text="confirm" textFill="WHITE">
+      <Button layoutX="352.0" layoutY="668.0" mnemonicParsing="false" onAction="#confirm" style="-fx-background-color: #000000;" text="confirm" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="24.0" />
          </font></Button>
-      <Button layoutX="306.0" layoutY="531.0" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: #000000;" text="cancel" textFill="WHITE">
+      <Button layoutX="623.0" layoutY="664.0" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: #000000;" text="cancel" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="24.0" />
          </font></Button>
-      <Label layoutX="121.0" layoutY="35.0" text="ID:">
+      <Label layoutX="339.0" layoutY="62.0" text="ID:">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="24.0" />
          </font></Label>
-      <Label layoutX="120.0" layoutY="371.0" text="Image:">
+      <Label layoutX="338.0" layoutY="443.0" text="Image:">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="24.0" />
          </font></Label>
-      <Label layoutX="120.0" layoutY="445.0" text="Available:">
+      <Label layoutX="338.0" layoutY="568.0" text="Available:">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="24.0" />
          </font></Label>
-      <ChoiceBox fx:id="choiceBox" layoutX="253.0" layoutY="438.0" prefHeight="37.0" prefWidth="166.0" style="-fx-background-color: #ffffff;" />
-      <TextField fx:id="discount" layoutX="253.0" layoutY="284.0" style="-fx-background-color: #000000;">
+      <ChoiceBox fx:id="choiceBox" layoutX="526.0" layoutY="552.0" prefHeight="48.0" prefWidth="176.0" style="-fx-background-color: #ffffff;" />
+      <TextField fx:id="price" layoutX="525.0" layoutY="309.0" style="-fx-background-color: #000000;">
          <font>
-            <Font size="18.0" />
+            <Font size="24.0" />
          </font></TextField>
-      <Label layoutX="121.0" layoutY="292.0" text="Discount:">
+      <Label layoutX="338.0" layoutY="317.0" text="Price:">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="24.0" />
          </font></Label>
-      <TextField fx:id="price" layoutX="253.0" layoutY="195.0" style="-fx-background-color: #000000;">
+      <TextField fx:id="name" layoutX="525.0" layoutY="173.0" style="-fx-background-color: #000000;">
          <font>
-            <Font size="18.0" />
+            <Font size="24.0" />
          </font></TextField>
-      <Label layoutX="120.0" layoutY="203.0" text="Price:">
+      <Label layoutX="338.0" layoutY="181.0" text="Name:">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="24.0" />
          </font></Label>
-      <TextField fx:id="name" layoutX="253.0" layoutY="107.0" style="-fx-background-color: #000000;">
+      <Label fx:id="id" layoutX="526.0" layoutY="62.0" text="ID">
          <font>
-            <Font size="18.0" />
-         </font></TextField>
-      <Label layoutX="120.0" layoutY="115.0" text="Name:">
-         <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold Italic" size="26.0" />
          </font></Label>
-      <Label fx:id="id" layoutX="254.0" layoutY="35.0" text="ID">
-         <font>
-            <Font name="System Bold Italic" size="18.0" />
-         </font></Label>
-      <Label fx:id="nameAlert" layoutX="253.0" layoutY="76.0" text="Name" textFill="RED">
+      <Label fx:id="nameAlert" layoutX="525.0" layoutY="142.0" text="Name" textFill="RED">
          <font>
             <Font name="System Italic" size="18.0" />
          </font></Label>
-      <Label fx:id="priceAlert" layoutX="255.0" layoutY="160.0" text="Price" textFill="RED">
+      <Label fx:id="priceAlert" layoutX="527.0" layoutY="274.0" text="Price" textFill="RED">
          <font>
             <Font name="System Italic" size="18.0" />
          </font></Label>
-      <Label fx:id="discountAlert" layoutX="255.0" layoutY="250.0" text="Discount" textFill="RED">
+      <Label fx:id="imageAlert" layoutX="527.0" layoutY="405.0" text="Image" textFill="RED">
          <font>
             <Font name="System Italic" size="18.0" />
          </font></Label>
-      <Label fx:id="imageAlert" layoutX="255.0" layoutY="333.0" text="Image" textFill="RED">
+      <Button fx:id="image" layoutX="525.0" layoutY="439.0" mnemonicParsing="false" onAction="#chooseImage" style="-fx-background-color: #000000;" text="Choose Image" textFill="WHITE">
          <font>
-            <Font name="System Italic" size="18.0" />
-         </font></Label>
-      <Button fx:id="image" layoutX="253.0" layoutY="367.0" mnemonicParsing="false" onAction="#chooseImage" style="-fx-background-color: #000000;" text="Choose Image" textFill="WHITE">
-         <font>
-            <Font size="16.0" />
+            <Font size="22.0" />
          </font></Button>
    </children>
 </AnchorPane>

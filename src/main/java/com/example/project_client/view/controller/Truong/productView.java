@@ -29,8 +29,6 @@ public final class productView {
     @FXML
     private TableColumn<Product, Boolean> available;
     @FXML
-    private TableColumn<Product, Double> discount;
-    @FXML
     private TableColumn<Product, String> image;
     @FXML
     private TextField searchTextField;
@@ -165,7 +163,6 @@ public final class productView {
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
         available.setCellValueFactory(new PropertyValueFactory<>("available"));
-        discount.setCellValueFactory(new PropertyValueFactory<>("discount"));
         image.setCellValueFactory(new PropertyValueFactory<>("image"));
     }
     public static Product getProduct() {

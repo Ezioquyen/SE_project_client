@@ -25,9 +25,9 @@ public class changeProductView {
     @FXML
     private Button image;
     @FXML
-    private TextField name, price, discount;
+    private TextField name, price;
     @FXML
-    private Label id, nameAlert, priceAlert, discountAlert, imageAlert;
+    private Label id, nameAlert, priceAlert, imageAlert;
     private Product product;
     @FXML
     private void initialize() throws Exception {
@@ -70,7 +70,6 @@ public class changeProductView {
         id.setText(product.getId().toString());
         setName();
         setPrice();
-        setDiscount();
         image.setText(product.getImage().replace(System.getProperty("user.dir") + "\\src\\main\\resources\\com\\example\\project_client\\images\\", ""));
         choiceBox.setValue(Boolean.TRUE);
     }
@@ -113,29 +112,6 @@ public class changeProductView {
                 check[2] = false;
                 product.setPrice(Integer.parseInt(price.getPromptText()));
                 priceAlert.setText(e.getMessage());
-            }
-        });
-    }
-    private void setDiscount() {
-        discount.setPromptText(product.getDiscount().toString());
-        discount.setStyle("-fx-text-fill: white;" + "-fx-background-color: black;");
-        discount.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            try{
-                try {
-                    if (!product.setDiscount(Double.parseDouble(newValue))) {
-                        throw new Exception();
-                    }
-                }
-                catch (Exception e) {
-                    throw new Exception("Invalid Discount, discount must be a real number from 0 to 100");
-                }
-                check[3] = true;
-                discountAlert.setText("");
-            }
-            catch (Exception e){
-                check[3] = false;
-                product.setDiscount(Double.parseDouble(discount.getPromptText()));
-                discountAlert.setText(e.getMessage());
             }
         });
     }

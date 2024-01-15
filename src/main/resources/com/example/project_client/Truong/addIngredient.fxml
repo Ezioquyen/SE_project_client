@@ -8,51 +8,51 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="901.0" prefWidth="1104.0" style="-fx-background-color: eaded6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Truong.addIngredientView">
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: eaded6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Truong.addIngredientView">
    <children>
-      <Button layoutX="161.0" layoutY="519.0" mnemonicParsing="false" onAction="#confirm" style="-fx-background-color: #000000;" text="confirm" textFill="WHITE">
+      <Button layoutX="388.0" layoutY="582.0" mnemonicParsing="false" onAction="#confirm" style="-fx-background-color: #000000;" text="confirm" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="19.0" />
+            <Font name="System Bold" size="24.0" />
          </font></Button>
-      <Button layoutX="354.0" layoutY="519.0" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: #000000;" text="cancel" textFill="WHITE">
+      <Button layoutX="701.0" layoutY="582.0" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: #000000;" text="cancel" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="19.0" />
+            <Font name="System Bold" size="24.0" />
          </font></Button>
-      <TextField fx:id="name" layoutX="252.0" layoutY="81.0" promptText="name" style="-fx-background-color: #000000;">
+      <TextField fx:id="name" layoutX="606.0" layoutY="87.0" promptText="name" style="-fx-background-color: #000000;">
          <font>
-            <Font size="19.0" />
+            <Font size="25.0" />
          </font></TextField>
-      <Label layoutX="122.0" layoutY="85.0" text="Name:">
+      <Label layoutX="308.0" layoutY="97.0" text="Name:">
          <font>
-            <Font name="System Bold" size="19.0" />
+            <Font name="System Bold" size="25.0" />
          </font></Label>
-      <TextField fx:id="unitPrice" layoutX="252.0" layoutY="236.0" promptText="unit price" style="-fx-background-color: #000000;">
+      <TextField fx:id="unitPrice" layoutX="606.0" layoutY="242.0" promptText="unit price" style="-fx-background-color: #000000;">
          <font>
-            <Font size="19.0" />
+            <Font size="25.0" />
          </font></TextField>
-      <Label layoutX="122.0" layoutY="240.0" text="Unit price:">
+      <Label layoutX="308.0" layoutY="252.0" text="Unit price:">
          <font>
-            <Font name="System Bold" size="19.0" />
+            <Font name="System Bold" size="25.0" />
          </font></Label>
-      <TextField fx:id="unit" layoutX="253.0" layoutY="385.0" promptText="unit" style="-fx-background-color: #000000;">
+      <TextField fx:id="unit" layoutX="607.0" layoutY="391.0" promptText="unit" style="-fx-background-color: #000000;">
          <font>
-            <Font size="19.0" />
+            <Font size="25.0" />
          </font></TextField>
-      <Label layoutX="123.0" layoutY="389.0" text="Unit:">
+      <Label layoutX="309.0" layoutY="401.0" text="Unit:">
          <font>
-            <Font name="System Bold" size="19.0" />
+            <Font name="System Bold" size="25.0" />
          </font></Label>
-      <Label fx:id="nameAlert" layoutX="252.0" layoutY="42.0" text="Input name" textFill="RED">
+      <Label fx:id="nameAlert" layoutX="606.0" layoutY="48.0" text="Input name" textFill="RED">
          <font>
             <Font name="System Italic" size="19.0" />
          </font>
       </Label>
-      <Label fx:id="unitPriceAlert" layoutX="252.0" layoutY="198.0" text="Input unit price" textFill="RED">
+      <Label fx:id="unitPriceAlert" layoutX="606.0" layoutY="204.0" text="Input unit price" textFill="RED">
          <font>
             <Font name="System Italic" size="19.0" />
          </font>
       </Label>
-      <Label fx:id="unitAlert" layoutX="253.0" layoutY="348.0" text="Input unit" textFill="RED">
+      <Label fx:id="unitAlert" layoutX="607.0" layoutY="354.0" text="Input unit" textFill="RED">
          <font>
             <Font name="System Italic" size="19.0" />
          </font>

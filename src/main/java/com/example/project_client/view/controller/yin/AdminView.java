@@ -1,6 +1,7 @@
 package com.example.project_client.view.controller.yin;
 
 import com.example.project_client.HelloApplication;
+import com.example.project_client.event.Data;
 import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
 import javafx.event.ActionEvent;
@@ -20,10 +21,24 @@ public class AdminView {
 
     @FXML
     VBox mainPane;
-
+    @FXML
+    HBox analyze;
+    @FXML
+    HBox ingredient;
+    @FXML
+    HBox product;
+    @FXML
+    HBox staff;
+    @FXML
+    HBox userBtn;
+    @FXML
+    VBox vBox;
     @FXML
     void initialize() throws IOException {
         //Quyen
+        if(Data.getUser().getStaffId()!=null){
+            vBox.getChildren().removeAll(analyze,ingredient,product,staff,userBtn);
+        }
         String scenePath = Router.getRouterLabel().get(Pages.MAIN_VIEW);
         Parent resource = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource(scenePath)));
         mainPane.getChildren().setAll(resource);
@@ -42,18 +57,22 @@ public class AdminView {
 
 
     @FXML
-    void HandleProductClicked(ActionEvent event) {
-
+    void HandleProductClicked(ActionEvent event) throws IOException {
+        Router.switchTo(Pages.PRODUCT_VIEW);
     }
 
     @FXML
-    void HandleRevenueClicked(ActionEvent event) {
-
+    void HandleRevenueClicked(ActionEvent event) throws IOException {
+        Router.switchTo(Pages.MAIN_VIEW_PROFIT);
     }
 
     @FXML
-    void HandleStaffClicked(ActionEvent event) {
-
+    void HandleStaffClicked(ActionEvent event) throws IOException {
+        Router.switchTo(Pages.STAFF_VIEW);
+    }
+    @FXML
+    void toIngredient() throws IOException {
+        Router.switchTo(Pages.INGREDIENT_VIEW);
     }
 
     @FXML

@@ -6,12 +6,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="SceneBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@Stylesheet/Button.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.yin.AdminView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.yin.AdminView">
     <left>
-        <VBox prefHeight="768.0" prefWidth="250.0" style="-fx-background-color: #e6e6e6;" BorderPane.alignment="CENTER">
+        <VBox fx:id="vBox" prefHeight="768.0" prefWidth="250.0" style="-fx-background-color: #e6e6e6;" BorderPane.alignment="CENTER">
             <children>
                 <HBox alignment="BOTTOM_CENTER" prefHeight="118.0" prefWidth="248.0">
                     <children>
@@ -42,9 +43,9 @@
                   </Button>
                </children>
             </HBox>
-                <HBox fx:id="revenue" alignment="CENTER_LEFT" fillHeight="false" prefHeight="60.0" prefWidth="198.0">
+                <HBox fx:id="analyze" alignment="CENTER_LEFT" fillHeight="false" prefHeight="60.0" prefWidth="198.0">
                     <children>
-                        <Button fx:id="revenueBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#HandleRevenueClicked" prefHeight="46.0" prefWidth="192.0" style="-fx-background-color: transparent;" styleClass="Transpaent_button" text="Doanh Thu" HBox.hgrow="ALWAYS">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#HandleRevenueClicked" prefHeight="46.0" prefWidth="192.0" style="-fx-background-color: transparent;" styleClass="Transpaent_button" text="Doanh Thu" HBox.hgrow="ALWAYS">
                             <graphic>
                                 <ImageView fitHeight="39.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -61,9 +62,9 @@
                         </Button>
                     </children>
                 </HBox>
-                <HBox fx:id="acceptOrderBox" alignment="CENTER_LEFT" fillHeight="false" prefHeight="60.0" prefWidth="198.0">
+                <HBox fx:id="staff" alignment="CENTER_LEFT" fillHeight="false" prefHeight="60.0" prefWidth="198.0">
                     <children>
-                        <Button fx:id="userBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#HandleStaffClicked" prefHeight="46.0" prefWidth="192.0" style="-fx-background-color: transparent;" styleClass="Transpaent_button" text=" Nhân Viên">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#HandleStaffClicked" prefHeight="46.0" prefWidth="192.0" style="-fx-background-color: transparent;" styleClass="Transpaent_button" text=" Nhân Viên">
                             <graphic>
                                 <ImageView fitHeight="35.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -80,9 +81,9 @@
                         </Button>
                     </children>
                 </HBox>
-                <HBox fx:id="pendingOrderBox" alignment="CENTER_LEFT" fillHeight="false" prefHeight="60.0" prefWidth="198.0">
+                <HBox fx:id="product" alignment="CENTER_LEFT" fillHeight="false" prefHeight="60.0" prefWidth="198.0">
                     <children>
-                        <Button fx:id="productBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#HandleProductClicked" prefHeight="46.0" prefWidth="192.0" style="-fx-background-color: transparent;" styleClass="Transpaent_button" text=" Sản Phẩm">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#HandleProductClicked" prefHeight="46.0" prefWidth="192.0" style="-fx-background-color: transparent;" styleClass="Transpaent_button" text=" Sản Phẩm">
                             <graphic>
                                 <ImageView fitHeight="38.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -99,9 +100,28 @@
                         </Button>
                     </children>
                 </HBox>
-                <HBox fx:id="ProductBox" prefHeight="60.0" prefWidth="198.0">
+                <HBox fx:id="ingredient" alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="198.0">
+               <children>
+                  <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#toIngredient" prefHeight="46.0" prefWidth="192.0" style="-fx-background-color: transparent;" styleClass="Transpaent_button" text="Nguyên liệu">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/order.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+                <HBox fx:id="userBtn" prefHeight="60.0" prefWidth="198.0">
                     <children>
-                        <Button fx:id="addUserBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#HandleAddUserClicked" prefHeight="48.0" prefWidth="220.0" style="-fx-background-color: transparent;" styleClass="Transpaent_button" text="Thêm Tài Khoản">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#HandleAddUserClicked" prefHeight="48.0" prefWidth="220.0" style="-fx-background-color: transparent;" styleClass="Transpaent_button" text="Thêm Tài Khoản">
                             <graphic>
                                 <ImageView fitHeight="36.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -118,9 +138,9 @@
                         </Button>
                     </children>
                 </HBox>
-                <HBox fx:id="checkHistoryBox" alignment="CENTER" prefHeight="60.0" prefWidth="198.0">
+                <HBox alignment="CENTER" prefHeight="60.0" prefWidth="198.0">
                <children>
-                  <Button fx:id="customerBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#HandleCustomerClicked" prefHeight="48.0" prefWidth="186.0" style="-fx-background-color: transparent;" styleClass="Transpaent_button" text="Khách Hàng">
+                  <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#HandleCustomerClicked" prefHeight="48.0" prefWidth="186.0" style="-fx-background-color: transparent;" styleClass="Transpaent_button" text="Khách Hàng">
                      <graphic>
                         <ImageView fitHeight="36.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -133,8 +153,7 @@
                      </font>
                   </Button>
                </children></HBox>
-                <HBox fx:id="addUserBox" alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="198.0" />
-                <HBox fx:id="changePasswordBox" alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="198.0" />
+            <Region VBox.vgrow="ALWAYS" />
                 <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="198.0">
                     <children>
                         <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#HandleSignOut" prefHeight="46.0" prefWidth="192.0" style="-fx-background-color: transparent;" styleClass="Transpaent_button" text=" Sign Out">
@@ -146,7 +165,7 @@
                                 </ImageView>
                             </graphic>
                             <HBox.margin>
-                                <Insets left="30.0" />
+                                <Insets bottom="25.0" left="30.0" />
                             </HBox.margin>
                      <font>
                         <Font size="18.0" />

@@ -55,7 +55,7 @@ public final class productView {
     }
     @FXML
     private void cancel() throws IOException {
-        Router.switchTo(Pages.MAIN_VIEW);
+        Router.switchTo(Pages.ADMIN_VIEW);
     }
     @FXML
     private void readProduct(){

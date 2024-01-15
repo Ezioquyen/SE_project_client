@@ -28,8 +28,8 @@ public class PromotionRepository {
         });
     }
 
-    public Boolean checkPromotion(LocalDate start, Integer id) throws IOException {
-        return JsonUtils.fromJson(Request.sendGetRequest(Api.promotionApi + "/check/" + id + "?date=" + start.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))), Boolean.class);
+    public Boolean checkPromotion(LocalDate start, LocalDate end, Integer id) throws IOException {
+        return JsonUtils.fromJson(Request.sendGetRequest(Api.promotionApi + "/check/" + id + "?startDate=" + start.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "&endDate=" + end.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))), Boolean.class);
     }
 
     public void removePromotion(Integer id) throws IOException {

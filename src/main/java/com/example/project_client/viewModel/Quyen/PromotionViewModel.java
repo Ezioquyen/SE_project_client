@@ -29,8 +29,8 @@ public class PromotionViewModel {
     public void removePromo() throws IOException {
         promotionRepository.removePromotion(promotion.getId());
     }
-    public Boolean check(LocalDate date) throws IOException {
-        return promotionRepository.checkPromotion(date, promotion!=null?promotion.getId():0);
+    public Boolean check(LocalDate startDate,LocalDate endDate) throws IOException {
+        return promotionRepository.checkPromotion(startDate,endDate, promotion!=null?promotion.getId():0);
     }
     public void createPromotion() throws Exception {
         promotionRepository.savePromotion(Promotion.toData(promotion));

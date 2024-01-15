@@ -104,7 +104,7 @@ public class StaffView {
 
     @FXML
     private void cancelStaff() throws IOException {
-       Router.switchTo(Pages.MAIN_VIEW);
+       Router.switchTo(Pages.ADMIN_VIEW);
     }
 
     private void setTableView() throws IOException {

@@ -11,6 +11,7 @@ import java.net.URL;
 public class Request {
     public static String sendGetRequest(String apiUrl) throws IOException {
         URL url = new URL(apiUrl);
+
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         return handleResponse(connection);

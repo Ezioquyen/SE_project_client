@@ -16,7 +16,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
 import org.kordamp.ikonli.javafx.FontIcon;
-import org.kordamp.ikonli.material2.Material2AL;
 import org.kordamp.ikonli.material2.Material2MZ;
 
 import java.io.IOException;

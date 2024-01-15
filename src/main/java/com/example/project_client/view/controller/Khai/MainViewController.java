@@ -28,7 +28,11 @@ public class MainViewController implements Initializable {
         HBox.setHgrow(region, Priority.ALWAYS);
         returnHbox.getChildren().addAll(region, returnBtn);
         returnBtn.setOnAction(e -> {
-            // Return Parent Fxml
+            try {
+                Router.switchTo(Pages.ADMIN_VIEW);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         });
         Button openWdSalaryCalViewBtn = FunctionKhai.createBtn("Tiền lương", new FontIcon(Material2AL.GROUP));
         Button openWdBillProductCalViewBtn = FunctionKhai.createBtn("Doanh thu", new FontIcon(Material2AL.ADD_BUSINESS));

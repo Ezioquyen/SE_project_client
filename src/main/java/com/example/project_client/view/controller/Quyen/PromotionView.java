@@ -159,7 +159,7 @@ public class PromotionView {
         if (name.getText().isEmpty()
                 || information.getText().isEmpty()
                 || startTime.getValue().isAfter(endTime.getValue())
-                || !promotionViewModel.check(startTime.getValue())
+                || !promotionViewModel.check(startTime.getValue(),endTime.getValue())
                 || listView.getItems().isEmpty()) {
             if (!isWarn) {
                 parent.getChildren().add(warningVBox);

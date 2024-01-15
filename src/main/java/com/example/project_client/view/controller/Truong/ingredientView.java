@@ -51,7 +51,7 @@ public final class ingredientView {
     }
     @FXML
     public void cancel() throws IOException {
-        Router.switchTo(Pages.MAIN_VIEW);
+        Router.switchTo(Pages.ADMIN_VIEW);
     }
     @FXML
     private void readIngredient() {

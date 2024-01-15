@@ -8,56 +8,75 @@
 
 <AnchorPane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: eaded6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Truong.readProductView">
    <children>
-      <Label layoutX="416.0" layoutY="129.0" text="ID:">
+      <Label layoutX="416.0" layoutY="163.0" text="ID:">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="id" layoutX="588.0" layoutY="129.0" text="ID" textFill="#2500ff">
+      <Label fx:id="id" layoutX="588.0" layoutY="163.0" text="ID" textFill="#2500ff">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="name" layoutX="588.0" layoutY="218.0" text="Name" textFill="#2500ff">
+      <Label fx:id="name" layoutX="588.0" layoutY="252.0" text="Name" textFill="#2500ff">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="416.0" layoutY="218.0" text="Name:">
+      <Label layoutX="416.0" layoutY="252.0" text="Name:">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="price" layoutX="587.0" layoutY="310.0" text="Price" textFill="#2500ff">
+      <Label fx:id="price" layoutX="587.0" layoutY="344.0" text="Price" textFill="#2500ff">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="415.0" layoutY="310.0" text="Price:">
+      <Label layoutX="415.0" layoutY="344.0" text="Price:">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="available" layoutX="586.0" layoutY="401.0" text="Available" textFill="#2500ff">
+      <Label fx:id="available" layoutX="586.0" layoutY="435.0" text="Available" textFill="#2500ff">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="414.0" layoutY="401.0" text="Available:">
+      <Label layoutX="414.0" layoutY="435.0" text="Available:">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="412.0" layoutY="500.0" text="Image:">
+      <Label layoutX="412.0" layoutY="534.0" text="Image:">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="868.0" layoutY="43.0" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: #000000;" text="Cancel" textFill="WHITE">
+      <Button layoutX="851.0" layoutY="52.0" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: #000000;" text="Cancel" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <ImageView fx:id="image" fitHeight="188.0" fitWidth="256.0" layoutX="581.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="image" fitHeight="188.0" fitWidth="256.0" layoutX="581.0" layoutY="545.0" pickOnBounds="true" preserveRatio="true" />
+      <Pane layoutX="1083.0" prefHeight="768.0" prefWidth="304.0" style="-fx-background-color: #e38e6f;">
+         <children>
+            <ImageView fitHeight="238.0" fitWidth="342.0" layoutX="-21.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+               <image>
+                  <Image url="@image/product2.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="287.0" fitWidth="228.0" layoutX="36.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/product1.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Label layoutX="434.0" layoutY="37.0" text="Read product" textFill="#ff7657">
+         <font>
+            <Font name="System Bold" size="41.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

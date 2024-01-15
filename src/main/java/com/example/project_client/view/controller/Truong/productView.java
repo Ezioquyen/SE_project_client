@@ -44,6 +44,12 @@ public final class productView {
             setTableView();
             setColumn();
             searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+                if(newValue.toString().length() > 0){
+                    searchTextField.setStyle("-fx-background-color:  white;");
+                }
+                else {
+                    searchTextField.setStyle("-fx-background-color:  #f9d388;");
+                }
                 filterTable(convertToString(newValue));
             });
         }

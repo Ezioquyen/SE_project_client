@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -17,53 +18,72 @@
          <font>
             <Font size="25.0" />
          </font></Button>
-      <Label layoutX="477.0" layoutY="451.0" text="Unit:">
+      <Label layoutX="394.0" layoutY="495.0" text="Unit:">
          <font>
             <Font name="System Bold" size="25.0" />
          </font></Label>
-      <TextField fx:id="unit" layoutX="640.0" layoutY="447.0" style="-fx-background-color: #000000;">
+      <TextField fx:id="unit" layoutX="557.0" layoutY="491.0" style="-fx-background-color: #000000;">
          <font>
             <Font size="25.0" />
          </font></TextField>
-      <Label layoutX="477.0" layoutY="337.0" text="Unit price:">
+      <Label layoutX="394.0" layoutY="381.0" text="Unit price:">
          <font>
             <Font name="System Bold" size="25.0" />
          </font></Label>
-      <TextField fx:id="unit_Price" layoutX="640.0" layoutY="333.0" style="-fx-background-color: #000000;">
+      <TextField fx:id="unit_Price" layoutX="557.0" layoutY="377.0" style="-fx-background-color: #000000;">
          <font>
             <Font size="25.0" />
          </font></TextField>
-      <Label layoutX="477.0" layoutY="214.0" text="Name:">
+      <Label layoutX="394.0" layoutY="258.0" text="Name:">
          <font>
             <Font name="System Bold" size="25.0" />
          </font></Label>
-      <TextField fx:id="name" layoutX="640.0" layoutY="210.0" style="-fx-background-color: #000000;">
+      <TextField fx:id="name" layoutX="557.0" layoutY="254.0" style="-fx-background-color: #000000;">
          <font>
             <Font size="25.0" />
          </font></TextField>
-      <Label layoutX="477.0" layoutY="101.0" text="ID:">
+      <Label layoutX="394.0" layoutY="145.0" text="ID:">
          <font>
             <Font name="System Bold" size="25.0" />
          </font></Label>
-      <Label fx:id="id" layoutX="644.0" layoutY="101.0" text="id">
+      <Label fx:id="id" layoutX="561.0" layoutY="145.0" text="id">
          <font>
             <Font name="System Bold Italic" size="26.0" />
          </font>
       </Label>
-      <Label fx:id="nameAlert" layoutX="643.0" layoutY="170.0" text="Input name" textFill="RED">
+      <Label fx:id="nameAlert" layoutX="560.0" layoutY="214.0" text="Input name" textFill="RED">
          <font>
             <Font name="System Italic" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="unitPriceAlert" layoutX="643.0" layoutY="296.0" text="Input unit price" textFill="RED">
+      <Label fx:id="unitPriceAlert" layoutX="560.0" layoutY="340.0" text="Input unit price" textFill="RED">
          <font>
             <Font name="System Italic" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="unitAlert" layoutX="643.0" layoutY="409.0" text="Input unit" textFill="RED">
+      <Label fx:id="unitAlert" layoutX="560.0" layoutY="453.0" text="Input unit" textFill="RED">
          <font>
             <Font name="System Italic" size="20.0" />
          </font>
       </Label>
+      <Label layoutX="465.0" layoutY="42.0" text="Change ingredient" textFill="#ff7657">
+         <font>
+            <Font name="System Bold" size="41.0" />
+         </font>
+      </Label>
+      <Pane layoutX="1077.0" prefHeight="768.0" prefWidth="300.0" style="-fx-background-color: #e38e6f;">
+         <children>
+            <ImageView fitHeight="406.0" fitWidth="249.0" layoutX="23.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/addIngredient.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="381.0" fitWidth="249.0" layoutX="21.0" layoutY="413.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/product.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

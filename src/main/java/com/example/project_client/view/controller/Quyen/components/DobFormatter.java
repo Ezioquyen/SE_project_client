@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 
 public class DobFormatter {
+
     public static String toString(LocalDate dob){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return dob.format(formatter);

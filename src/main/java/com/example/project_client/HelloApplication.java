@@ -16,7 +16,7 @@ public class HelloApplication extends Application {
         Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
         Router.bind(this, stage, "Coffee Management", 1366, 768);
         init();
-        Router.goTo(Pages.LOGIN_VIEW);
+        Router.goTo(Pages.USER_MAIN_VIEW);
     }
     public void init(){
         //
@@ -38,6 +38,9 @@ public class HelloApplication extends Application {
         Router.setRouter(Pages.BILL_INGREDIENT_CAL_VIEW, "Khai/BillIngredientCalView.fxml");
         Router.setRouter(Pages.BILL_PRODUCT_CAL_VIEW, "Khai/BillProductCalView.fxml");
         Router.setRouter(Pages.PROFIT_CAL_VIEW, "Khai/ProfitCalView.fxml");
+        Router.setRouter(Pages.USER_MAIN_VIEW, "Khai/User_Main_View.fxml");
+        Router.setRouter(Pages.CREATE_USER_VIEW, "Khai/createUserView.fxml");
+        Router.setRouter(Pages.UPDATE_USER_VIEW, "Khai/updateUserView.fxml");
         //
         Router.setRouter(Pages.INGREDIENT_VIEW, "Truong/ingredientScene.fxml");
         Router.setRouter(Pages.ADD_INGREDIENT, "Truong/addIngredient.fxml");

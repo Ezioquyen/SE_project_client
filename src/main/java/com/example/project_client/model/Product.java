@@ -22,11 +22,6 @@ public class Product {
     }
 
     public Product(){
-        this.id = null;
-        this.name = null;
-        this.price = null;
-        this.available = null;
-        this.image = null;
     }
 
     public Integer getId() {

@@ -40,9 +40,6 @@ public class Request {
             os.write(input, 0, input.length);
         }
         int responseCode = connection.getResponseCode();
-        System.out.println("\nSending 'DELETE' request to URL : " + url);
-        System.out.println("Delete Data : " + id);
-        System.out.println("Response Code : " + responseCode);
 
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String inputLine;
@@ -64,11 +61,6 @@ public class Request {
             byte[] input = data.getBytes("utf-8");
             os.write(input, 0, input.length);
         }
-
-        int responseCode = connection.getResponseCode();
-        System.out.println("\nSending 'POST' request to URL : " + url);
-        System.out.println("Post Data : " + data);
-        System.out.println("Response Code : " + responseCode);
 
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String inputLine;
@@ -110,9 +102,6 @@ public class Request {
         }
 
         int responseCode = connection.getResponseCode();
-        System.out.println("\nSending 'PUT' request to URL : " + url);
-        System.out.println("Put Data : " + data);
-        System.out.println("Response Code : " + responseCode);
 
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String inputLine;
@@ -139,10 +128,9 @@ public class Request {
             }
 
             in.close();
-            System.out.println("Read success");
             return response.toString();
         } else {
-            System.out.println("Read failed");
+
             throw new IOException("Failed to retrieve data. Response Code: " + responseCode);
         }
     }

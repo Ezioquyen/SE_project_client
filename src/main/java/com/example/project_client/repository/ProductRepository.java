@@ -14,7 +14,6 @@ import java.util.Objects;
 public final class ProductRepository {
     public static List<Product> getProductsApi() throws IOException {
         String jsonObject = Request.sendGetRequest(Api.productApi+"/getAll");
-        System.out.println(jsonObject);
         return JsonUtils.fromJson(jsonObject, new TypeReference<>() {
         });
     }

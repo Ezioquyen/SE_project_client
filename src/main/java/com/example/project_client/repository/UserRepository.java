@@ -26,10 +26,10 @@ public class UserRepository {
 
 
     // Retrieves a list of all users
-    public List<User> getAllUsers() throws IOException {
-        List<User> lstUser = new ArrayList<>();
+    public List<User> getAllUsers() {
         try {
-            return JsonUtils.fromJson(Request.sendGetRequest(Api.userApi + "/getAll"), new TypeReference<List<User>>() {});
+            return JsonUtils.fromJson(Request.sendGetRequest(Api.userApi + "/getAll"), new TypeReference<>() {
+            });
         } catch (Exception e){
             System.out.println("error: "+e);
         }

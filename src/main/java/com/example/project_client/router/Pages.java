@@ -1,7 +1,8 @@
 package com.example.project_client.router;
 
 public enum Pages {
-    MAIN_VIEW,CREATE_ORDER_VIEW,
+    MAIN_VIEW,
+    CREATE_ORDER_VIEW,
     CUSTOMER_INFORMATION_INPUT_VIEW,
     ORDER_BILL_VIEW,
     MAIN_VIEW_PROFIT,

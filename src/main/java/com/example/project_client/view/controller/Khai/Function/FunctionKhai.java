@@ -17,7 +17,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class FunctionKhai {
-
     private static final NumberFormat us = NumberFormat.getCurrencyInstance(Locale.US);
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-yyyy");
     public static void validDatePicker(DatePicker datePicker){
@@ -105,5 +104,10 @@ public class FunctionKhai {
                 throw new RuntimeException(ex);
             }
         });
+    }
+    public static double calPc(Integer oldN, Integer newN){
+        if(oldN == 0) return 0;
+        double a = (newN - oldN) * 100.0 / oldN ;
+        return Math.round(a * 100.0) / 100.0;
     }
 }

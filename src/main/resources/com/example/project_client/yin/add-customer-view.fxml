@@ -10,21 +10,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.yin.AddCustomerView">
+<AnchorPane prefHeight="637.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.yin.AddCustomerView">
    <children>
-      <HBox alignment="CENTER" layoutX="40.0" layoutY="21.0" prefHeight="81.0" prefWidth="537.0" AnchorPane.bottomAnchor="498.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="21.0">
+      <HBox alignment="CENTER" layoutX="-5.0" layoutY="-2.0" prefHeight="104.0" prefWidth="607.0" style="-fx-background-color: #94c3ab;" AnchorPane.bottomAnchor="498.0" AnchorPane.leftAnchor="-5.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="-2.0">
          <children>
 
-            <Label prefHeight="66.0" prefWidth="322.0" text="Thông tin khách hàng">
+            <Label prefHeight="66.0" prefWidth="322.0" text="Thông tin khách hàng" textFill="WHITE">
                <font>
                   <Font size="29.0" />
                </font>
             </Label>
-            <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#cancel" prefHeight="55.0" prefWidth="58.0" text="X">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Button>
          </children>
       </HBox>
       <VBox alignment="TOP_CENTER" layoutX="52.0" layoutY="173.0" prefHeight="357.0" prefWidth="548.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="213.0">
@@ -68,15 +63,21 @@
                   <DatePicker fx:id="dob" prefHeight="38.0" prefWidth="262.0" />
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="439.0" />
+            <HBox alignment="CENTER_LEFT" prefHeight="102.0" prefWidth="560.0" />
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="446.0">
                <children>
-                  <Button fx:id="saveCustomerBtn" mnemonicParsing="false" onAction="#saveCustomer" prefHeight="40.0" prefWidth="202.0" text="Save">
+                  <Button fx:id="saveCustomerBtn" mnemonicParsing="false" onAction="#saveCustomer" prefHeight="40.0" prefWidth="202.0" styleClass="orderButton" stylesheets="@Stylesheet/DefaultStyle.css" text="Save">
                      <HBox.margin>
                         <Insets right="40.0" />
                      </HBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
                   </Button>
-                  <Button fx:id="resetCustomerBtn" mnemonicParsing="false" onAction="#reset" prefHeight="40.0" prefWidth="216.0" text="Clear" />
+                  <Button fx:id="resetCustomerBtn" mnemonicParsing="false" onAction="#reset" prefHeight="40.0" prefWidth="216.0" styleClass="orderButton" stylesheets="@Stylesheet/DefaultStyle.css" text="Clear">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Button>
                </children>
             </HBox>
          </children>

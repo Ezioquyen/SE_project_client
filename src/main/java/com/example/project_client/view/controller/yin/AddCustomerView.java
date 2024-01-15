@@ -1,5 +1,4 @@
 package com.example.project_client.view.controller.yin;
-
 import com.example.project_client.model.Customer;
 import com.example.project_client.repository.CustomerRepository;
 import com.example.project_client.router.Pages;
@@ -50,12 +49,14 @@ public class AddCustomerView {
         return nameField.getText();
     }
 
-
+    public static CustomerView customerViewAdd;
+    public static void setCustomerView(CustomerView customerViewAdd){
+        AddCustomerView.customerViewAdd = customerViewAdd;
+    }
     @FXML
-    void saveCustomer(ActionEvent event) {
+    private void saveCustomer(ActionEvent event) throws Exception {
         String phoneNumber = getPhoneNumber();
         String name = getName();
-
         if (validatePhoneNumber(phoneNumber) && validateName(name) && emptyValidation("dob", dob.getEditor().getText().isEmpty())) {
             Customer customer = new Customer();
             customer.setPhoneNumber(phoneNumber);
@@ -65,28 +66,35 @@ public class AddCustomerView {
             String formattedDob = DobFormatter.toString(selectedDate);
             customer.setDob(formattedDob);
 
-            try {
-                // Check if the customer already exists
-                if (customerRepository.checkCustomer(phoneNumber)) {
-                    boolean confirmUpdate = showConfirmationDialog("Customer already exists", "Do you want to update the existing customer?");
-                    if (confirmUpdate) {
-                    //alert
+            // Check if the customer already exists
+            if (customerRepository.checkCustomer(phoneNumber)) {
+                boolean confirmUpdate = showConfirmationDialog("Customer already exists", "Do you want to update the existing customer?");
+                if (confirmUpdate) {
                     Customer existingCustomer = customerRepository.getCustomer(phoneNumber);
                     existingCustomer.setName(customer.getName());
                     existingCustomer.setDob(customer.getDob());
-                    customer.setTotal(0);
+                    customer.setTotal(existingCustomer.getTotal());
                     customerRepository.saveCustomer(existingCustomer);
-                }} else {
-                    customerRepository.saveCustomer(customer);
+                    customerViewAdd = (CustomerView) Router.getData(Pages.CUSTOMER_VIEW);
+                    customerViewAdd.loadCustomerData();
+                    saveAlert(customer);
+                    clearFields();
                 }
-
+            } else {
+                customerRepository.saveCustomer(customer);
+                customerViewAdd = (CustomerView) Router.getData(Pages.CUSTOMER_VIEW);
+                customerViewAdd.loadCustomerData();
                 saveAlert(customer);
                 clearFields();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+
             }
+
+
         }
     }
+
+
+
 
 
     private void clearFields() {
@@ -129,13 +137,13 @@ public class AddCustomerView {
     }
 
     public boolean validateName(String name) {
-        if (name == null || name.trim().length() == 0 || name.equals("null") || !name.matches("^[a-zA-Z]+[\\-'\\s]?[a-zA-Z ]+$")) {
+        if (name == null || name.trim().length() == 0 || name.equals("null") || !name.matches("^[a-zA-Zà-ỹẠ-ỴđĐ]+[\\-'\\s]?[a-zA-Zà-ỹẠ-ỴđĐ ]+$")) {
             validationAlert("Name", false);
             return false;
-
         }
         return true;
     }
+
     boolean validatePhoneNumber(String phoneNumber) {
         // verify if phone has 10 digits and start with 0
         if (phoneNumber.length() != 10 || phoneNumber.charAt(0) != '0') {

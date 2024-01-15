@@ -17,13 +17,15 @@ import java.util.ResourceBundle;
 
 public class UpdateCustomerView implements Initializable {
     public static Customer selectCustomer;
-
     public static Customer getSelectCustomer() {
         return selectCustomer;
     }
-
     public static void setSelectCustomer(Customer selectCustomer) {
         UpdateCustomerView.selectCustomer = selectCustomer;
+    }
+    public static CustomerView customerViewUpdate; ;
+    public static void setCustomerViewUpdate(CustomerView customerViewUpdate){
+        UpdateCustomerView.customerViewUpdate = customerViewUpdate;
     }
 
     @FXML
@@ -40,16 +42,15 @@ public class UpdateCustomerView implements Initializable {
 
     @FXML
     private Button saveCustomerBtn;
+    @FXML
+    private Label totalField;
+
 
     @FXML
     void reset(ActionEvent event) {
         clearFields();
     }
 
-    @FXML
-    void cancel(ActionEvent event) throws IOException {
-        Router.goTo(Pages.CUSTOMER_VIEW);
-    }
 
     private CustomerRepository customerRepository = new CustomerRepository();
 
@@ -63,7 +64,7 @@ public class UpdateCustomerView implements Initializable {
 
 
     @FXML
-    void saveCustomer(ActionEvent event) throws IOException {
+    private void saveCustomer(ActionEvent event) throws IOException {
         String phoneNumber = selectCustomer.getPhoneNumber();
         String name = getName();
         LocalDate selectedDate = dob.getValue();
@@ -72,12 +73,14 @@ public class UpdateCustomerView implements Initializable {
         if (validateName(name) && emptyValidation("dob", dob.getEditor().getText().isEmpty())) {
                     Customer existingCustomer = customerRepository.getCustomer(phoneNumber);
                     existingCustomer.setName(name);
-
                     existingCustomer.setDob(formattedDob);
                     existingCustomer.setTotal(existingCustomer.getTotal());
                     try {
                         customerRepository.saveCustomer(existingCustomer);
+                        customerViewUpdate = (CustomerView) Router.getData(Pages.CUSTOMER_VIEW);
+                        customerViewUpdate.loadCustomerData();
                         saveAlert(existingCustomer);
+
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
@@ -144,6 +147,7 @@ public class UpdateCustomerView implements Initializable {
         System.out.println(selectCustomer.getDob());
         LocalDate localDate = DobFormatter.toDate(selectCustomer.getDob());
         dob.setValue(localDate);
+        totalField.setText(String.valueOf(selectCustomer.getTotal()));
 
     }
 }

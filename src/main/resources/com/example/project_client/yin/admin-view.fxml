@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="SceneBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="1350.0" stylesheets="@Stylesheet/Button.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.yin.AdminView">
+<BorderPane fx:id="SceneBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="1350.0" stylesheets="@Stylesheet/DefaultStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.yin.AdminView">
     <left>
-        <VBox prefHeight="690.0" prefWidth="248.0" style="-fx-background-color: #e6e6e6;" BorderPane.alignment="CENTER">
+        <VBox prefHeight="696.0" prefWidth="303.0" style="-fx-background-color: #e6e6e6;" BorderPane.alignment="CENTER">
             <children>
                 <HBox alignment="BOTTOM_CENTER" prefHeight="118.0" prefWidth="248.0">
                     <children>
@@ -101,9 +101,9 @@
                         </Button>
                     </children>
                 </HBox>
-                <HBox fx:id="checkHistoryBox" alignment="CENTER" prefHeight="60.0" prefWidth="198.0">
+                <HBox fx:id="checkHistoryBox" alignment="CENTER" prefHeight="60.0" prefWidth="268.0">
                <children>
-                  <Button fx:id="customerBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#HandleCustomerClicked" prefHeight="48.0" prefWidth="186.0" style="-fx-background-color: transparent;" styleClass="Transpaent_button" text="Khách Hàng">
+                  <Button fx:id="customerBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#HandleCustomerClicked" prefHeight="48.0" prefWidth="240.0" style="-fx-background-color: transparent;" styleClass="Transpaent_button" text="Khách Hàng">
                      <graphic>
                         <ImageView fitHeight="36.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                            <image>

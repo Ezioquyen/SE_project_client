@@ -54,6 +54,10 @@ public final class Router {
         Parent resource = FXMLLoader.load(HelloApplication.class.getResource(scenePath));
         root.getChildren().setAll(resource);
     }
+    public static Parent loadTo(Pages page) throws IOException {
+        String scenePath = routerLabel.get(page);
+        return FXMLLoader.load(HelloApplication.class.getResource(scenePath));
+    }
     public static void goTo(Pages page) throws IOException {
         root = new VBox();
         switchTo(page);

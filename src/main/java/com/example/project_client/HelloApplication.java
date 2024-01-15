@@ -42,8 +42,8 @@ public class HelloApplication extends Application {
         Router.setRouter(Pages.INGREDIENT_VIEW, "Truong/ingredientScene.fxml");
         Router.setRouter(Pages.ADD_INGREDIENT, "Truong/addIngredient.fxml");
         Router.setRouter(Pages.CHANGE_INGREDIENT, "Truong/changeIngredient.fxml");
-        Router.setRouter(Pages.PRODUCT_VIEW, "Truong/productScene.fxml");
-        Router.setRouter(Pages.ADD_PRODUCT, "Truong/addProduct.fxml");
+        Router.setRouter(Pages.PRODUCT_VIEW, "Truong/productScene1.fxml");
+        Router.setRouter(Pages.ADD_PRODUCT, "Truong/addProduct1.fxml");
         Router.setRouter(Pages.CHANGE_PRODUCT, "Truong/changeProduct.fxml");
         Router.setRouter(Pages.READ_PRODUCT,"Truong/readProduct.fxml");
         Router.setRouter(Pages.READ_INGREDIENT,"Truong/readIngredient.fxml");

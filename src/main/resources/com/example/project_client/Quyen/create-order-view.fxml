@@ -21,7 +21,7 @@
             <padding>
                <Insets left="10.0" />
             </padding>
-            <HBox>
+            <HBox style="-fx-border-color: gray gray transparent gray;">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
@@ -31,11 +31,11 @@
                   </HBox.margin>
                </TextField>
             </HBox>
-            <ScrollPane prefHeight="900.0" prefWidth="900.0">
+            <ScrollPane prefHeight="900.0" prefWidth="900.0" style="-fx-border-color: gray;">
                <FlowPane fx:id="productsPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="750.0" />
             </ScrollPane>
          </VBox>
-         <VBox spacing="10.0">
+         <VBox spacing="10.0" style="-fx-border-color: gray gray gray transparent;">
             <ListView fx:id="listView" fixedCellSize="60.0" prefHeight="346.0" prefWidth="422.0">
                <padding>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

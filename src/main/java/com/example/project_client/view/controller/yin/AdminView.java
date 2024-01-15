@@ -4,15 +4,11 @@ import com.example.project_client.HelloApplication;
 import com.example.project_client.event.Data;
 import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-
 import javafx.scene.control.Alert;
-
 import javafx.scene.control.ButtonType;
-
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -49,28 +45,28 @@ public class AdminView {
     }
 
     @FXML
-    void HandleAddUserClicked(ActionEvent event) {
+    void HandleAddUserClicked() {
 
     }
 
     @FXML
-    void HandleCustomerClicked(ActionEvent event) throws IOException {
+    void HandleCustomerClicked() throws IOException {
         Parent customerView = Router.loadTo(Pages.CUSTOMER_VIEW);
-        SceneBorderPane.setRight(customerView);
+        mainPane.getChildren().setAll(customerView);
 
-
+    }
     @FXML
-    void HandleProductClicked(ActionEvent event) throws IOException {
+    void HandleProductClicked() throws IOException {
         Router.switchTo(Pages.PRODUCT_VIEW);
     }
 
     @FXML
-    void HandleRevenueClicked(ActionEvent event) throws IOException {
+    void HandleRevenueClicked() throws IOException {
         Router.switchTo(Pages.MAIN_VIEW_PROFIT);
     }
 
     @FXML
-    void HandleStaffClicked(ActionEvent event) throws IOException {
+    void HandleStaffClicked() throws IOException {
         Router.switchTo(Pages.STAFF_VIEW);
     }
     @FXML
@@ -79,7 +75,7 @@ public class AdminView {
     }
 
     @FXML
-    void HandleSignOut(ActionEvent event) throws IOException {
+    void HandleSignOut() throws IOException {
         Router.goTo(Pages.LOGIN_VIEW);
         Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmationAlert.setTitle("Xác nhận đăng xuất");

@@ -64,7 +64,10 @@ public final class Router {
         Parent resource = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource(scenePath)));
         root.getChildren().setAll(resource);
     }
-
+    public static Parent loadTo(Pages page) throws IOException {
+        String scenePath = routerLabel.get(page);
+        return FXMLLoader.load(HelloApplication.class.getResource(scenePath));
+    }
     public static void goTo(Pages page) throws IOException {
         root = new VBox();
         root.setPrefSize(1366,768);
@@ -75,39 +78,35 @@ public final class Router {
         window.setScene(new Scene(root));
         window.show();
     }
-
-  /*  public static void goTo(Pages page, double windowWidth, double windowHeight) throws IOException {
+    public static void goTo(Pages page,double windowWidth, double windowHeight) throws IOException {
         switchTo(page);
         window.setTitle(windowTitle);
-        window.setScene(new Scene(root, windowWidth, windowHeight));
+        window.setScene(new Scene(root,windowWidth,windowHeight));
         window.show();
     }
-
-    public static void goTo(Pages page, boolean setFullScreen) throws IOException {
+    public static void goTo(Pages page,boolean setFullScreen) throws IOException {
         root = new VBox();
         switchTo(page);
         window.setTitle(windowTitle);
         window.setScene(new Scene(root));
         window.show();
         window.setMaximized(setFullScreen);
-    }*/
-
-    public static void showDialog(Pages page) throws IOException {
+    }
+    public  static void showDialog(Pages page) throws IOException {
         dialog = new Stage();
         String scenePath = routerLabel.get(page);
-        Parent resource = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource(scenePath)));
+        Parent resource = FXMLLoader.load(HelloApplication.class.getResource(scenePath));
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initOwner(window);
         Scene dialogScene = new Scene(resource);
         dialog.setScene(dialogScene);
         dialog.show();
     }
-
-    public static void closeDialog() {
-        if (dialog.isShowing()) dialog.close();
+    public static void closeDialog(){
+        if(dialog.isShowing()) dialog.close();
     }
 
-   /* public static void bind(Object ref, Stage win) {
+    public static void bind(Object ref, Stage win) {
         checkInstances(ref, win);
     }
 
@@ -121,7 +120,7 @@ public final class Router {
         windowWidth = winWidth;
         windowHeight = winHeight;
     }
-*/
+
     public static void bind(Object ref, Stage win, String winTitle, double winWidth, double winHeight) {
         checkInstances(ref, win);
         win.setResizable(false);

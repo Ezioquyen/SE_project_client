@@ -64,8 +64,6 @@ public class CustomerView implements Initializable {
 
 
 
-
-
     @FXML
     void HandleBack(ActionEvent event) throws IOException {
     Router.goTo(Pages.ADMIN_VIEW);
@@ -82,6 +80,7 @@ public class CustomerView implements Initializable {
             throw new RuntimeException(e);
         }
         initializeColumns();
+        Router.setData(Pages.CUSTOMER_VIEW, this);
 
 
     }
@@ -199,11 +198,11 @@ public class CustomerView implements Initializable {
 
  private void handleEditAction(Customer selectedCustomer) throws IOException {
      UpdateCustomerView.setSelectCustomer(selectedCustomer);
-     Router.goTo(Pages.UPDATE_CUSTOMER_VIEW);
+     Router.showDialog(Pages.UPDATE_CUSTOMER_VIEW);
  }
     private void handleReadAction(Customer customer) throws IOException {
         ReadCustomerView.setCustomer(customer);
-        Router.goTo(Pages.READ_CUSTOMER_VIEW);
+        Router.showDialog(Pages.READ_CUSTOMER_VIEW);
     }
 
     private void handleDeleteAction(Customer customer) throws IOException {
@@ -218,7 +217,7 @@ public class CustomerView implements Initializable {
         }
     }
     @FXML
-    private void searchCustomer() {
+    private void searchCustomer() throws IOException {
         String query = searchField.getText().toLowerCase();
         ObservableList<Customer> filteredList = FXCollections.observableArrayList();
 
@@ -229,9 +228,11 @@ public class CustomerView implements Initializable {
                 filteredList.add(customer);
             }
         }
+        initializeColumns();
         customerTable.setItems(filteredList);
+
     }
-    private void loadCustomerData() throws IOException {
+    public void loadCustomerData() throws IOException {
         List<Customer> lists = customerRepository.getCustomersApi();
         if (lists != null) {
             customersList = FXCollections.observableArrayList(lists);
@@ -250,7 +251,7 @@ public class CustomerView implements Initializable {
 
     @FXML
     void addCustomer(ActionEvent event) throws IOException {
-       Router.goTo(Pages.ADD_CUSTOMER_VIEW);
+        Router.showDialog(Pages.ADD_CUSTOMER_VIEW);
     }
 
 

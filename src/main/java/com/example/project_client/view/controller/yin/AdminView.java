@@ -8,13 +8,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
+
+import javafx.scene.control.Alert;
+
+import javafx.scene.control.ButtonType;
+
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Optional;
 
 public class AdminView {
 
@@ -51,9 +55,8 @@ public class AdminView {
 
     @FXML
     void HandleCustomerClicked(ActionEvent event) throws IOException {
-        Router.goTo(Pages.CUSTOMER_VIEW);
-        // Router.showDialog(Pages.CUSTOMER_VIEW);
-    }
+        Parent customerView = Router.loadTo(Pages.CUSTOMER_VIEW);
+        SceneBorderPane.setRight(customerView);
 
 
     @FXML
@@ -78,6 +81,18 @@ public class AdminView {
     @FXML
     void HandleSignOut(ActionEvent event) throws IOException {
         Router.goTo(Pages.LOGIN_VIEW);
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Xác nhận đăng xuất");
+        confirmationAlert.setHeaderText(null);
+        confirmationAlert.setContentText("Bạn có chắc chắn muốn đăng xuất?");
+        Optional<ButtonType> result = confirmationAlert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+
+            Router.switchTo(Pages.LOGIN_VIEW);
+        } else {
+
+        }
     }
 
     @FXML

@@ -61,6 +61,7 @@ public class addIngredientView {
     }
     private void setName() {
         name.setPromptText("input name");
+        name.setStyle("-fx-text-fill: white;" + "-fx-background-color: black;");
         name.textProperty().addListener((observableValue, oldValue, newValue) -> {
             try{
                 if(!ingredient.setName(newValue)) {
@@ -77,6 +78,7 @@ public class addIngredientView {
     }
     private void setUnitPrice() {
         unitPrice.setPromptText("input unit price");
+        unitPrice.setStyle("-fx-text-fill: white;" + "-fx-background-color: black;");
         unitPrice.textProperty().addListener((observableValue, oldValue, newValue) -> {
             try{
                 try {
@@ -99,6 +101,7 @@ public class addIngredientView {
 
     private void setUnit() {
         unit.setPromptText("input unit");
+        unit.setStyle("-fx-text-fill: white;" + "-fx-background-color: black;");
         unit.textProperty().addListener((observableValue, oldValue, newValue) -> {
             try{
                 if(!ingredient.setUnit(newValue)){

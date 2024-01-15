@@ -1,5 +1,6 @@
 package com.example.project_client.view.controller.Truong;
 
+import com.example.project_client.model.Ingredient;
 import com.example.project_client.model.Product;
 import com.example.project_client.repository.ProductRepository;
 import com.example.project_client.router.Pages;
@@ -12,8 +13,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.Getter;
 
 import java.io.IOException;
+import java.text.Normalizer;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 public final class productView {
     private static Product product;
@@ -29,6 +32,8 @@ public final class productView {
     private TableColumn<Product, Double> discount;
     @FXML
     private TableColumn<Product, String> image;
+    @FXML
+    private TextField searchTextField;
     @Getter
     private static List<Product> products;
     @FXML
@@ -40,7 +45,9 @@ public final class productView {
         try {
             setTableView();
             setColumn();
-            product = products.get(products.size() - 1);
+            searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+                filterTable(convertToString(newValue));
+            });
         }
         catch (Exception e){
             System.out.println("ERROR");
@@ -121,7 +128,26 @@ public final class productView {
         }
         raiseAlert(message);
     }
-
+//    @FXML
+//    private void addimg() {
+//        addImage.saveImage();
+//    }
+    private void filterTable(String keyword) {
+        ObservableList<Product> filteredList = tableList.filtered(staff ->
+                convertToString(staff.getName()).toLowerCase().contains(keyword.toLowerCase())
+        );
+        tableView.setItems(filteredList);
+    }
+    public static String convertToString(String value) {
+        try {
+            String temp = Normalizer.normalize(value, Normalizer.Form.NFD);
+            Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+            return pattern.matcher(temp).replaceAll("");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
     private void raiseAlert(String alertText){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");

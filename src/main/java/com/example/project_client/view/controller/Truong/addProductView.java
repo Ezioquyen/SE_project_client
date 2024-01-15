@@ -1,17 +1,18 @@
 package com.example.project_client.view.controller.Truong;
 
+import java.io.File;
+import java.io.IOException;
+import java.awt.Desktop;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import com.example.project_client.model.Product;
 import com.example.project_client.repository.ProductRepository;
 import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import lombok.Getter;
 
-import java.io.IOException;
 
 public class addProductView {
     @Getter
@@ -19,7 +20,9 @@ public class addProductView {
     @FXML
     private ChoiceBox<Boolean> choiceBox;
     @FXML
-    private TextField name, price, discount, image;
+    private Button image;
+    @FXML
+    private TextField name, price, discount;
     @FXML
     private Label nameAlert, priceAlert, discountAlert, imageAlert;
     private final Boolean[] available = {Boolean.FALSE, Boolean.TRUE};
@@ -27,6 +30,7 @@ public class addProductView {
     @FXML
     public void initialize() throws Exception {
         choiceBox.getItems().addAll(available);
+        product.setAvailable(Boolean.TRUE);
         System.out.println("Add product");
         setField();
     }
@@ -43,6 +47,7 @@ public class addProductView {
                     throw new Exception("Invalid Field");
                 }
             }
+            product.setAvailable(choiceBox.getSelectionModel().getSelectedItem());
             ProductRepository.saveProduct(product);
             raiseAlert("Added Product");
             Router.switchTo(Pages.PRODUCT_VIEW);
@@ -62,11 +67,12 @@ public class addProductView {
         setName();
         setPrice();
         setDiscount();
-        setImage();
         choiceBox.setValue(Boolean.TRUE);
+//        choiceBox.setStyle("-fx-text-fill: white;" + "-fx-background-color: black;" +   "-fx-mark-color: orange;");
     }
     private void setName(){
         name.setPromptText("input name");
+        name.setStyle("-fx-text-fill: white;" + "-fx-background-color: black;");
         name.textProperty().addListener((observableValue, oldValue, newValue) -> {
             try {
                 if(!product.setName(newValue)){
@@ -84,6 +90,7 @@ public class addProductView {
 
     private void setPrice() {
         price.setPromptText("input price");
+        price.setStyle("-fx-text-fill: white;" + "-fx-background-color: black;");
         price.textProperty().addListener((observableValue, oldValue, newValue) -> {
             try {
                 try {
@@ -105,6 +112,7 @@ public class addProductView {
     }
     private void setDiscount() {
         discount.setPromptText("input discount");
+        discount.setStyle("-fx-text-fill: white;" + "-fx-background-color: black;");
         discount.textProperty().addListener((observableValue, oldValue, newValue) -> {
             try{
                 try {
@@ -124,18 +132,37 @@ public class addProductView {
             }
         });
     }
-    private void setImage() {
-        image.setPromptText("input image");
-        image.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            try {
-                product.setImage(newValue);
-                check[4] = true;
-                imageAlert.setText("");
+
+    @FXML
+    private void chooseImage(){
+        try {
+            JFileChooser fileChooser = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Image files", "png", "jpg");
+            fileChooser.setFileFilter(filter);
+            String directory = System.getProperty("user.dir") + "\\src\\main\\resources\\com\\example\\project_client\\images";
+            System.out.println("direct: " + directory);
+            fileChooser.setCurrentDirectory(new File(directory));
+            int result = fileChooser.showOpenDialog(null);
+            System.out.println("Result " + result);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                System.out.println("FilePath " + selectedFile);
+                if (!Desktop.isDesktopSupported()) {
+                    System.out.println("Not supported");
+                }
+                else {
+                    Desktop desktop = Desktop.getDesktop();
+                    product.setImage(selectedFile.toString().replace(System.getProperty("user.dir") + "\\src\\main\\resources", "").replace("\\", "/"));
+                    image.setText(selectedFile.toString().replace(directory+"\\", ""));
+                    imageAlert.setText("");
+                    check[4] = true;
+                }
+            } else if (result == JFileChooser.CANCEL_OPTION) {
+                System.out.println("Cancelled");
             }
-            catch (Exception e){
-                check[4] = false;
-                imageAlert.setText("Invalid Image");
-            }
-        });
+        }
+        catch (Exception e) {
+            System.out.println("ERROR");
+        }
     }
 }

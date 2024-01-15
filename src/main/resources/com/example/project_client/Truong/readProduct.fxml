@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -57,11 +58,6 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="image" layoutX="303.0" layoutY="456.0" text="Image" textFill="#a84040">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
       <Label layoutX="172.0" layoutY="456.0" text="Image:">
          <font>
             <Font size="18.0" />
@@ -72,5 +68,6 @@
             <Font size="18.0" />
          </font>
       </Button>
+      <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="275.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

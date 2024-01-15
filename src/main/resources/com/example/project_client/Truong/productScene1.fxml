@@ -19,20 +19,22 @@
                   <Button layoutX="50.0" layoutY="38.0" mnemonicParsing="false" onAction="#readProduct" text="Information" />
                </children>
             </Pane>
-            <ScrollPane layoutX="169.0" layoutY="164.0" prefHeight="280.0" prefWidth="465.0">
+            <ScrollPane layoutX="51.0" layoutY="160.0" prefHeight="280.0" prefWidth="660.0">
                <content>
-                  <TableView fx:id="tableView" prefHeight="270.0" prefWidth="452.0">
+                  <TableView fx:id="tableView" prefHeight="270.0" prefWidth="654.0">
                     <columns>
                       <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
                       <TableColumn fx:id="name" prefWidth="75.0" text="name" />
                         <TableColumn fx:id="price" prefWidth="75.0" text="price" />
                         <TableColumn fx:id="available" prefWidth="75.0" text="available" />
                         <TableColumn fx:id="discount" prefWidth="75.0" text="discount" />
-                        <TableColumn fx:id="image" prefWidth="75.0" text="image" />
+                        <TableColumn fx:id="image" prefWidth="195.0" text="image" />
                     </columns>
                   </TableView>
                </content>
             </ScrollPane>
+            <TextField fx:id="searchTextField" layoutX="294.0" layoutY="113.0" promptText="search" />
+            <Button layoutX="574.0" layoutY="101.0" mnemonicParsing="false" onAction="#addimg" text="add image" />
          </children>
       </AnchorPane>
    </content>

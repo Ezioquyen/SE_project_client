@@ -37,10 +37,6 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <TextField fx:id="image" layoutX="231.0" layoutY="328.0" promptText="image">
-         <font>
-            <Font size="14.0" />
-         </font></TextField>
       <Label layoutX="107.0" layoutY="411.0" text="Available:">
          <font>
             <Font size="14.0" />
@@ -74,5 +70,6 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <Button fx:id="image" layoutX="230.0" layoutY="334.0" mnemonicParsing="false" onAction="#chooseImage" text="choose Image" />
    </children>
 </AnchorPane>

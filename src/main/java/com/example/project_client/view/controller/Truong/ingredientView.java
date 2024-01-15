@@ -12,8 +12,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.Getter;
 
 import java.io.IOException;
+import java.text.Normalizer;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 
 public final class ingredientView {
@@ -26,6 +28,8 @@ public final class ingredientView {
     TableColumn<Ingredient, String> unit;
     @FXML
     TableColumn<Ingredient, Integer> unit_Price;
+    @FXML
+    TextField searchTextField;
     @Getter
     private List<Ingredient> ingredients;
     @FXML
@@ -37,6 +41,9 @@ public final class ingredientView {
         try {
             setTableView();
             setColumn();
+            searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+                filterTable(convertToString(newValue));
+            });
         }
         catch (Exception e) {
             System.out.println("ERROR");
@@ -115,6 +122,22 @@ public final class ingredientView {
         } else {
             message = "Cancel delete";
         }
+    }
+    private void filterTable(String keyword) {
+        ObservableList<Ingredient> filteredList = tableList.filtered(staff ->
+                        convertToString(staff.getName()).toLowerCase().contains(keyword.toLowerCase())
+        );
+        tableView.setItems(filteredList);
+    }
+    public static String convertToString(String value) {
+        try {
+            String temp = Normalizer.normalize(value, Normalizer.Form.NFD);
+            Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+            return pattern.matcher(temp).replaceAll("");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
     private void raiseAlert(String alertText){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

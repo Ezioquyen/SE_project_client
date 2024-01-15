@@ -5,10 +5,16 @@ import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import java.util.Objects;
 
 public class readProductView {
     @FXML
-    private Label id, name, price, available, discount, image;
+    private Label id, name, price, available, discount;
+    @FXML
+    private ImageView image;
     private Product product;
     @FXML
     private void initialize() throws Exception {
@@ -26,6 +32,11 @@ public class readProductView {
         price.setText(product.getPrice().toString());
         available.setText(product.getAvailable().toString());
         discount.setText(product.getDiscount().toString());
-        image.setText(product.getImage());
+        image.setFitHeight(150.0);
+        image.setFitWidth(200.0);
+        image.setPreserveRatio(true);
+        Image img = new Image(Objects.requireNonNull(getClass().getResourceAsStream(product.getImage())));
+        image.setImage(img);
+
     }
 }

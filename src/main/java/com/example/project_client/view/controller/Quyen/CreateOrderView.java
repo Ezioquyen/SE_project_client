@@ -220,7 +220,7 @@ public class CreateOrderView implements InitStyles {
     private void filter(String value) {
         productsPane.getChildren().clear();
         productsPane.getChildren().addAll(productViews.stream().filter(e ->
-                e.getProduct().getName().contains(value)
+                e.getProduct().getName().toLowerCase().contains(value)
         ).collect(Collectors.toList()));
     }
 }

@@ -66,7 +66,7 @@ public class MainView implements InitStyles {
 
     private void filter(List<OrderBill> orderBillsList, String value) {
         initStyle();
-        List<OrderBill> orderBills = orderBillsList.stream().filter(e -> e.getId().contains(value)).collect(Collectors.toList());
+        List<OrderBill> orderBills = orderBillsList.stream().filter(e -> e.getId().toLowerCase().contains(value)).collect(Collectors.toList());
         int size = orderBills.size();
         pagination.setPageCount(size % 4 == 0 ? size / 4 : (size / 4 + 1));
         pagination.setCurrentPageIndex(0);

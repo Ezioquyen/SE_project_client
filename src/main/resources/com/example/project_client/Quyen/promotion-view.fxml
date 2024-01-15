@@ -28,13 +28,14 @@
         </padding>
         <HBox fx:id="topHBox" alignment="CENTER" spacing="10.0">
             <Label text="Products:" />
+         <TextField fx:id="filter" promptText="Nhập tên sản phẩm" />
             <Region HBox.hgrow="ALWAYS" />
          <Button fx:id="addAll" mnemonicParsing="false" onAction="#addAll" text="Add all" />
             <TextField fx:id="percent" prefHeight="36.0" prefWidth="46.0" promptText="0" text="10" />
             <Label text="\%" />
         </HBox>
         <ScrollPane prefHeight="700.0" prefWidth="651.0">
-            <FlowPane fx:id="productsPane" />
+            <FlowPane fx:id="productsPane" prefWidth="650.0" />
         </ScrollPane>
     </VBox>
     <VBox>

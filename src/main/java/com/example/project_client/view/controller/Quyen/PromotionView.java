@@ -14,6 +14,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class PromotionView {
@@ -52,6 +54,9 @@ public class PromotionView {
     HBox topHBox;
     @FXML
     VBox infor;
+    @FXML
+    TextField filter;
+    private final List<ProductView> productViews = new ArrayList<>();
 
     private final PromotionViewModel promotionViewModel = new PromotionViewModel();
 
@@ -73,6 +78,7 @@ public class PromotionView {
             if (promotionViewModel.getPromotion().getProducts().get(e.getId()) != null) {
                 insertProduct(productView, promotionViewModel.getPromotion().getProducts().get(e.getId()));
             }
+            productViews.add(productView);
             return productView;
         }).collect(Collectors.toList()));
         percent.textProperty().addListener(((observableValue, s, t1) -> {
@@ -93,6 +99,7 @@ public class PromotionView {
         startTime.valueProperty().addListener((observableValue, date, t1) -> promotionViewModel.getPromotion().setStartDate(t1));
         endTime.valueProperty().addListener(((observableValue, date, t1) -> promotionViewModel.getPromotion().setEndDate(t1)));
         condition.selectedProperty().addListener((observableValue, aBoolean, t1) -> promotionViewModel.getPromotion().setNeedCondition(t1));
+        filter.textProperty().addListener(((observableValue, s, t1) -> filter(t1)));
     }
 
     @FXML
@@ -168,5 +175,11 @@ public class PromotionView {
             return false;
         }
         return true;
+    }
+    private void filter(String value) {
+        productsPane.getChildren().clear();
+        productsPane.getChildren().addAll(productViews.stream().filter(e ->
+                e.getProduct().getName().toLowerCase().contains(value)
+        ).collect(Collectors.toList()));
     }
 }

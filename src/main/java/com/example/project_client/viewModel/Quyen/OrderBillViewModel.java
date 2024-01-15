@@ -32,8 +32,8 @@ public class OrderBillViewModel {
     private void export(OrderBill orderBill){
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Bill", "*.pdf"));
-        String absPath = "D:\\Bill";
-        fileChooser.setInitialDirectory(new File(absPath));
+
+        fileChooser.setInitialDirectory(new File(Data.getBillPath()));
         fileChooser.setInitialFileName(orderBill.getId());
         File file = fileChooser.showSaveDialog(null);
 

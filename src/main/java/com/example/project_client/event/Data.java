@@ -8,6 +8,7 @@ public class Data {
     @Getter
     @Setter
     private static User user = new User();
-
+    @Getter
+    private static final String billPath = "D:\\Bill" ;
 
 }

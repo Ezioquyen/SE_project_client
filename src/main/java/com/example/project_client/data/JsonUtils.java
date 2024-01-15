@@ -26,6 +26,7 @@ public class JsonUtils {
         }
     }
     public static <T> T fromJson(String json, TypeReference<T> typeReference) {
+        objectMapper.registerModule(new JavaTimeModule());
         try {
             return objectMapper.readValue(json, typeReference);
         } catch (JsonProcessingException e) {

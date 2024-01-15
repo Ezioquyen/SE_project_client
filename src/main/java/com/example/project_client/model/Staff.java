@@ -21,13 +21,13 @@ public class Staff {
     private String gender;
     private Integer salaryPerDay;
     private String role;
-    private Boolean is_removed;
+
 
     @JsonCreator
     public Staff(@JsonProperty("id") String id, @JsonProperty("name") String name, @JsonProperty("email") String email,
                  @JsonProperty("dob") LocalDate dob, @JsonProperty("phoneNumber") String phoneNumber,
                  @JsonProperty("address") String address, @JsonProperty("gender") String gender, @JsonProperty("salaryPerDay") Integer salaryPerDay,
-                 @JsonProperty("role") String role, @JsonProperty("is_removed") Boolean is_removed) {
+                 @JsonProperty("role") String role) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -37,7 +37,6 @@ public class Staff {
         this.gender = gender;
         this.salaryPerDay = salaryPerDay;
         this.role = role;
-        this.is_removed = is_removed;
     }
 
     public Staff() {
@@ -50,7 +49,6 @@ public class Staff {
             this.gender = null;
             this.salaryPerDay = null;
             this.role = null;
-            this.is_removed = null;
 
     }
 }

@@ -59,7 +59,7 @@ public class StaffView {
             setColumn();
         }
         catch (Exception e){
-            System.out.println("ERROR");
+            System.out.println("ERROR" + e.getMessage());
 //            System.out.println(staffs);
         }
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -68,7 +68,7 @@ public class StaffView {
     }
     @FXML
     private void addStaff() throws IOException {
-        Router.switchTo(Pages.ADD_STAFF_VIEW);
+        Router.goTo(Pages.ADD_STAFF_VIEW);
     }
     public static String idUpdate;
     @FXML
@@ -104,12 +104,11 @@ public class StaffView {
 
     @FXML
     private void cancelStaff() throws IOException {
-       Router.switchTo(Pages.MAIN_VIEW);
+       Router.switchTo(Pages.ADMIN_VIEW);
     }
 
     private void setTableView() throws IOException {
         staffs = staffCalRepository.getAllStaffApi();
-        staffs.removeIf(Staff::getIs_removed);
         tableList = FXCollections.observableArrayList(staffs);
         tableView.setItems(tableList);
     }

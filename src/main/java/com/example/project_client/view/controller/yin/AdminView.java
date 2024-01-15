@@ -52,7 +52,8 @@ public class AdminView {
     }
 
     @FXML
-    void HandleStaffClicked(ActionEvent event) {
+    void HandleStaffClicked(ActionEvent event) throws IOException{
+        Router.switchTo(Pages.STAFF_VIEW);
 
     }
 

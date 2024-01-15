@@ -13,10 +13,10 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Application.setUserAgentStylesheet(new NordLight().getUserAgentStylesheet());
-        Router.bind(this, stage, "Hello World", 1680, 800);
+        Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
+        Router.bind(this, stage, "Coffee Management", 1366, 768);
         init();
-        Router.goTo(Pages.LOGIN_VIEW);
+        Router.goTo(Pages.MAIN_VIEW);
     }
     public void init(){
         Router.setRouter(Pages.LOGIN_VIEW, "yin/login-view.fxml");

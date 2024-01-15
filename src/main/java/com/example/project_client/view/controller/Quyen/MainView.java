@@ -37,9 +37,8 @@ public class MainView {
     void initialize() throws IOException {
         mainViewModel.initModel();
         mainViewModel.getPromotions().forEach(e -> listView.getItems().add(new PromotionChild(e)));
-        filter.textProperty().addListener((observableValue, s, t1) -> filter(mainViewModel.getOrderBills(),t1));
-        filter.setText("O");
-        filter.setText("");
+        filter.textProperty().addListener((observableValue, s, t1) -> filter(mainViewModel.getOrderBills(), t1));
+        filter(mainViewModel.getOrderBills(), "");
 
     }
 
@@ -62,10 +61,11 @@ public class MainView {
     void create() throws IOException {
         Router.switchTo(Pages.PROMOTION_VIEW);
     }
-    private void filter(List<OrderBill> orderBillsList,String value){
-        List<OrderBill> orderBills = orderBillsList.stream().filter(e-> e.getId().contains(value)).collect(Collectors.toList());
+
+    private void filter(List<OrderBill> orderBillsList, String value) {
+        List<OrderBill> orderBills = orderBillsList.stream().filter(e -> e.getId().contains(value)).collect(Collectors.toList());
         int size = orderBills.size();
-        pagination.setPageCount(size / 6);
+        pagination.setPageCount(size % 6 == 0 ? size / 6 : (size / 6 + 1));
         pagination.setCurrentPageIndex(0);
         pagination.setMaxPageIndicatorCount(5);
         pagination.setPageFactory(index -> {
@@ -98,7 +98,7 @@ class MyCard extends Card {
                 orderBill.getUserStaffId()
         ));
         setBody(new Label(orderBill.getBuyDate()));
-        setOnMouseClicked(e->{
+        setOnMouseClicked(e -> {
             try {
                 gotoOrderBillView(orderBill);
             } catch (IOException ex) {
@@ -106,6 +106,7 @@ class MyCard extends Card {
             }
         });
     }
+
     private void gotoOrderBillView(OrderBill orderBill) throws IOException {
         ViewToggle.setIsCreateBill(false);
         ViewToggle.setOrderBill(orderBill);

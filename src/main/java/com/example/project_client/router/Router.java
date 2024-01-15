@@ -19,8 +19,8 @@ public final class Router {
     @Getter
     private static VBox root = new VBox();
     private static final String WINDOW_TITLE = "";
-    private static final Double WINDOW_WIDTH = 1920.0D;
-    private static final Double WINDOW_HEIGHT = 1080.0D;
+    private static final Double WINDOW_WIDTH = 1366D;
+    private static final Double WINDOW_HEIGHT = 768D;
     private static Router router;
     private static Object mainRef;
     private static Stage window;
@@ -66,13 +66,16 @@ public final class Router {
 
     public static void goTo(Pages page) throws IOException {
         root = new VBox();
+        root.setPrefSize(1366,768);
+        root.setMaxSize(1366,768);
+        root.setMaxSize(1366,768);
         switchTo(page);
         window.setTitle(windowTitle);
         window.setScene(new Scene(root));
         window.show();
     }
 
-    public static void goTo(Pages page, double windowWidth, double windowHeight) throws IOException {
+  /*  public static void goTo(Pages page, double windowWidth, double windowHeight) throws IOException {
         switchTo(page);
         window.setTitle(windowTitle);
         window.setScene(new Scene(root, windowWidth, windowHeight));
@@ -86,7 +89,7 @@ public final class Router {
         window.setScene(new Scene(root));
         window.show();
         window.setMaximized(setFullScreen);
-    }
+    }*/
 
     public static void showDialog(Pages page) throws IOException {
         dialog = new Stage();
@@ -103,7 +106,7 @@ public final class Router {
         if (dialog.isShowing()) dialog.close();
     }
 
-    public static void bind(Object ref, Stage win) {
+   /* public static void bind(Object ref, Stage win) {
         checkInstances(ref, win);
     }
 
@@ -117,9 +120,10 @@ public final class Router {
         windowWidth = winWidth;
         windowHeight = winHeight;
     }
-
+*/
     public static void bind(Object ref, Stage win, String winTitle, double winWidth, double winHeight) {
         checkInstances(ref, win);
+        win.setResizable(false);
         root.setPrefSize(winWidth, winHeight);
         windowTitle = winTitle;
         windowWidth = winWidth;

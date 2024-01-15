@@ -20,7 +20,7 @@ public class Ingredient {
     }
 
     public Ingredient(){
-        this.id = 1;
+        this.id = null;
         this.name = null;
         this.unit = null;
         this.unitPrice = null;

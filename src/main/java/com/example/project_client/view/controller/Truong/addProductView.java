@@ -130,7 +130,7 @@ public class addProductView {
                 else {
                     Desktop desktop = Desktop.getDesktop();
                     product.setImage(selectedFile.toString().replace(System.getProperty("user.dir") + "\\src\\main\\resources", "").replace("\\", "/"));
-                    image.setText(selectedFile.toString().replace(directory+"\\", ""));
+                    image.setText(selectedFile.toString().replace(directory+"\\", "").replace(".jpg", "").replace(".png", ""));
                     imageAlert.setText("");
                     check[4] = true;
                 }

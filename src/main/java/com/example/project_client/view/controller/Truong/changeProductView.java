@@ -70,7 +70,7 @@ public class changeProductView {
         id.setText(product.getId().toString());
         setName();
         setPrice();
-        image.setText(product.getImage().replace(System.getProperty("user.dir") + "\\src\\main\\resources\\com\\example\\project_client\\images\\", ""));
+        image.setText(product.getImage().replace("/com/example/project_client/images/", "").replace(".png", "").replace(".jpg", ""));
         choiceBox.setValue(Boolean.TRUE);
     }
     private void setName(){

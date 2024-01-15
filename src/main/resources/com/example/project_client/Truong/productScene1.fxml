@@ -64,15 +64,15 @@
                      </graphic></Button>
                </children>
             </Pane>
-            <ScrollPane layoutX="185.0" layoutY="240.0" prefHeight="466.0" prefWidth="894.0" style="-fx-background-color: #c0b9bf;">
+            <ScrollPane layoutX="185.0" layoutY="240.0" prefHeight="466.0" prefWidth="894.0" style="-fx-background-color: eaded6;">
                <content>
-                  <TableView fx:id="tableView" prefHeight="467.0" prefWidth="880.0">
+                  <TableView fx:id="tableView" prefHeight="438.0" prefWidth="878.0" style="-fx-background-color: eaded6;">
                     <columns>
-                      <TableColumn fx:id="id" prefWidth="57.0" text="ID" />
-                      <TableColumn fx:id="name" prefWidth="207.0" text="name" />
-                        <TableColumn fx:id="price" prefWidth="106.0" text="price" />
-                        <TableColumn fx:id="available" prefWidth="100.0" text="available" />
-                        <TableColumn fx:id="image" prefWidth="405.0" text="image" />
+                      <TableColumn fx:id="id" prefWidth="57.0" style="-fx-background-color: c0b9bf00;" text="ID" />
+                      <TableColumn fx:id="name" prefWidth="207.0" style="-fx-background-color: c0b9bf00;" text="name" />
+                        <TableColumn fx:id="price" prefWidth="106.0" style="-fx-background-color: c0b9bf00;" text="price" />
+                        <TableColumn fx:id="available" prefWidth="100.0" style="-fx-background-color: c0b9bf00;" text="available" />
+                        <TableColumn fx:id="image" prefWidth="405.0" style="-fx-background-color: c0b9bf00;" text="image" />
                     </columns>
                   </TableView>
                </content>

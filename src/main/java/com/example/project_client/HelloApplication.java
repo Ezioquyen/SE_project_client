@@ -16,7 +16,7 @@ public class HelloApplication extends Application {
         Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
         Router.bind(this, stage, "Coffee Management", 1366, 768);
         init();
-        Router.goTo(Pages.LOGIN_VIEW);
+        Router.goTo(Pages.USER_MAIN_VIEW);
     }
     public void init(){
         //

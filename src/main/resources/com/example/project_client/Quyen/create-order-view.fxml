@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Quyen.CreateOrderView">
+<BorderPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_client.view.controller.Quyen.CreateOrderView">
    <center>
       <SplitPane dividerPositions="0.5764" prefHeight="768.0" prefWidth="1366.0">
          <VBox>
@@ -36,7 +36,7 @@
             </ScrollPane>
          </VBox>
          <VBox spacing="10.0" style="-fx-border-color: gray gray gray transparent;">
-            <ListView fx:id="listView" fixedCellSize="60.0" prefHeight="346.0" prefWidth="422.0">
+            <ListView fx:id="listView" fixedCellSize="60.0" prefHeight="330.0" prefWidth="575.0">
                <padding>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
@@ -49,7 +49,7 @@
             <VBox>
                <HBox>
                   <padding>
-                     <Insets bottom="5.0" left="5.0" right="5.0" top="15.0" />
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                   </padding>
                   <Label text="Tổng giá trị:" />
                   <Region HBox.hgrow="ALWAYS" />
@@ -57,7 +57,7 @@
                </HBox>
                <HBox>
                   <padding>
-                     <Insets bottom="5.0" left="5.0" right="5.0" top="15.0" />
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                   </padding>
                   <Label text="Khấu  trừ" />
                   <Region HBox.hgrow="ALWAYS" />
@@ -65,7 +65,7 @@
                </HBox>
                <HBox>
                   <padding>
-                     <Insets bottom="5.0" left="5.0" right="5.0" top="15.0" />
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                   </padding>
                   <Label text="Tổng cộng:" />
                   <Region HBox.hgrow="ALWAYS" />
@@ -89,7 +89,7 @@
                </HBox>
                <HBox spacing="5.0">
                   <padding>
-                     <Insets bottom="5.0" left="5.0" right="15.0" top="15.0" />
+                     <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
                   </padding>
                   <Button mnemonicParsing="false" onAction="#confirm" styleClass="success" text="Xác nhận" />
                   <Button fx:id="create" mnemonicParsing="false" onAction="#showConfirmDialogView" styleClass="accent" text="Điền thông tin khách hàng" />

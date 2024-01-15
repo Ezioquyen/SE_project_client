@@ -24,7 +24,7 @@ public class OrderBillViewModel {
 
             data.setId("OB" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("ssmmHHddMMyyyy")));
             data.setUserStaffId(Data.getUser().getStaffId());
-            data.setChangeMoney(data.getReceived() - data.getChangeMoney());
+            data.setChangeMoney(data.getReceived() - data.getTotal());
             orderBillRepository.saveOrderBillApi(data);
             export(orderBill);
         }

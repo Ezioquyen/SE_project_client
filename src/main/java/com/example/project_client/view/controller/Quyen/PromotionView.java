@@ -159,7 +159,7 @@ public class PromotionView {
     @FXML
     public void remove() throws IOException {
         promotionViewModel.removePromo();
-        Router.switchTo(Pages.MAIN_VIEW);
+        Router.switchTo(Pages.ADMIN_VIEW);
     }
 
     private Boolean showWarning() throws IOException {

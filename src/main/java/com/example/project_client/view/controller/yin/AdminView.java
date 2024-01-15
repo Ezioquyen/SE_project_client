@@ -76,7 +76,6 @@ public class AdminView {
 
     @FXML
     void HandleSignOut() throws IOException {
-        Router.goTo(Pages.LOGIN_VIEW);
         Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmationAlert.setTitle("Xác nhận đăng xuất");
         confirmationAlert.setHeaderText(null);

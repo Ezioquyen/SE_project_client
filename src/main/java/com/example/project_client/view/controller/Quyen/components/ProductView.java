@@ -25,7 +25,7 @@ public class ProductView extends Card {
         setPadding(new Insets(10));
         ImageView imageView = new ImageView();
         imageView.setFitHeight(150.0);
-        imageView.setFitWidth(200.0);
+        imageView.setFitWidth(150.0);
         imageView.setPreserveRatio(true);
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(product.getImage())));
         imageView.setImage(image);

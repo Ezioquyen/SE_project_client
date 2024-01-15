@@ -9,6 +9,6 @@ public class Data {
     @Setter
     private static User user = new User();
     @Getter
-    private static final String billPath = "D:\\INTELLIJ" ;
+    private static final String billPath = "D:\\Bill" ;
 
 }

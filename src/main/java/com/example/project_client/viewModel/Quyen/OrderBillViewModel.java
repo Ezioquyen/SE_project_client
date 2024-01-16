@@ -21,7 +21,6 @@ public class OrderBillViewModel {
     public void initData(OrderBill orderBill, Boolean isCreate) throws Exception {
         this.data = orderBill;
         if(isCreate) {
-
             data.setId("OB" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("ssmmHHddMMyyyy")));
             data.setUserStaffId(Data.getUser().getStaffId());
             data.setChangeMoney(data.getReceived() - data.getTotal());

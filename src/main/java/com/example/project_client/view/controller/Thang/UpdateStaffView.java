@@ -24,8 +24,7 @@ public class UpdateStaffView {
     private final StaffCalRepository staffCalRepository = new StaffCalRepository();
 
     private final StaffView staffView = new StaffView();
-    @FXML
-    private TextField idField;
+
     @FXML
     private GridPane formTable;
     @FXML
@@ -131,7 +130,6 @@ public class UpdateStaffView {
             emailField.pseudoClassStateChanged(PseudoClass.getPseudoClass("error"), active);
         });
 //
-        idField.setText(staff.getId());
         nameField.setText(staff.getName());
         roleField.setText(staff.getRole());
         emailField.setText(staff.getEmail());
@@ -185,7 +183,6 @@ public class UpdateStaffView {
                 return;
             }
         }
-        staff.setId(idField.getText());
         staff.setDob(birthDatePicker.getValue());
         staff.setName(nameField.getText());
         staff.setAddress(addressField.getText());
@@ -206,7 +203,6 @@ public class UpdateStaffView {
 
     @FXML
     private void clear() throws IOException {
-        idField.clear();
         nameField.clear();
         phoneField.clear();
         emailField.clear();

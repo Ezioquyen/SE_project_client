@@ -15,6 +15,7 @@ import lombok.Getter;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.function.UnaryOperator;
@@ -24,8 +25,7 @@ public class AddStaffView {
     private Staff staff = new Staff();
 
     private final StaffCalRepository staffCalRepository = new StaffCalRepository();
-    @FXML
-    private TextField idField;
+
     @FXML
     private GridPane formTable;
     @FXML
@@ -174,7 +174,7 @@ public class AddStaffView {
             }
         }
 //        Staff newStaff = new Staff();
-        staff.setId(idField.getText());
+        staff.setId("NV" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("ssmmHHddMMyyyy")));
         staff.setName(nameField.getText());
         staff.setEmail(email);
         staff.setPhoneNumber(phoneField.getText());
@@ -196,7 +196,6 @@ public class AddStaffView {
 
     @FXML
     private void clear() throws IOException {
-        idField.clear();
         nameField.clear();
         phoneField.clear();
         emailField.clear();

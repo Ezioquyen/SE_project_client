@@ -171,7 +171,6 @@ public final class ingredientView {
     }
     private void setColumn() {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
-//        id.setCellFactory();
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         unit.setCellValueFactory(new PropertyValueFactory<>("unit"));
         unit_Price.setCellValueFactory(new PropertyValueFactory<>("unit_Price"));

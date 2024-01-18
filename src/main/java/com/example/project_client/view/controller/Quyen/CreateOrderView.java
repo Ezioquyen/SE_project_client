@@ -180,21 +180,9 @@ public class CreateOrderView implements InitStyles {
         HBox hBox = new HBox();
         Label label = new Label(createOrderBillViewModel.getPromotion().getName());
         Region region = new Region();
-        CheckBox checkBox = new CheckBox("Áp dụng");
-        checkBox.selectedProperty().addListener((observable -> {
-            if (checkBox.isSelected()) {
-                createOrderBillViewModel.setApplyPromotion(true);
-                createOrderBillViewModel.updatePromotion();
-            } else {
-                createOrderBillViewModel.setApplyPromotion(false);
-                createOrderBillViewModel.resetPromotion();
-            }
-        }));
-        if (!createOrderBillViewModel.getPromotion().getNeedCondition()) {
-            checkBox.setSelected(true);
-            checkBox.setDisable(true);
-        }
-        hBox.getChildren().addAll(label, region, checkBox);
+
+
+        hBox.getChildren().addAll(new Label("Chương trình khuyến mãi:"), region,label);
         HBox.setHgrow(region, Priority.ALWAYS);
 
         return hBox;

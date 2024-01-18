@@ -16,7 +16,6 @@ public class Promotion {
     private String information = "";
     private LocalDate startDate = LocalDate.now();
     private LocalDate endDate = LocalDate.now();
-    private Boolean needCondition = false;
     private String name = "";
     private Map<Integer, Double> products = new HashMap<>();
     public static Map<String,Object> toData(Promotion promotion){
@@ -26,7 +25,6 @@ public class Promotion {
         data.put("information",promotion.getInformation());
         data.put("startDate",promotion.getStartDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         data.put("endDate",promotion.getEndDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-        data.put("condition",promotion.getNeedCondition());
         List<Map<String,Object>> products = new ArrayList<>();
         promotion.getProducts().forEach((key,val)->{
             Map<String,Object> element = new HashMap<>();
@@ -43,7 +41,6 @@ public class Promotion {
         promotion.setId((Integer) data.get("id"));
         promotion.setName(data.get("name").toString());
         promotion.setInformation(data.get("information").toString());
-        promotion.setNeedCondition((Boolean) data.get("needCondition"));
         promotion.setStartDate(LocalDate.parse(data.get("startDate").toString(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         promotion.setEndDate(LocalDate.parse(data.get("endDate").toString(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         for (Map<String, Object> product : (List<Map<String, Object>>) data.get("products")) {

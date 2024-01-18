@@ -46,10 +46,15 @@ public class CustomerInformationInputView {
             if (customerInformationInputViewModel.isExistCustomer()) {
                 customerName.setText(customerInformationInputViewModel.getCustomer().getName());
                 dob.setValue(DobFormatter.toDate(customerInformationInputViewModel.getCustomer().getDob()));
+                customerName.setDisable(true);
+                dob.setDisable(true);
             } else {
                 customerName.setText("");
                 dob.setValue(DobFormatter.toDate(""));
+                dob.setDisable(false);
                 customerInformationInputViewModel.getCustomer().setTotal(0);
+                customerName.setDisable(false);
+
             }
 
         });

@@ -42,8 +42,6 @@ public class CreateOrderBillViewModel {
     @Getter
     private Promotion promotion;
     @Setter
-    private Boolean applyPromotion = false;
-    @Setter
     @Getter
     private Customer customer = new Customer();
     private final CustomerRepository customerRepository = new CustomerRepository();
@@ -66,7 +64,7 @@ public class CreateOrderBillViewModel {
         count.get(product).set(count.get(product).getValue() + 1);
         original.setValue(original.getValue() + product.getPrice());
         deduction.setValue(deduction.getValue() + product.getPrice() * deductionForCustomer.doubleValue() / 100);
-        if (promotion != null && applyPromotion)
+        if (promotion != null)
             if (promotion.getProducts().get(product.getId()) != null) {
                 deduction.setValue(deduction.getValue() + product.getPrice() * promotion.getProducts().get(product.getId()) / 100);
             }
@@ -80,7 +78,7 @@ public class CreateOrderBillViewModel {
             count.remove(product);
         }
         deduction.setValue(deduction.getValue() - product.getPrice() * deductionForCustomer.doubleValue() / 100);
-        if (promotion != null && applyPromotion)
+        if (promotion != null)
             if (promotion.getProducts().get(product.getId()) != null) {
                 deduction.setValue(deduction.getValue() - product.getPrice() * promotion.getProducts().get(product.getId()) / 100);
             }

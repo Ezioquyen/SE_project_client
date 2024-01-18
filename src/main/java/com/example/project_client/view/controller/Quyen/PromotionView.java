@@ -41,8 +41,6 @@ public class PromotionView {
     @FXML
     DatePicker endTime;
     @FXML
-    CheckBox condition;
-    @FXML
     VBox warningVBox;
     @FXML
     VBox parent;
@@ -93,12 +91,11 @@ public class PromotionView {
         information.setText(promotionViewModel.getPromotion().getInformation());
         startTime.setValue(promotionViewModel.getPromotion().getStartDate());
         endTime.setValue(promotionViewModel.getPromotion().getEndDate());
-        condition.setSelected(promotionViewModel.getPromotion().getNeedCondition());
+
         name.textProperty().addListener((observableValue, s, t1) -> promotionViewModel.getPromotion().setName(t1));
         information.textProperty().addListener(((observableValue, s, t1) -> promotionViewModel.getPromotion().setInformation(t1)));
         startTime.valueProperty().addListener((observableValue, date, t1) -> promotionViewModel.getPromotion().setStartDate(t1));
         endTime.valueProperty().addListener(((observableValue, date, t1) -> promotionViewModel.getPromotion().setEndDate(t1)));
-        condition.selectedProperty().addListener((observableValue, aBoolean, t1) -> promotionViewModel.getPromotion().setNeedCondition(t1));
         filter.textProperty().addListener(((observableValue, s, t1) -> filter(t1)));
     }
 

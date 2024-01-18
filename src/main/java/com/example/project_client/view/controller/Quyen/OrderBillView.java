@@ -101,10 +101,6 @@ public class OrderBillView {
     public void createNewBill() throws IOException {
         Router.switchTo(Pages.CREATE_ORDER_VIEW);
     }
-//    @FXML
-//    public void createNewBill() throws IOException {
-//        Router.switchTo(Pages.CREATE_ORDER_VIEW);
-//    }
 }
 
 @Getter

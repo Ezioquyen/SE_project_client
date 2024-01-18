@@ -82,7 +82,7 @@ public class addIngredientView {
         unitPrice.textProperty().addListener((observableValue, oldValue, newValue) -> {
             try{
                 try {
-                    if (!ingredient.setUnit_Price(Integer.parseInt(newValue))) {
+                    if (!ingredient.setUnitPrice(Integer.parseInt(newValue))) {
                         throw new Exception();
                     }
                 }

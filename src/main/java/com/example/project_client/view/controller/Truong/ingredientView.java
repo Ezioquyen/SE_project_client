@@ -28,7 +28,7 @@ public final class ingredientView {
     @FXML
     TableColumn<Ingredient, String> unit;
     @FXML
-    TableColumn<Ingredient, Integer> unit_Price;
+    TableColumn<Ingredient, Integer> unitPrice;
     @FXML
     TextField searchTextField;
     @Getter
@@ -173,7 +173,7 @@ public final class ingredientView {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         unit.setCellValueFactory(new PropertyValueFactory<>("unit"));
-        unit_Price.setCellValueFactory(new PropertyValueFactory<>("unit_Price"));
+        unitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
     }
     public static Ingredient getIngredient() {
         return ingredient;

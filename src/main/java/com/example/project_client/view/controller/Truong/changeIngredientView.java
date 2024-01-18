@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class changeIngredientView {
     @FXML
-    private TextField name, unit_Price, unit;
+    private TextField name, unitPrice, unit;
     @FXML
     private Label id, nameAlert, unitAlert, unitPriceAlert;
     private Boolean[] check = {true, true, true, true};
@@ -56,7 +56,7 @@ public class changeIngredientView {
     private void setField() {
         id.setText(ingredient.getId().toString());
         setName();
-        setUnit_Price();
+        setUnitPrice();
         setUnit();
     }
     private void setName() {
@@ -77,13 +77,13 @@ public class changeIngredientView {
             }
         });
     }
-    private void setUnit_Price() {
-        unit_Price.setPromptText(ingredient.getUnit_Price().toString());
-        unit_Price.setStyle("-fx-text-fill: white;" + "-fx-background-color: black;");
-        unit_Price.textProperty().addListener((observableValue, oldValue, newValue) -> {
+    private void setUnitPrice() {
+        unitPrice.setPromptText(ingredient.getUnitPrice().toString());
+        unitPrice.setStyle("-fx-text-fill: white;" + "-fx-background-color: black;");
+        unitPrice.textProperty().addListener((observableValue, oldValue, newValue) -> {
             try{
                 try {
-                    if (!ingredient.setUnit_Price(Integer.parseInt(newValue))) {
+                    if (!ingredient.setUnitPrice(Integer.parseInt(newValue))) {
                         throw new Exception();
                     }
                 }
@@ -95,7 +95,7 @@ public class changeIngredientView {
             }
             catch (Exception e) {
                 check[2] = false;
-                ingredient.setUnit_Price(Integer.parseInt(unit_Price.getPromptText()));
+                ingredient.setUnitPrice(Integer.parseInt(unitPrice.getPromptText()));
                 unitPriceAlert.setText(e.getMessage());
             }
         });

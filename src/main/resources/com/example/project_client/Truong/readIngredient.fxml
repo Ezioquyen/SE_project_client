@@ -45,7 +45,7 @@
             <Font name="System Bold" size="29.0" />
          </font>
       </Label>
-      <Label fx:id="unit_Price" layoutX="560.0" layoutY="613.0" text="unit price" textFill="#3300ff">
+      <Label fx:id="unitPrice" layoutX="560.0" layoutY="613.0" text="unit price" textFill="#3300ff">
          <font>
             <Font name="System Bold" size="29.0" />
          </font>

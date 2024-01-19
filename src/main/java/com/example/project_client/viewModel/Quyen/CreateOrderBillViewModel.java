@@ -127,15 +127,17 @@ public class CreateOrderBillViewModel {
     }
 
     public void checkCustomerForPromo(LocalDate localDate) {
+
         deductionForCustomer.setValue(0);
         if (customer.getTotal() > 500000 && !customer.getPhoneNumber().isEmpty()) {
             totalNotify.setValue(true);
             deductionForCustomer.setValue(deductionForCustomer.getValue() + 10);
         } else totalNotify.setValue(false);
-
-        if (localDate.format(DateTimeFormatter.ofPattern("MM-dd")).equals(LocalDate.now().format(DateTimeFormatter.ofPattern("MM-dd"))) && !customer.getPhoneNumber().isEmpty()) {
-            deductionForCustomer.setValue(deductionForCustomer.getValue() + 10);
-            dobNotify.setValue(true);
-        } else dobNotify.setValue(false);
+        if (localDate != null) {
+            if (localDate.format(DateTimeFormatter.ofPattern("MM-dd")).equals(LocalDate.now().format(DateTimeFormatter.ofPattern("MM-dd"))) && !customer.getPhoneNumber().isEmpty()) {
+                deductionForCustomer.setValue(deductionForCustomer.getValue() + 10);
+                dobNotify.setValue(true);
+            } else dobNotify.setValue(false);
+        }
     }
 }

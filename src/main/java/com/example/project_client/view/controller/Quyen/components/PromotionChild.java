@@ -3,6 +3,7 @@ package com.example.project_client.view.controller.Quyen.components;
 import com.example.project_client.model.Promotion;
 import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
+import com.example.project_client.view.controller.Quyen.event.ViewToggle;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
@@ -27,7 +28,7 @@ public class PromotionChild extends VBox {
         });
     }
     private void click(Promotion promotion) throws IOException {
-        Router.setData(Pages.MAIN_VIEW,promotion);
+        ViewToggle.setPromotion(promotion);
         Router.switchTo(Pages.PROMOTION_VIEW);
     }
 }

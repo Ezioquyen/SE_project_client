@@ -17,6 +17,7 @@
                         <Button  mnemonicParsing="false" onAction="#addStaff" alignment="CENTER"  text="Add Staff" />
                         <Button  mnemonicParsing="false" onAction="#deleteStaff" alignment="CENTER" text="Delete Staff" />
                         <Button  mnemonicParsing="false" onAction="#cancelStaff" alignment="CENTER" text="Cancel" />
+                        <Button  mnemonicParsing="false" onAction="#attendanceStaff" alignment="CENTER" text="Attendance" />
                     </HBox>
                 </Pane>
                 <Label fx:id="timepiece"  styleClass="timepiece" layoutX="340" layoutY="655" text="Tìm kiếm nhân viên"/>

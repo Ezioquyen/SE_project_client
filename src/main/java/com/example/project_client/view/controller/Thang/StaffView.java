@@ -2,6 +2,7 @@ package com.example.project_client.view.controller.Thang;
 
 import com.example.project_client.model.Staff;
 import com.example.project_client.repository.StaffCalRepository;
+import com.example.project_client.repository.TimekeepingRepository;
 import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
 import javafx.collections.FXCollections;
@@ -16,11 +17,15 @@ import lombok.Getter;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class StaffView {
     private static Staff staff;
     private final StaffCalRepository staffCalRepository = new StaffCalRepository();
+    private final TimekeepingRepository timekeepingRepository = new TimekeepingRepository();
     @FXML
     private TableColumn<Staff, String> id;
     @FXML
@@ -106,7 +111,25 @@ public class StaffView {
     private void cancelStaff() throws IOException {
        Router.switchTo(Pages.ADMIN_VIEW);
     }
+    @FXML
+    private void attendanceStaff(){
+        Staff staff = tableView.getSelectionModel().getSelectedItem();
+        if(staff == null){
+            createAlert(Alert.AlertType.WARNING, "Bạn chưa chọn nhân viên", "", "Thông báo" ).showAndWait();
+        }else{
+            Map<String, String> input = new HashMap<>();
+            input.put("staffId", staff.getId());
+            input.put("workDate", LocalDate.now().toString());
+            try {
+                timekeepingRepository.saveTimekeeping(input);
+                createAlert(Alert.AlertType.INFORMATION, "Điểm danh thành công", "", "Thông báo" ).showAndWait();
+            } catch (Exception e) {
+                createAlert(Alert.AlertType.WARNING, "Có lỗi xảy ra với máy chủ, thử lại sau!", "", "Thông báo" ).showAndWait();
+                throw new RuntimeException(e);
+            }
 
+        }
+    }
     @FXML
     private void readStaff() throws IOException {
         try {

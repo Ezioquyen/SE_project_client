@@ -11,7 +11,7 @@ public class DobFormatter {
         return dob.format(formatter);
     }
     public static LocalDate toDate(String dob){
-        if(dob==null||dob.isEmpty()) return LocalDate.now();
+        if(dob==null||dob.isEmpty()) return null;
         return LocalDate.parse(dob);
     }
 }

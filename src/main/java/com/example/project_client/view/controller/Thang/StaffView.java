@@ -56,7 +56,6 @@ public class StaffView {
     @FXML
     public void initialize() {
         try {
-            System.out.println(staffCalRepository.getAllStaffApi());
             setTableView();
             setColumn();
         }

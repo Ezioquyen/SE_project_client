@@ -7,6 +7,7 @@ import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -163,7 +164,19 @@ public final class productView {
         products = ProductRepository.getProductsApi();
         tableList = FXCollections.observableArrayList(products);
         tableView.setItems(tableList);
+        tableView.setRowFactory(tv -> {
+            TableRow<Product> row = new TableRow<>();
+            row.selectedProperty().addListener((obs, oldVal, newVal) -> {
+                if (newVal) {
+                    row.setStyle("-fx-background-color: #c0b9bf;");
+                } else {
+                    row.setStyle("");
+                }
+            });
+            return row;
+        });
     }
+
     private void setColumn(){
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));

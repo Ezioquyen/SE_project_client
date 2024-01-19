@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 
 public class readIngredientView {
     @FXML
-    private Label id, name, unit, unit_Price;
+    private Label id, name, unit, unitPrice;
     private Ingredient ingredient;
     @FXML
     private void initialize() throws Exception {
@@ -24,6 +24,6 @@ public class readIngredientView {
         id.setText(ingredient.getId().toString());
         name.setText(ingredient.getName());
         unit.setText(ingredient.getUnit());
-        unit_Price.setText(ingredient.getUnit_Price().toString());
+        unitPrice.setText(ingredient.getUnitPrice().toString());
     }
 }

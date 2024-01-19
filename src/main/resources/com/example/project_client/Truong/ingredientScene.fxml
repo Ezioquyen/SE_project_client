@@ -71,14 +71,14 @@
             </Pane>
          </children>
       </Pane>
-      <ScrollPane layoutX="263.0" layoutY="291.0" prefHeight="391.0" prefWidth="531.0">
+      <ScrollPane layoutX="263.0" layoutY="291.0" prefHeight="412.0" prefWidth="555.0" style="-fx-background-color: eaded6;">
          <content>
-            <TableView fx:id="tableView" prefHeight="387.0" prefWidth="525.0">
+            <TableView fx:id="tableView" prefHeight="387.0" prefWidth="525.0" style="-fx-background-color: eaded6;">
               <columns>
-                <TableColumn fx:id="id" prefWidth="73.0" style="-fx-background-color: #c0b9bf;" text="ID" />
-                <TableColumn fx:id="name" prefWidth="207.0" style="-fx-background-color: #c0b9bf;" text="Name" />
-                  <TableColumn fx:id="unit" prefWidth="152.0" style="-fx-background-color: #c0b9bf;" text="Unit" />
-                  <TableColumn fx:id="unit_Price" prefWidth="90.0" style="-fx-background-color: #c0b9bf;" text="Unit Price" />
+                <TableColumn fx:id="id" prefWidth="73.0" style="-fx-background-color: #eeeeee00;" text="ID" />
+                <TableColumn fx:id="name" prefWidth="207.0" style="-fx-background-color: #eeeeee00;" text="Name" />
+                  <TableColumn fx:id="unit" prefWidth="152.0" style="-fx-background-color: #eeeeee00;" text="Unit" />
+                  <TableColumn fx:id="unitPrice" prefWidth="90.0" style="-fx-background-color: #eeeeee00;" text="Unit Price" />
               </columns>
             </TableView>
          </content>

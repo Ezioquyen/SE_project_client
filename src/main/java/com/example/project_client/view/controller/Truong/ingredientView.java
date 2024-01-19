@@ -1,6 +1,7 @@
 package com.example.project_client.view.controller.Truong;
 
 import com.example.project_client.model.Ingredient;
+import com.example.project_client.model.Product;
 import com.example.project_client.repository.IngredientRepository;
 import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
@@ -27,7 +28,7 @@ public final class ingredientView {
     @FXML
     TableColumn<Ingredient, String> unit;
     @FXML
-    TableColumn<Ingredient, Integer> unit_Price;
+    TableColumn<Ingredient, Integer> unitPrice;
     @FXML
     TextField searchTextField;
     @Getter
@@ -156,12 +157,23 @@ public final class ingredientView {
         ingredients = IngredientRepository.getIngredientsApi();
         tableList = FXCollections.observableArrayList(ingredients);
         tableView.setItems(tableList);
+        tableView.setRowFactory(tv -> {
+            TableRow<Ingredient> row = new TableRow<>();
+            row.selectedProperty().addListener((obs, oldVal, newVal) -> {
+                if (newVal) {
+                    row.setStyle("-fx-background-color: #c0b9bf;");
+                } else {
+                    row.setStyle("");
+                }
+            });
+            return row;
+        });
     }
     private void setColumn() {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         unit.setCellValueFactory(new PropertyValueFactory<>("unit"));
-        unit_Price.setCellValueFactory(new PropertyValueFactory<>("unit_Price"));
+        unitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
     }
     public static Ingredient getIngredient() {
         return ingredient;

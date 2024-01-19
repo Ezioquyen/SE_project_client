@@ -156,7 +156,7 @@ public class BillProductCalViewController implements Initializable {
         try {
             int max = -1;
             XYChart.Series<String, Number> series= new  XYChart.Series<>();
-            series.setName("Biểu đồ số lượng sản phẩm bán được kể từ: " + FunctionKhai.convertDate(datePickStart.getValue().toString()) + " tới ngày " + FunctionKhai.convertDate(datePickStart.getValue().toString()));
+            series.setName("Biểu đồ số lượng sản phẩm bán được kể từ: " + FunctionKhai.convertDate(datePickStart.getValue().toString()) + " tới ngày " + FunctionKhai.convertDate(datePickEnd.getValue().toString()));
             List<NameAndCount> nameAndCounts = billProductViewModel.getCount(new TimeRequest(datePickStart.getValue(), datePickEnd.getValue()));
             for(NameAndCount n : nameAndCounts) {
                 series.getData().add(new  XYChart.Data<>(FunctionKhai.convertDate(n.getName()), n.getCount()));

@@ -6,6 +6,7 @@ import com.example.project_client.router.Pages;
 import com.example.project_client.router.Router;
 import com.example.project_client.view.controller.Quyen.components.ProductInPromotion;
 import com.example.project_client.view.controller.Quyen.components.ProductView;
+import com.example.project_client.view.controller.Quyen.event.ViewToggle;
 import com.example.project_client.viewModel.Quyen.PromotionViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -67,7 +68,7 @@ public class PromotionView {
             topHBox.setDisable(true);
         }
         parent.getChildren().remove(warningVBox);
-        promotionViewModel.initData((Promotion) Router.getData(Pages.MAIN_VIEW));
+        promotionViewModel.initData(ViewToggle.getPromotion());
         remove.setVisible(!promotionViewModel.getIsCreate()&&(Data.getUser().getStaffId() ==null));
 
         productsPane.getChildren().addAll(promotionViewModel.getProducts().stream().map(e -> {
@@ -105,6 +106,7 @@ public class PromotionView {
 
         if (showWarning()) {
             promotionViewModel.createPromotion();
+            ViewToggle.setPromotion(new Promotion());
             Router.switchTo(Pages.ADMIN_VIEW);
         }
 
@@ -112,7 +114,7 @@ public class PromotionView {
 
     @FXML
     void cancel() throws IOException {
-        Router.removeData(Pages.MAIN_VIEW);
+        ViewToggle.setPromotion(new Promotion());
         Router.switchTo(Pages.ADMIN_VIEW);
     }
 
@@ -156,6 +158,7 @@ public class PromotionView {
     @FXML
     public void remove() throws IOException {
         promotionViewModel.removePromo();
+        ViewToggle.setPromotion(new Promotion());
         Router.switchTo(Pages.ADMIN_VIEW);
     }
 

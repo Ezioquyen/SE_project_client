@@ -10,6 +10,7 @@ import lombok.Setter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+
 @Getter
 @Setter
 public class PromotionViewModel {
@@ -20,18 +21,19 @@ public class PromotionViewModel {
     private final PromotionRepository promotionRepository = new PromotionRepository();
 
     public void initData(Promotion promotion) throws IOException {
-        if(promotion!=null) {this.promotion = promotion;
-           }
-        else {this.promotion = new Promotion();
-            isCreate = true;}
+        this.promotion = promotion;
+        isCreate = promotion.getId() == 0;
         products = ProductRepository.getProductsApi();
     }
+
     public void removePromo() throws IOException {
         promotionRepository.removePromotion(promotion.getId());
     }
-    public Boolean check(LocalDate startDate,LocalDate endDate) throws IOException {
-        return promotionRepository.checkPromotion(startDate,endDate, promotion!=null?promotion.getId():0);
+
+    public Boolean check(LocalDate startDate, LocalDate endDate) throws IOException {
+        return promotionRepository.checkPromotion(startDate, endDate, promotion != null ? promotion.getId() : 0);
     }
+
     public void createPromotion() throws Exception {
         promotionRepository.savePromotion(Promotion.toData(promotion));
     }

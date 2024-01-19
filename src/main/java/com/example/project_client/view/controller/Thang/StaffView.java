@@ -46,9 +46,6 @@ public class StaffView {
     private TableColumn<Staff, String> role;
     @FXML
     private TableColumn<Staff, Integer> salaryPerDay;
-    @FXML
-    private TableColumn<Staff, Boolean> is_removed;
-
     @Getter
     private List<Staff> staffs;
     @FXML
@@ -160,7 +157,6 @@ public class StaffView {
         address.setCellValueFactory(new PropertyValueFactory<>("address"));
         role.setCellValueFactory(new PropertyValueFactory<>("role"));
         salaryPerDay.setCellValueFactory(new PropertyValueFactory<>("salaryPerDay"));
-        is_removed.setCellValueFactory(new PropertyValueFactory<>("is_removed"));
     }
 
     public static Alert createAlert(Alert.AlertType type, String content, String header, String title) {

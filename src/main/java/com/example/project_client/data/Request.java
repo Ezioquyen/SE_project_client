@@ -101,8 +101,6 @@ public class Request {
             os.write(input, 0, input.length);
         }
 
-        int responseCode = connection.getResponseCode();
-
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String inputLine;
         StringBuilder response = new StringBuilder();

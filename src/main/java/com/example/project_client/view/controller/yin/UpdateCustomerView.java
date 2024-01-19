@@ -131,12 +131,11 @@ public class UpdateCustomerView implements Initializable {
     }
 
     public boolean validateName(String name) {
-        if (name == null || name.trim().length() == 0 || name.equals("null")) {
+        if (name == null || name.trim().length() == 0 || name.equals("null") || !name.matches("^[a-zA-Zà-ỹẠ-ỴđĐ]+[\\-'\\s]?[a-zA-Zà-ỹẠ-ỴđĐ ]+$")) {
             validationAlert("Name", false);
             return false;
-
         }
-        return name.matches("^[a-zA-Z]+[\\-'\\s]?[a-zA-Z ]+$");
+        return true;
     }
 
 

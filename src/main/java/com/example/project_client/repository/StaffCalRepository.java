@@ -17,7 +17,6 @@ public  class StaffCalRepository {
 
     public  List<Staff> getAllStaffApi() throws IOException {
         String jsonObject = Request.sendGetRequest(Api.staffApi+"/getAll");
-        System.out.println(jsonObject);
         return JsonUtils.fromJson(jsonObject, new TypeReference<>() {
         });
     }
@@ -32,7 +31,6 @@ public  class StaffCalRepository {
 
     public Staff getStaffByIdApi(String id) throws Exception {
         String jsonObject = Request.sendGetRequest(Api.staffApi+"/getById/" + id);
-        System.out.println(jsonObject);
         return JsonUtils.fromJson(jsonObject, Staff.class);
     }
 }
